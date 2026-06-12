@@ -84,9 +84,9 @@ Single project tại repo root theo plan.md: `src/`, `public/`, không có `test
 
 **Goal**: Trang giỏ liệt kê mặt hàng, chỉnh số lượng trong 1–5, xóa dòng, tổng tiền đúng, trạng thái rỗng rõ ràng
 
-**Independent Test**: Thêm sẵn hàng → mở `/cart` → kiểm tên/giá/số lượng/thành tiền/tổng; tăng đến 5 và giảm về 1 thấy nút disabled đúng lúc; Xóa hết → thấy `cart-empty-message`, Checkout không khả dụng (quickstart.md US3)
+**Independent Test**: Thêm sẵn hàng → mở `/cart` → kiểm tên/giá/số lượng/thành tiền/tổng; tăng đến 5 và giảm về 1 thấy nút disabled đúng lúc; Xóa hết → thấy `cart-empty-message`, nút "Thanh toán" disabled (quickstart.md US3)
 
-- [ ] T019 [US3] Hoàn thiện hiển thị `src/pages/CartPage.tsx`: render dòng `cart-item-{id}` (cart-item-name, cart-item-unit-price, cart-item-quantity, cart-item-subtotal — tiền qua formatPrice), `cart-total`, trạng thái rỗng `cart-empty-message` + ẩn/disable nút `cart-checkout` khi trống (FR-007, FR-010)
+- [ ] T019 [US3] Hoàn thiện hiển thị `src/pages/CartPage.tsx`: render dòng `cart-item-{id}` (cart-item-name, cart-item-unit-price, cart-item-quantity, cart-item-subtotal — tiền qua formatPrice), `cart-total`, trạng thái rỗng `cart-empty-message` + nút `cart-checkout` ("Thanh toán") disabled khi trống (FR-007, FR-010)
 - [ ] T020 [US3] Thêm điều khiển vào `src/pages/CartPage.tsx`: nút `cart-item-increase` (disabled tại 5), `cart-item-decrease` (disabled tại 1), `cart-item-remove` xóa dòng; mọi giá trị tiền + badge cập nhật ngay (FR-008, FR-006)
 
 **Checkpoint**: Kịch bản US3 đạt; US1–US2 vẫn hoạt động
@@ -109,7 +109,7 @@ Single project tại repo root theo plan.md: `src/`, `public/`, không có `test
 ## Phase 7: Polish & Cross-Cutting Concerns
 
 - [ ] T023 [P] Viết `README.md` tại repo root: giới thiệu 1 đoạn, lệnh chạy (`npm install`, `npm run dev`), trỏ tới specs/001-simpleshop-demo/quickstart.md và contracts/ui-contract.md cho người học automation
-- [ ] T024 Rà soát toàn bộ `src/` đối chiếu contracts/ui-contract.md: mọi route, data-testid, trạng thái disabled, label, alt đúng 100% hợp đồng (SC-002 — điều kiện người học tự động hóa được)
+- [ ] T024 Rà soát toàn bộ `src/` đối chiếu contracts/ui-contract.md: mọi route, data-testid, trạng thái disabled, label, alt đúng 100% hợp đồng (SC-002), và toàn bộ văn bản UI là tiếng Việt (FR-014)
 - [ ] T025 Chạy Definition of Done trong quickstart.md: kiểm tay 4 kịch bản US1–US4, thử tắt mạng dùng toàn luồng (SC-005), `npm run lint` + `npm run format` sạch, hành trình trọn vẹn < 2 phút (SC-001)
 
 ---

@@ -60,7 +60,6 @@ Giá trị suy diễn (không lưu): `subtotal = product.price × quantity`;
 |--------|------|-----------|
 | `fullName` | string | bắt buộc, trim ≠ rỗng (FR-011) |
 | `postalCode` | string | bắt buộc, trim ≠ rỗng (FR-011); không validate định dạng (quyết định ở clarify) |
-| `items` | CartItem[] | snapshot giỏ tại thời điểm đặt, ≥ 1 dòng |
 | `total` | number | tổng VND tại thời điểm đặt, hiển thị ở trang xác nhận (FR-012) |
 
 ## Lưu trữ localStorage

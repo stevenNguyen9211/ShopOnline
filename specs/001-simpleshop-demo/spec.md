@@ -87,13 +87,13 @@ tổng tiền cập nhật đúng.
 4. **Given** một mặt hàng có số lượng 1, **When** người dùng nhìn nút giảm, **Then** nút giảm bị vô hiệu hóa (xóa mặt hàng phải dùng nút Xóa).
 5. **Given** một mặt hàng có số lượng 5, **When** người dùng nhìn nút tăng, **Then** nút tăng bị vô hiệu hóa (số lượng tối đa mỗi mặt hàng là 5).
 6. **Given** giỏ có 2 mặt hàng, **When** người dùng bấm Xóa trên một mặt hàng, **Then** dòng đó biến mất, tổng tiền và bộ đếm cập nhật ngay.
-7. **Given** giỏ trống, **When** người dùng mở trang giỏ hàng, **Then** thấy thông báo giỏ trống và không thấy nút Checkout khả dụng.
+7. **Given** giỏ trống, **When** người dùng mở trang giỏ hàng, **Then** thấy thông báo giỏ trống và nút "Thanh toán" bị vô hiệu (disabled).
 
 ---
 
 ### User Story 4 - Checkout và xác nhận đặt hàng (Priority: P4)
 
-Từ trang giỏ hàng có mặt hàng, người dùng bấm nút Checkout, được đưa tới
+Từ trang giỏ hàng có mặt hàng, người dùng bấm nút "Thanh toán", được đưa tới
 trang nhập họ tên và mã bưu chính. Sau khi điền hợp lệ và xác nhận, hệ
 thống hiển thị trang xác nhận đặt hàng thành công kèm tổng tiền của đơn
 hàng. Không có thanh toán thật — đặt hàng chỉ là giả lập.
@@ -108,7 +108,7 @@ tổng tiền.
 
 **Acceptance Scenarios**:
 
-1. **Given** giỏ có mặt hàng, **When** người dùng bấm Checkout, **Then** được chuyển đến trang nhập thông tin gồm trường họ tên và mã bưu chính.
+1. **Given** giỏ có mặt hàng, **When** người dùng bấm nút "Thanh toán", **Then** được chuyển đến trang nhập thông tin gồm trường họ tên và mã bưu chính.
 2. **Given** đang ở trang nhập thông tin, **When** người dùng để trống họ tên hoặc mã bưu chính và bấm xác nhận, **Then** thấy thông báo lỗi rõ ràng cho từng trường thiếu và không được chuyển trang.
 3. **Given** đang ở trang nhập thông tin với giỏ có tổng tiền X, **When** người dùng điền đủ họ tên và mã bưu chính rồi xác nhận, **Then** thấy trang xác nhận đặt hàng thành công hiển thị thông điệp thành công và tổng tiền đúng bằng X.
 4. **Given** vừa đặt hàng thành công, **When** người dùng quay lại trang sản phẩm, **Then** giỏ hàng đã được làm trống (bộ đếm về 0).
@@ -138,7 +138,7 @@ tổng tiền.
 - **FR-007**: Trang giỏ hàng PHẢI liệt kê từng mặt hàng với tên, giá đơn vị, số lượng, thành tiền, và hiển thị tổng tiền cả giỏ.
 - **FR-008**: Người dùng PHẢI tăng/giảm được số lượng từng mặt hàng trong giỏ; số lượng nằm trong khoảng 1–5: nút giảm vô hiệu ở mức 1, nút tăng vô hiệu ở mức 5, và việc xóa mặt hàng thực hiện qua nút Xóa riêng. Nút "Thêm vào giỏ" ở trang danh sách cũng không vượt được mức 5 (vô hiệu khi sản phẩm đã đạt trần).
 - **FR-009**: Giỏ hàng và trạng thái đăng nhập PHẢI được giữ nguyên khi tải lại trang trên cùng trình duyệt.
-- **FR-010**: Từ trang giỏ hàng có mặt hàng, người dùng PHẢI đi được tới trang checkout; nút Checkout không khả dụng khi giỏ trống.
+- **FR-010**: Từ trang giỏ hàng có mặt hàng, người dùng PHẢI đi được tới trang checkout qua nút "Thanh toán" (testid `cart-checkout`); nút này bị vô hiệu (disabled, vẫn hiển thị) khi giỏ trống.
 - **FR-011**: Trang checkout PHẢI có hai trường bắt buộc là họ tên và mã bưu chính; bỏ trống (hoặc chỉ khoảng trắng) trường nào thì hiển thị lỗi cho trường đó và không cho đặt hàng.
 - **FR-012**: Sau khi xác nhận checkout hợp lệ, hệ thống PHẢI hiển thị trang xác nhận đặt hàng thành công kèm tổng tiền của đơn hàng, và làm trống giỏ hàng. Không có giao dịch thanh toán thật.
 - **FR-013**: Giá tiền PHẢI hiển thị bằng VND theo định dạng "1.000.000 ₫" (số nguyên, phân tách hàng nghìn bằng dấu chấm, hậu tố ₫) nhất quán trên mọi trang (danh sách, giỏ, checkout, xác nhận).
@@ -150,7 +150,7 @@ tổng tiền.
 - **User**: Người dùng demo định sẵn; có định danh và tên hiển thị. Không có mật khẩu, không có dữ liệu cá nhân thật.
 - **Product**: Sản phẩm trong danh mục cố định (6 sản phẩm); có định danh, tên, giá, ảnh.
 - **CartItem**: Một dòng mặt hàng trong giỏ; gắn với một Product và số lượng (≥ 1); thành tiền = giá × số lượng.
-- **Order**: Đơn hàng giả lập tạo lúc checkout; gồm họ tên, mã bưu chính, các CartItem tại thời điểm đặt và tổng tiền. Chỉ cần tồn tại đủ để hiển thị trang xác nhận.
+- **Order**: Đơn hàng giả lập tạo lúc checkout; gồm họ tên, mã bưu chính và tổng tiền tại thời điểm đặt. Chỉ cần tồn tại đủ để hiển thị trang xác nhận.
 
 ## Success Criteria *(mandatory)*
 

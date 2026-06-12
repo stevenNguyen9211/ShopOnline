@@ -74,7 +74,7 @@ Bên trong mỗi `product-card-{productId}` (testid tĩnh, scope theo container)
 | `cart-empty-message` | text | chỉ hiển thị khi giỏ trống |
 | `cart-item-{productId}` | container 1 dòng mặt hàng | |
 | `cart-total` | text | tổng tiền cả giỏ, định dạng `formatPrice` |
-| `cart-checkout` | button "Checkout" | không hiển thị (hoặc disabled) khi giỏ trống |
+| `cart-checkout` | button "Thanh toán" | luôn hiển thị; `disabled` khi giỏ trống |
 
 Bên trong mỗi `cart-item-{productId}`:
 
