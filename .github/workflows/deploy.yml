@@ -23,7 +23,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - run: npm ci
-      - run: npm run build -- --base=/shop-sdd/
+      - run: npm run build -- --base=/ShopOnline/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
@@ -58,3 +58,26 @@ jobs:
       - uses: actions/configure-pages@v5
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  smoke-test:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx playwright install chromium --with-deps
+      - name: Wait for GitHub Pages CDN propagation
+        run: sleep 30
+      - run: npx playwright test --config playwright.smoke.config.ts
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: smoke-report-${{ github.run_id }}
+          path: playwright-report/
+          retention-days: 7
