@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import { useCart } from '../context/CartContext'
@@ -19,12 +19,15 @@ export default function CheckoutPage() {
   const [postalCode, setPostalCode] = useState('')
   const [fullNameError, setFullNameError] = useState('')
   const [postalCodeError, setPostalCodeError] = useState('')
+  const submitting = useRef(false)
 
-  // Redirect to cart if empty
-  if (items.length === 0) {
-    navigate('/cart', { replace: true })
-    return null
-  }
+  useEffect(() => {
+    if (items.length === 0 && !submitting.current) {
+      navigate('/cart', { replace: true })
+    }
+  }, [items.length, navigate])
+
+  if (items.length === 0) return null
 
   function validate(): boolean {
     let valid = true
@@ -47,6 +50,7 @@ export default function CheckoutPage() {
     e.preventDefault()
     if (!validate()) return
 
+    submitting.current = true
     const order: Order = { fullName: fullName.trim(), postalCode: postalCode.trim(), total }
     dispatch({ type: 'CLEAR' })
     navigate('/confirmation', { state: { order } })
