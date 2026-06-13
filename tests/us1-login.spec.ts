@@ -11,7 +11,7 @@ test.describe('US1 — Kiểm chứng đăng nhập và bảo vệ trang', () =>
     await expect(page.getByTestId('login-user-hung')).toBeVisible()
   })
 
-  test('đăng nhập bằng thẻ Minh Nguyễn → /products, header hiển thị tên', async ({ page }) => {
+  test('@ci đăng nhập bằng thẻ Minh Nguyễn → /products, header hiển thị tên', async ({ page }) => {
     // FR-001, FR-003
     const loginPage = new LoginPage(page)
     const productsPage = new ProductsPage(page)

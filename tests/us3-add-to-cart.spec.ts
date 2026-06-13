@@ -8,7 +8,7 @@ test.describe('US3 — Kiểm chứng thêm vào giỏ và badge', () => {
     await new LoginPage(page).loginAsUser('minh')
   })
 
-  test('thêm sản phẩm lần đầu → badge từ 0 lên 1', async ({ page }) => {
+  test('@ci thêm sản phẩm lần đầu → badge từ 0 lên 1', async ({ page }) => {
     // FR-005, FR-006
     const productsPage = new ProductsPage(page)
     expect(await productsPage.getCartCount()).toBe('0')

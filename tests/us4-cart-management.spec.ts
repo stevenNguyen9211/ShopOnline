@@ -12,7 +12,7 @@ test.describe('US4 — Giỏ có hàng', () => {
     await page.goto('/cart')
   })
 
-  test('hiển thị đúng tên, giá đơn vị, số lượng, thành tiền, tổng', async ({ page }) => {
+  test('@ci hiển thị đúng tên, giá đơn vị, số lượng, thành tiền, tổng', async ({ page }) => {
     // FR-007
     const cartPage = new CartPage(page)
     expect(await cartPage.getQuantity('ban-phim-co')).toBe(2)

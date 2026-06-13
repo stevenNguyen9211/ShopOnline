@@ -1,20 +1,24 @@
 <!--
 Sync Impact Report
 ==================
-- Version change: 1.0.0 → 1.1.0
+- Version change: 1.1.0 → 1.2.0
 - Modified principles: n/a
 - Added sections:
-  - VI. Kiểm Thử Tự Động Có Kỷ Luật (Page Object Model, test độc lập,
-    locator ưu tiên data-testid, map FR, happy+error path)
+  - VII. CI/CD & Deployment Có Kiểm Soát (6 quy tắc: fail fast, build tự động,
+    deployment tự động, test artifacts, phạm vi CI regression, môi trường độc lập)
 - Removed sections: n/a
+- Modified sections:
+  - Ràng Buộc Kỹ Thuật: thêm ràng buộc dist/ vào .gitignore, CI là nguồn duy nhất
+    tạo và deploy artifact
+  - Quy Trình Phát Triển & Cổng Chất Lượng: cập nhật tham chiếu từ 6 → 7 nguyên tắc
 - Templates requiring updates:
-  - ✅ .specify/templates/plan-template.md — "Constitution Check" không cần
-    cập nhật; principle VI là hướng dẫn cho người học viết test, không thay
-    đổi cấu trúc plan
-  - ✅ .specify/templates/spec-template.md — Acceptance Scenarios đã yêu cầu
-    mapping sang user story; FR mapping trong test là mở rộng tự nhiên
-  - ✅ .specify/templates/tasks-template.md — test tasks đã optional và có
-    cấu trúc phù hợp; không cần thay đổi template
+  - ✅ .specify/templates/plan-template.md — Constitution Check đã derived dynamically
+    từ constitution; không cần thay đổi cấu trúc
+  - ✅ .specify/templates/spec-template.md — CI/CD là implementation concern, không
+    phải spec concern; không cần thay đổi
+  - ✅ .specify/templates/tasks-template.md — Polish phase đã có chỗ cho CI/CD tasks;
+    không cần thay đổi cấu trúc
+  - n/a .specify/templates/commands/ — thư mục không tồn tại trong dự án này
 - Follow-up TODOs: không có
 -->
 
@@ -131,6 +135,33 @@ lập — không phải chỉ để "có test".
 quen tốt. Kỷ luật POM + độc lập + truy xuất FR biến bộ test thành tài liệu
 sống của spec — đây chính là mục tiêu học tập của dự án.
 
+### VII. CI/CD & Deployment Có Kiểm Soát
+
+CI/CD pipeline PHẢI là nguồn chân lý duy nhất cho build và deployment; KHÔNG
+có thao tác thủ công nào được phép trong quy trình phát hành.
+
+- **Fail fast**: Workflow GitHub Actions PHẢI dùng `needs:` để job sau chỉ chạy
+  khi job trước thành công — KHÔNG cho phép job chạy sau một job đã fail.
+- **Build tự động**: Artifact build (`dist/`) PHẢI được tạo hoàn toàn bởi CI;
+  KHÔNG commit `dist/` lên repo; thư mục này PHẢI nằm trong `.gitignore`.
+- **Deployment tự động**: GitHub Pages PHẢI deploy từ artifact do CI sinh ra
+  (branch `main` hoặc thư mục `dist/` từ workflow) — KHÔNG thực hiện deploy
+  thủ công ở bất kỳ bước nào.
+- **Test artifacts**: Workflow chạy test PHẢI cấu hình `upload-artifact` để lưu
+  Playwright HTML report và screenshot khi có test fail; artifact PHẢI accessible
+  sau khi workflow kết thúc để debug không cần GUI.
+- **Phạm vi CI regression**: Test chạy trên CI CHỈ cần phủ happy path của các
+  luồng chính; test error path và edge case là optional trên CI (toàn bộ suite
+  chạy trên local trước khi merge).
+- **Môi trường độc lập**: Bộ test CI PHẢI chạy được headless (no-display
+  environment), không phụ thuộc cấu hình local, port cố định, hay credential
+  hard-code; mọi biến môi trường PHẢI được khai báo tường minh trong workflow.
+
+**Lý do**: Automation ngăn lỗi do thao tác thủ công và đảm bảo mọi người trong
+nhóm deploy theo cùng một quy trình. Fail fast tiết kiệm thời gian CI. Artifact
+lưu lại bằng chứng khi test fail là thiết yếu cho debug trong môi trường không
+có GUI — đây là kỹ năng CI/CD thực tế cần học.
+
 ## Ràng Buộc Kỹ Thuật
 
 - Stack PHẢI là web frontend thuần (SPA hoặc static site); lựa chọn framework
@@ -139,7 +170,10 @@ sống của spec — đây chính là mục tiêu học tập của dự án.
   localStorage/sessionStorage của trình duyệt.
 - Thanh toán, đăng nhập, gửi email... nếu có chỉ được giả lập (mock) và PHẢI
   ghi rõ là giả lập trong UI hoặc tài liệu.
-- Bộ test PHẢI chạy được offline bằng một lệnh duy nhất.
+- Bộ test PHẢI chạy được offline bằng một lệnh duy nhất (local); trên CI PHẢI
+  chạy headless không phụ thuộc môi trường local (Nguyên tắc VII).
+- Thư mục `dist/` (build artifact) PHẢI nằm trong `.gitignore`; CI là nguồn
+  duy nhất được phép tạo và deploy artifact (Nguyên tắc VII).
 
 ## Quy Trình Phát Triển & Cổng Chất Lượng
 
@@ -148,7 +182,7 @@ sống của spec — đây chính là mục tiêu học tập của dự án.
   tắc mà không có biện minh trong Complexity Tracking thì KHÔNG được triển khai.
 - Mỗi user story PHẢI test được độc lập; khi hoàn thành story, các acceptance
   scenario tương ứng PHẢI có test tự động đi kèm (theo Nguyên tắc III & VI).
-- Review (tự review hoặc review chéo) PHẢI đối chiếu thay đổi với 6 nguyên tắc
+- Review (tự review hoặc review chéo) PHẢI đối chiếu thay đổi với 7 nguyên tắc
   trước khi đánh dấu task hoàn thành.
 
 ## Governance
@@ -173,4 +207,4 @@ Constitution này chi phối các quyết định kỹ thuật như sau:
   spec/plan/tasks với constitution; sai lệch được báo cáo là việc phải xử lý
   trước khi implement.
 
-**Version**: 1.1.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-13
+**Version**: 1.2.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-13

@@ -7,7 +7,7 @@ test.describe('US2 — Kiểm chứng hiển thị danh sách sản phẩm', () 
     await new LoginPage(page).loginAsUser('minh')
   })
 
-  test('danh sách sản phẩm: đúng 6 card, mỗi card có đủ name/price/image/nút', async ({ page }) => {
+  test('@ci danh sách sản phẩm: đúng 6 card, mỗi card có đủ name/price/image/nút', async ({ page }) => {
     // FR-004
     const productsPage = new ProductsPage(page)
     const count = await productsPage.getProductCount()
@@ -18,14 +18,14 @@ test.describe('US2 — Kiểm chứng hiển thị danh sách sản phẩm', () 
     await expect(productsPage.addToCartButton('ban-phim-co')).toBeVisible()
   })
 
-  test('giá sản phẩm đúng định dạng VND (X.XXX ₫)', async ({ page }) => {
+  test('@ci giá sản phẩm đúng định dạng VND (X.XXX ₫)', async ({ page }) => {
     // FR-004
     const productsPage = new ProductsPage(page)
     const price = await productsPage.getProductPrice('ban-phim-co')
     expect(price).toMatch(/\d{1,3}(\.\d{3})*\s₫/)
   })
 
-  test('ảnh sản phẩm có alt text bằng tên sản phẩm', async ({ page }) => {
+  test('@ci ảnh sản phẩm có alt text bằng tên sản phẩm', async ({ page }) => {
     // FR-004
     const productsPage = new ProductsPage(page)
     const productName = await productsPage.getProductName('ban-phim-co')

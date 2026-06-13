@@ -14,14 +14,14 @@ test.describe('US5 — Happy path', () => {
     await page.goto('/cart')
   })
 
-  test('nút Thanh toán → chuyển đến trang checkout', async ({ page }) => {
+  test('@ci nút Thanh toán → chuyển đến trang checkout', async ({ page }) => {
     // FR-010
     const cartPage = new CartPage(page)
     await cartPage.goToCheckout()
     await expect(page).toHaveURL(/\/checkout/)
   })
 
-  test('checkout hợp lệ → trang xác nhận hiển thị tổng tiền khớp cart', async ({ page }) => {
+  test('@ci checkout hợp lệ → trang xác nhận hiển thị tổng tiền khớp cart', async ({ page }) => {
     // FR-012
     const cartPage = new CartPage(page)
     const cartTotal = await cartPage.getTotal()
@@ -36,7 +36,7 @@ test.describe('US5 — Happy path', () => {
     expect(confirmTotal).toBe(cartTotal)
   })
 
-  test('sau đặt hàng thành công → badge giỏ hàng về 0', async ({ page }) => {
+  test('@ci sau đặt hàng thành công → badge giỏ hàng về 0', async ({ page }) => {
     // FR-012
     const cartPage = new CartPage(page)
     await cartPage.goToCheckout()
