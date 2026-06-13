@@ -1,21 +1,20 @@
 <!--
 Sync Impact Report
 ==================
-- Version change: (template) → 1.0.0
-- Modified principles: n/a (lần tạo đầu tiên — toàn bộ placeholder được thay thế)
+- Version change: 1.0.0 → 1.1.0
+- Modified principles: n/a
 - Added sections:
-  - Core Principles (5 nguyên tắc: I. Code Sạch & Dễ Đọc; II. Đơn Giản Hơn Đầy Đủ;
-    III. UI Phải Test Tự Động Được; IV. Không Backend & Database Thật;
-    V. Trải Nghiệm Người Dùng Nhất Quán)
-  - Ràng Buộc Kỹ Thuật
-  - Quy Trình Phát Triển & Cổng Chất Lượng
-  - Governance
+  - VI. Kiểm Thử Tự Động Có Kỷ Luật (Page Object Model, test độc lập,
+    locator ưu tiên data-testid, map FR, happy+error path)
 - Removed sections: n/a
 - Templates requiring updates:
-  - ✅ .specify/templates/plan-template.md — "Constitution Check" tham chiếu động tới
-    file này, không cần sửa
-  - ✅ .specify/templates/spec-template.md — không có ràng buộc xung đột
-  - ✅ .specify/templates/tasks-template.md — không có loại task xung đột
+  - ✅ .specify/templates/plan-template.md — "Constitution Check" không cần
+    cập nhật; principle VI là hướng dẫn cho người học viết test, không thay
+    đổi cấu trúc plan
+  - ✅ .specify/templates/spec-template.md — Acceptance Scenarios đã yêu cầu
+    mapping sang user story; FR mapping trong test là mở rộng tự nhiên
+  - ✅ .specify/templates/tasks-template.md — test tasks đã optional và có
+    cấu trúc phù hợp; không cần thay đổi template
 - Follow-up TODOs: không có
 -->
 
@@ -106,6 +105,32 @@ Giao diện PHẢI nhất quán trên toàn bộ ứng dụng.
 **Lý do**: Sự nhất quán dạy thói quen làm UI tốt và đồng thời làm test tự động
 ổn định, dễ đoán hơn.
 
+### VI. Kiểm Thử Tự Động Có Kỷ Luật
+
+Bộ test tự động PHẢI được cấu trúc để học được, duy trì được, và chạy được độc
+lập — không phải chỉ để "có test".
+
+- **Page Object Model**: Mỗi trang/khu vực UI PHẢI có Page Object riêng chứa
+  toàn bộ locator và thao tác cấp thấp; file test chỉ chứa logic kịch bản —
+  KHÔNG được viết locator inline trong test.
+- **Độc lập & song song**: Mỗi test case PHẢI tự thiết lập trạng thái đầu vào
+  và tự dọn dẹp; KHÔNG được giả định thứ tự chạy hay kế thừa trạng thái từ
+  test trước — toàn bộ suite PHẢI có thể chạy song song hoặc theo bất kỳ thứ
+  tự nào mà kết quả không thay đổi.
+- **Locator ưu tiên `data-testid`**: Theo Nguyên tắc III, locator trong Page
+  Object PHẢI dùng `data-testid` hoặc accessible role/label; KHÔNG dùng class
+  CSS, id sinh tự động, hay XPath theo cấu trúc DOM.
+- **Truy xuất Functional Requirement**: Mỗi test case PHẢI ghi rõ ít nhất một
+  mã FR (ví dụ `# FR-005`) trong comment hoặc tên test để người đọc biết test
+  này xác minh yêu cầu nào trong spec.
+- **Happy path & error path**: Mỗi luồng nghiệp vụ chính PHẢI có ít nhất một
+  test happy path (đầu vào hợp lệ, kết quả mong đợi) và ít nhất một test error
+  path (đầu vào lỗi hoặc trạng thái biên, thông báo lỗi đúng).
+
+**Lý do**: Test viết sai cấu trúc sẽ vỡ khi refactor và không dạy được thói
+quen tốt. Kỷ luật POM + độc lập + truy xuất FR biến bộ test thành tài liệu
+sống của spec — đây chính là mục tiêu học tập của dự án.
+
 ## Ràng Buộc Kỹ Thuật
 
 - Stack PHẢI là web frontend thuần (SPA hoặc static site); lựa chọn framework
@@ -122,8 +147,8 @@ Giao diện PHẢI nhất quán trên toàn bộ ứng dụng.
 - Mục "Constitution Check" trong plan.md là cổng bắt buộc: plan vi phạm nguyên
   tắc mà không có biện minh trong Complexity Tracking thì KHÔNG được triển khai.
 - Mỗi user story PHẢI test được độc lập; khi hoàn thành story, các acceptance
-  scenario tương ứng PHẢI có test tự động đi kèm (theo Nguyên tắc III).
-- Review (tự review hoặc review chéo) PHẢI đối chiếu thay đổi với 5 nguyên tắc
+  scenario tương ứng PHẢI có test tự động đi kèm (theo Nguyên tắc III & VI).
+- Review (tự review hoặc review chéo) PHẢI đối chiếu thay đổi với 6 nguyên tắc
   trước khi đánh dấu task hoàn thành.
 
 ## Governance
@@ -148,4 +173,4 @@ Constitution này chi phối các quyết định kỹ thuật như sau:
   spec/plan/tasks với constitution; sai lệch được báo cáo là việc phải xử lý
   trước khi implement.
 
-**Version**: 1.0.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-13
+**Version**: 1.1.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-13

@@ -1,0 +1,65 @@
+.heading {
+  font-size: var(--font-2xl);
+  margin-bottom: var(--space-6);
+}
+
+.form {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-weight: var(--font-bold);
+  font-size: var(--font-sm);
+}
+
+.input {
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-base);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+}
+
+.error {
+  color: var(--color-danger);
+  font-size: var(--font-sm);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-lg);
+}
+
+.totalAmount {
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+}
+
+.submitBtn {
+  align-self: flex-start;
+  padding: var(--space-3) var(--space-8);
+  font-size: var(--font-lg);
+}

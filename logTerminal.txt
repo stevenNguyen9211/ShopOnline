@@ -1,0 +1,1882 @@
+Last login: Fri Jun 12 21:35:57 on ttys003
+nguyenkhoi89@Mac ~ % cd /Users/nguyenkhoi89/Documents/AILearn/AIMCPDoc cd /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo
+cd: too many arguments
+nguyenkhoi89@Mac ~ % cd /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo 
+nguyenkhoi89@Mac SpeckitDemo % specify init shop-sdd --integration claude
+                                  ███████╗██████╗ ███████╗ ██████╗██╗███████╗██╗   ██╗                                  
+                                  ██╔════╝██╔══██╗██╔════╝██╔════╝██║██╔════╝╚██╗ ██╔╝                                  
+                                  ███████╗██████╔╝█████╗  ██║     ██║█████╗   ╚████╔╝                                   
+                                  ╚════██║██╔═══╝ ██╔══╝  ██║     ██║██╔══╝    ╚██╔╝                                    
+                                  ███████║██║     ███████╗╚██████╗██║██║        ██║                                     
+                                  ╚══════╝╚═╝     ╚══════╝ ╚═════╝╚═╝╚═╝        ╚═╝                                     
+                                                                                                                        
+                                   GitHub Spec Kit - Spec-Driven Development Toolkit                                    
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                      │
+│  Specify Project Setup                                                                                               │
+│                                                                                                                      │
+│  Project         shop-sdd                                                                                            │
+│  Working Path    /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo                                                   │
+│  Target Path     /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd                                          │
+│                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Selected coding agent integration: claude
+Selected script type: sh
+Deprecation: Inline agent-context updates during integration setup will be disabled in v0.12.0. Context file management 
+has moved to the bundled agent-context extension. Run specify extension disable agent-context to opt out early.
+Initialize Specify Project
+├── ● Check required tools (ok)
+├── ● Select coding agent integration (claude)
+├── ● Select script type (sh)
+├── ● Install integration (Claude Code)
+├── ● Install shared infrastructure (scripts (sh) + templates)
+├── ● Ensure scripts executable (5 updated)
+├── ● Constitution setup (copied from template)
+├── ● Install bundled workflow (speckit installed)
+├── ● Install agent-context extension (extension installed)
+└── ● Finalize (project ready)
+
+Project ready.
+
+╭─────────────────────────────────────────────── Agent Folder Security ────────────────────────────────────────────────╮
+│                                                                                                                      │
+│  Some agents may store credentials, auth tokens, or other identifying and private artifacts in the agent folder      │
+│  within your project.                                                                                                │
+│  Consider adding .claude/ (or parts of it) to .gitignore to prevent accidental credential leakage.                   │
+│                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────────────────────────────────── Next Steps ─────────────────────────────────────────────────────╮
+│                                                                                                                      │
+│  1. Go to the project folder: cd shop-sdd                                                                            │
+│  2. Start Claude in this project directory; spec-kit skills were installed to .claude/skills                         │
+│  3. Start using skills with your coding agent:                                                                       │
+│     3.1 /speckit-constitution - Establish project principles                                                         │
+│     3.2 /speckit-specify - Create baseline specification                                                             │
+│     3.3 /speckit-plan - Create implementation plan                                                                   │
+│     3.4 /speckit-tasks - Generate actionable tasks                                                                   │
+│     3.5 /speckit-implement - Execute implementation                                                                  │
+│                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+╭───────────────────────────────────────────────── Enhancement Skills ─────────────────────────────────────────────────╮
+│                                                                                                                      │
+│  Optional skills that you can use for your specs (improve quality & confidence)                                      │
+│                                                                                                                      │
+│  ○ /speckit-clarify (optional) - Ask structured questions to de-risk ambiguous areas before planning (run before     │
+│  /speckit-plan if used)                                                                                              │
+│  ○ /speckit-analyze (optional) - Cross-artifact consistency & alignment report (after /speckit-tasks, before         │
+│  /speckit-implement)                                                                                                 │
+│  ○ /speckit-checklist (optional) - Generate quality checklists to validate requirements completeness, clarity, and   │
+│  consistency (after /speckit-plan)                                                                                   │
+│                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+nguyenkhoi89@Mac SpeckitDemo % cd shop-sdd
+nguyenkhoi89@Mac shop-sdd % claude
+▗ ▗   ▖ ▖  Claude Code v2.1.175
+           Fable 5 · Claude Pro                      
+▗ ▗   ▖ ▖  Claude Code v2.1.175
+           Fable 5 · Claude Pro
+  ▘▘ ▝▝    ~/Documents/AILearn/SpeckitDemo/shop-sdd
+
+
+❯ /speckit.constitution Tạo nguyên tắc cho một dự án web bán hàng demo phục vụ học tập.                                 
+  Tập trung vào: code sạch và dễ đọc, ưu tiên đơn giản hơn là đầy đủ tính năng,                                         
+  mọi thành phần UI phải dễ test tự động (có thuộc tính định danh ổn định như data-testid),                             
+  không dùng backend hay database thật, trải nghiệm người dùng nhất quán.                                               
+  Thêm phần governance mô tả các nguyên tắc này chi phối quyết định kỹ thuật ra sao.                                    
+
+⏺ Skill(speckit.constitution)
+  ⎿  Initializing…
+  ⎿  Error: Unknown skill: speckit.constitution. Did you mean speckit-constitution?
+
+⏺ Skill(speckit-constitution)
+  ⎿  Successfully loaded skill
+
+⏺ Tôi sẽ tạo constitution cho dự án. Trước tiên kiểm tra các file cần thiết.
+
+  Reading 3 files, listing 2 directories… (ctrl+o to expand)
+  ⎿  $ head -50 /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/.specify/templates/spec-template.md; echo 
+     ---; head -60 /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/.specify/templates/tasks-template.md; echo
+     ---; ls /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd
+
+⏺ Write(.specify/memory/constitution.md)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Overwrite file
+ .specify/memory/constitution.md
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+    1 -# [PROJECT_NAME] Constitution                                                                                   
+    2 -<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->                                                
+    1 +<!--                                                                                                            
+    2 +Sync Impact Report                                                                                              
+    3 +==================                                                                                              
+    4 +- Version change: (template) → 1.0.0                                                                            
+    5 +- Modified principles: n/a (lần tạo đầu tiên — toàn bộ placeholder được thay thế)                               
+    6 +- Added sections:                                                                                               
+    7 +  - Core Principles (5 nguyên tắc: I. Code Sạch & Dễ Đọc; II. Đơn Giản Hơn Đầy Đủ;                              
+    8 +    III. UI Phải Test Tự Động Được; IV. Không Backend & Database Thật;                                          
+    9 +    V. Trải Nghiệm Người Dùng Nhất Quán)                                                                        
+   10 +  - Ràng Buộc Kỹ Thuật                                                                                          
+   11 +  - Quy Trình Phát Triển & Cổng Chất Lượng                                                                      
+   12 +  - Governance                                                                                                  
+   13 +- Removed sections: n/a                                                                                         
+   14 +- Templates requiring updates:                                                                                  
+   15 +  - ✅ .specify/templates/plan-template.md — "Constitution Check" tham chiếu động tới                           
+   16 +    file này, không cần sửa                                                                                     
+   17 +  - ✅ .specify/templates/spec-template.md — không có ràng buộc xung đột                                        
+   18 +  - ✅ .specify/templates/tasks-template.md — không có loại task xung đột                                       
+   19 +- Follow-up TODOs: không có                                                                                     
+   20 +-->                                                                                                             
+   21  
+   22 +# Shop SDD Constitution                                                                                         
+   23 +                                                                                                                
+   24 +Hiến chương cho dự án web bán hàng demo phục vụ mục đích học tập (Spec-Driven                                   
+   25 +Development). Mọi quyết định kỹ thuật trong dự án phải tuân thủ các nguyên tắc                                  
+   26 +dưới đây.                                                                                                       
+   27 +                                                                                                                
+   28  ## Core Principles
+   29  
+    6 -### [PRINCIPLE_1_NAME]                                                                                          
+    7 -<!-- Example: I. Library-First -->                                                                              
+    8 -[PRINCIPLE_1_DESCRIPTION]                                                                                       
+    9 -<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently test
+      -able, documented; Clear purpose required - no organizational-only libraries -->                                 
+   30 +### I. Code Sạch & Dễ Đọc                                                                                       
+   31  
+   11 -### [PRINCIPLE_2_NAME]                                                                                          
+   12 -<!-- Example: II. CLI Interface -->                                                                             
+   13 -[PRINCIPLE_2_DESCRIPTION]                                                                                       
+   14 -<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → s
+      -tderr; Support JSON + human-readable formats -->                                                                
+   32 +Code được viết để người học đọc hiểu, không phải để phô diễn kỹ thuật.                                          
+   33  
+   16 -### [PRINCIPLE_3_NAME]                                                                                          
+   17 -<!-- Example: III. Test-First (NON-NEGOTIABLE) -->                                                              
+   18 -[PRINCIPLE_3_DESCRIPTION]                                                                                       
+   19 -<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cyc
+      -le strictly enforced -->                                                                                        
+   34 +- Tên biến, hàm, component PHẢI mô tả đúng vai trò; KHÔNG dùng viết tắt khó hiểu.                               
+   35 +- Mỗi hàm/component PHẢI làm một việc; nếu cần giải thích bằng comment dài thì                                  
+   36 +  PHẢI tách nhỏ thay vì comment.                                                                                
+   37 +- Comment chỉ dùng để giải thích "tại sao", KHÔNG giải thích "code làm gì".                                     
+   38 +- Toàn bộ code PHẢI qua linter và formatter thống nhất của dự án trước khi merge.                               
+   39  
+   21 -### [PRINCIPLE_4_NAME]                                                                                          
+   22 -<!-- Example: IV. Integration Testing -->                                                                       
+   23 -[PRINCIPLE_4_DESCRIPTION]                                                                                       
+   24 -<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-servi
+      -ce communication, Shared schemas -->                                                                            
+   40 +**Lý do**: Đây là dự án học tập — giá trị lớn nhất của codebase là khả năng đọc                                 
+   41 +hiểu được của nó. Code khó đọc làm mất mục đích tồn tại của dự án.                                              
+   42  
+   26 -### [PRINCIPLE_5_NAME]                                                                                          
+   27 -<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->                          
+   28 -[PRINCIPLE_5_DESCRIPTION]                                                                                       
+   29 -<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Sta
+      -rt simple, YAGNI principles -->                                                                                 
+   43 +### II. Đơn Giản Hơn Đầy Đủ (YAGNI)                                                                             
+   44  
+   31 -## [SECTION_2_NAME]                                                                                             
+   32 -<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->                    
+   45 +Khi phải lựa chọn giữa giải pháp đơn giản và giải pháp đầy đủ tính năng, PHẢI                                   
+   46 +chọn giải pháp đơn giản.                                                                                        
+   47  
+   34 -[SECTION_2_CONTENT]                                                                                             
+   35 -<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->                
+   48 +- KHÔNG thêm tính năng, abstraction, hay cấu hình "để dành cho tương lai".                                      
+   49 +- KHÔNG thêm thư viện mới nếu nhu cầu có thể giải quyết bằng công cụ sẵn có;                                    
+   50 +  mỗi dependency mới PHẢI được ghi lý do trong plan.                                                            
+   51 +- Một luồng nghiệp vụ chỉ cần đủ để minh hoạ khái niệm (ví dụ: giỏ hàng, thanh                                  
+   52 +  toán giả lập) — KHÔNG cần xử lý mọi trường hợp biên của thương mại điện tử thật.                              
+   53 +- Vi phạm độ phức tạp PHẢI được ghi và biện minh trong mục Complexity Tracking                                  
+   54 +  của plan.md.                                                                                                  
+   55  
+   37 -## [SECTION_3_NAME]                                                                                             
+   38 -<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->                                     
+   56 +**Lý do**: Phạm vi demo có giới hạn; sự đơn giản giúp người học nắm trọn bức                                    
+   57 +tranh và giảm chi phí bảo trì.                                                                                  
+   58  
+   40 -[SECTION_3_CONTENT]                                                                                             
+   41 -<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->                    
+   59 +### III. UI Phải Test Tự Động Được (BẮT BUỘC)                                                                   
+   60  
+   61 +Mọi thành phần UI mà người dùng tương tác được PHẢI có định danh ổn định phục                                   
+   62 +vụ test tự động.                                                                                                
+   63 +                                                                                                                
+   64 +- Mọi phần tử tương tác (nút, input, link, item danh sách...) và vùng hiển thị                                  
+   65 +  dữ liệu quan trọng PHẢI có thuộc tính `data-testid` ổn định.                                                  
+   66 +- Giá trị `data-testid` PHẢI theo quy ước kebab-case có ngữ cảnh, ví dụ:                                        
+   67 +  `product-card-add-to-cart`, `cart-item-quantity`, `checkout-submit`.                                          
+   68 +- `data-testid` là hợp đồng công khai: đổi tên hoặc xoá nó là breaking change,                                  
+   69 +  PHẢI cập nhật test tương ứng trong cùng một thay đổi.                                                         
+   70 +- Test KHÔNG được selector theo class CSS hay cấu trúc DOM; chỉ dùng                                            
+   71 +  `data-testid` hoặc accessible role/label.                                                                     
+   72 +- Tiêu chí chấp nhận (acceptance scenarios) trong spec PHẢI kiểm chứng được                                     
+   73 +  bằng test tự động dựa trên các định danh này.                                                                 
+   74 +                                                                                                                
+   75 +**Lý do**: Mục tiêu học tập bao gồm thực hành test tự động; selector ổn định                                    
+   76 +giúp test không vỡ khi refactor giao diện.                                                                      
+   77 +                                                                                                                
+   78 +### IV. Không Backend & Database Thật                                                                           
+   79 +                                                                                                                
+   80 +Dự án PHẢI chạy hoàn toàn phía client, không phụ thuộc hạ tầng bên ngoài.                                       
+   81 +                                                                                                                
+   82 +- KHÔNG có server backend, API thật, hay database thật ở mọi giai đoạn.                                         
+   83 +- Dữ liệu (sản phẩm, giỏ hàng, đơn hàng...) PHẢI đến từ dữ liệu giả lập: file                                   
+   84 +  JSON/fixture tĩnh, mock service trong code, hoặc localStorage/sessionStorage.                                 
+   85 +- Lớp truy cập dữ liệu PHẢI được tách thành module riêng (service/repository                                    
+   86 +  giả lập) để minh hoạ kiến trúc, nhưng phía sau chỉ là dữ liệu trong bộ nhớ                                    
+   87 +  hoặc trình duyệt.                                                                                             
+   88 +- Ứng dụng PHẢI khởi chạy được bằng một lệnh duy nhất, không cần biến môi                                       
+   89 +  trường bí mật hay đăng ký dịch vụ ngoài.                                                                      
+   90 +                                                                                                                
+   91 +**Lý do**: Loại bỏ chi phí vận hành và rào cản cài đặt, để người học tập trung                                  
+   92 +vào frontend và quy trình spec-driven.                                                                          
+   93 +                                                                                                                
+   94 +### V. Trải Nghiệm Người Dùng Nhất Quán                                                                         
+   95 +                                                                                                                
+   96 +Giao diện PHẢI nhất quán trên toàn bộ ứng dụng.                                                                 
+   97 +                                                                                                                
+   98 +- Các giá trị thiết kế (màu, khoảng cách, cỡ chữ) PHẢI lấy từ một nguồn chung                                   
+   99 +  (design tokens / theme / biến CSS), KHÔNG hard-code rải rác.                                                  
+  100 +- Cùng một hành vi PHẢI có cùng một biểu hiện: trạng thái loading, thông báo                                    
+  101 +  lỗi, trạng thái rỗng, định dạng giá tiền... dùng chung component/format.                                      
+  102 +- Văn bản giao diện PHẢI thống nhất một ngôn ngữ và một giọng văn.                                              
+  103 +- Mọi luồng chính PHẢI dùng được bằng bàn phím và có nhãn truy cập                                              
+  104 +  (accessible label) cơ bản.                                                                                    
+  105 +                                                                                                                
+  106 +**Lý do**: Sự nhất quán dạy thói quen làm UI tốt và đồng thời làm test tự động                                  
+  107 +ổn định, dễ đoán hơn.                                                                                           
+  108 +                                                                                                                
+  109 +## Ràng Buộc Kỹ Thuật                                                                                           
+  110 +                                                                                                                
+  111 +- Stack PHẢI là web frontend thuần (SPA hoặc static site); lựa chọn framework                                   
+  112 +  cụ thể do plan quyết định nhưng không được vi phạm Nguyên tắc IV.                                             
+  113 +- Trạng thái cần lưu giữa các phiên (ví dụ giỏ hàng) chỉ được dùng                                              
+  114 +  localStorage/sessionStorage của trình duyệt.                                                                  
+  115 +- Thanh toán, đăng nhập, gửi email... nếu có chỉ được giả lập (mock) và PHẢI                                    
+  116 +  ghi rõ là giả lập trong UI hoặc tài liệu.                                                                     
+  117 +- Bộ test PHẢI chạy được offline bằng một lệnh duy nhất.                                                        
+  118 +                                                                                                                
+  119 +## Quy Trình Phát Triển & Cổng Chất Lượng                                                                       
+  120 +                                                                                                                
+  121 +- Mọi feature PHẢI đi theo trình tự Spec Kit: spec → plan → tasks → implement.                                  
+  122 +- Mục "Constitution Check" trong plan.md là cổng bắt buộc: plan vi phạm nguyên                                  
+  123 +  tắc mà không có biện minh trong Complexity Tracking thì KHÔNG được triển khai.                                
+  124 +- Mỗi user story PHẢI test được độc lập; khi hoàn thành story, các acceptance                                   
+  125 +  scenario tương ứng PHẢI có test tự động đi kèm (theo Nguyên tắc III).                                         
+  126 +- Review (tự review hoặc review chéo) PHẢI đối chiếu thay đổi với 5 nguyên tắc                                  
+  127 +  trước khi đánh dấu task hoàn thành.                                                                           
+  128 +                                                                                                                
+  129  ## Governance
+   44 -<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration
+      - plan -->                                                                                                       
+  130  
+   46 -[GOVERNANCE_RULES]                                                                                              
+   47 -<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runt
+      -ime development guidance -->                                                                                    
+  131 +Constitution này chi phối các quyết định kỹ thuật như sau:                                                      
+❯ /speckit.constitution Tạo nguyên tắc cho một dự án web bán hàng demo phục vụ học tập.                                 
+  Tập trung vào: code sạch và dễ đọc, ưu tiên đơn giản hơn là đầy đủ tính năng,                                         
+  mọi thành phần UI phải dễ test tự động (có thuộc tính định danh ổn định như data-testid),                             
+  không dùng backend hay database thật, trải nghiệm người dùng nhất quán.                                               
+  Thêm phần governance mô tả các nguyên tắc này chi phối quyết định kỹ thuật ra sao.                                    
+
+⏺ Skill(speckit.constitution)
+  ⎿  Initializing…
+  ⎿  Error: Unknown skill: speckit.constitution. Did you mean speckit-constitution?
+
+⏺ Skill(speckit-constitution)
+  ⎿  Successfully loaded skill
+
+⏺ Tôi sẽ tạo constitution cho dự án. Trước tiên kiểm tra các file cần thiết.
+
+⏺ Reading 3 files, listing 2 directories… (ctrl+o to expand)
+  ⎿  $ head -50 /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/.specify/templates/spec-template.md; echo
+     ---; head -60 /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/.specify/templates/tasks-template.md; echo
+     ---; ls /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd
+
+⏺ Write(.specify/memory/constitution.md)
+  ⎿  Added 136 lines, removed 35 lines
+        1 -# [PROJECT_NAME] Constitution                                                                         
+        2 -<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->                                      
+        1 +<!--                                                                                                  
+        2 +Sync Impact Report                                                                                    
+        3 +==================                                                                                    
+        4 +- Version change: (template) → 1.0.0                                                                  
+        5 +- Modified principles: n/a (lần tạo đầu tiên — toàn bộ placeholder được thay thế)                     
+        6 +- Added sections:                                                                                     
+        7 +  - Core Principles (5 nguyên tắc: I. Code Sạch & Dễ Đọc; II. Đơn Giản Hơn Đầy Đủ;                    
+        8 +    III. UI Phải Test Tự Động Được; IV. Không Backend & Database Thật;                                
+        9 +    V. Trải Nghiệm Người Dùng Nhất Quán)                                                              
+       10 +  - Ràng Buộc Kỹ Thuật                                                                                
+       11 +  - Quy Trình Phát Triển & Cổng Chất Lượng                                                            
+       12 +  - Governance                                                                                        
+       13 +- Removed sections: n/a                                                                               
+       14 +- Templates requiring updates:                                                                        
+       15 +  - ✅ .specify/templates/plan-template.md — "Constitution Check" tham chiếu động tới                 
+       16 +    file này, không cần sửa                                                                           
+       17 +  - ✅ .specify/templates/spec-template.md — không có ràng buộc xung đột                              
+       18 +  - ✅ .specify/templates/tasks-template.md — không có loại task xung đột                             
+       19 +- Follow-up TODOs: không có                                                                           
+       20 +-->                                                                                                   
+       21  
+       22 +# Shop SDD Constitution                                                                               
+       23 +                                                                                                      
+       24 +Hiến chương cho dự án web bán hàng demo phục vụ mục đích học tập (Spec-Driven                         
+       25 +Development). Mọi quyết định kỹ thuật trong dự án phải tuân thủ các nguyên tắc                        
+       26 +dưới đây.                                                                                             
+       27 +                                                                                                      
+       28  ## Core Principles
+       29  
+        6 -### [PRINCIPLE_1_NAME]                                                                                
+        7 -<!-- Example: I. Library-First -->                                                                    
+        8 -[PRINCIPLE_1_DESCRIPTION]                                                                             
+        9 -<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independ
+          -ently testable, documented; Clear purpose required - no organizational-only libraries -->             
+       30 +### I. Code Sạch & Dễ Đọc                                                                             
+       31  
+       11 -### [PRINCIPLE_2_NAME]                                                                                
+       12 -<!-- Example: II. CLI Interface -->                                                                   
+       13 -[PRINCIPLE_2_DESCRIPTION]                                                                             
+       14 -<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, 
+          -errors → stderr; Support JSON + human-readable formats -->                                            
+       32 +Code được viết để người học đọc hiểu, không phải để phô diễn kỹ thuật.                                
+       33  
+       16 -### [PRINCIPLE_3_NAME]                                                                                
+       17 -<!-- Example: III. Test-First (NON-NEGOTIABLE) -->                                                    
+       18 -[PRINCIPLE_3_DESCRIPTION]                                                                             
+       19 -<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Re
+          -factor cycle strictly enforced -->                                                                    
+       34 +- Tên biến, hàm, component PHẢI mô tả đúng vai trò; KHÔNG dùng viết tắt khó hiểu.                     
+       35 +- Mỗi hàm/component PHẢI làm một việc; nếu cần giải thích bằng comment dài thì                        
+       36 +  PHẢI tách nhỏ thay vì comment.                                                                      
+       37 +- Comment chỉ dùng để giải thích "tại sao", KHÔNG giải thích "code làm gì".                           
+       38 +- Toàn bộ code PHẢI qua linter và formatter thống nhất của dự án trước khi merge.                     
+       39  
+       21 -### [PRINCIPLE_4_NAME]                                                                                
+       22 -<!-- Example: IV. Integration Testing -->                                                             
+       23 -[PRINCIPLE_4_DESCRIPTION]                                                                             
+       24 -<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, I
+          -nter-service communication, Shared schemas -->                                                        
+       40 +**Lý do**: Đây là dự án học tập — giá trị lớn nhất của codebase là khả năng đọc                       
+       41 +hiểu được của nó. Code khó đọc làm mất mục đích tồn tại của dự án.                                    
+       42  
+       26 -### [PRINCIPLE_5_NAME]                                                                                
+       27 -<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->                
+       28 -[PRINCIPLE_5_DESCRIPTION]                                                                             
+       29 -<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD forma
+          -t; Or: Start simple, YAGNI principles -->                                                             
+       43 +### II. Đơn Giản Hơn Đầy Đủ (YAGNI)                                                                   
+       44  
+       31 -## [SECTION_2_NAME]                                                                                   
+       32 -<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->          
+       45 +Khi phải lựa chọn giữa giải pháp đơn giản và giải pháp đầy đủ tính năng, PHẢI                         
+       46 +chọn giải pháp đơn giản.                                                                              
+       47  
+       34 -[SECTION_2_CONTENT]                                                                                   
+       35 -<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->      
+       48 +- KHÔNG thêm tính năng, abstraction, hay cấu hình "để dành cho tương lai".                            
+       49 +- KHÔNG thêm thư viện mới nếu nhu cầu có thể giải quyết bằng công cụ sẵn có;                          
+       50 +  mỗi dependency mới PHẢI được ghi lý do trong plan.                                                  
+       51 +- Một luồng nghiệp vụ chỉ cần đủ để minh hoạ khái niệm (ví dụ: giỏ hàng, thanh                        
+       52 +  toán giả lập) — KHÔNG cần xử lý mọi trường hợp biên của thương mại điện tử thật.                    
+       53 +- Vi phạm độ phức tạp PHẢI được ghi và biện minh trong mục Complexity Tracking                        
+       54 +  của plan.md.                                                                                        
+       55  
+       37 -## [SECTION_3_NAME]                                                                                   
+       38 -<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->                           
+       56 +**Lý do**: Phạm vi demo có giới hạn; sự đơn giản giúp người học nắm trọn bức                          
+       57 +tranh và giảm chi phí bảo trì.                                                                        
+       58  
+       40 -[SECTION_3_CONTENT]                                                                                   
+       41 -<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->          
+       59 +### III. UI Phải Test Tự Động Được (BẮT BUỘC)                                                         
+       60  
+       61 +Mọi thành phần UI mà người dùng tương tác được PHẢI có định danh ổn định phục                         
+       62 +vụ test tự động.                                                                                      
+       63 +                                                                                                      
+       64 +- Mọi phần tử tương tác (nút, input, link, item danh sách...) và vùng hiển thị                        
+       65 +  dữ liệu quan trọng PHẢI có thuộc tính `data-testid` ổn định.                                        
+       66 +- Giá trị `data-testid` PHẢI theo quy ước kebab-case có ngữ cảnh, ví dụ:                              
+       67 +  `product-card-add-to-cart`, `cart-item-quantity`, `checkout-submit`.                                
+       68 +- `data-testid` là hợp đồng công khai: đổi tên hoặc xoá nó là breaking change,                        
+       69 +  PHẢI cập nhật test tương ứng trong cùng một thay đổi.                                               
+       70 +- Test KHÔNG được selector theo class CSS hay cấu trúc DOM; chỉ dùng                                  
+       71 +  `data-testid` hoặc accessible role/label.                                                           
+       72 +- Tiêu chí chấp nhận (acceptance scenarios) trong spec PHẢI kiểm chứng được                           
+       73 +  bằng test tự động dựa trên các định danh này.                                                       
+       74 +                                                                                                      
+       75 +**Lý do**: Mục tiêu học tập bao gồm thực hành test tự động; selector ổn định                          
+       76 +giúp test không vỡ khi refactor giao diện.                                                            
+       77 +                                                                                                      
+       78 +### IV. Không Backend & Database Thật                                                                 
+       79 +                                                                                                      
+       80 +Dự án PHẢI chạy hoàn toàn phía client, không phụ thuộc hạ tầng bên ngoài.                             
+       81 +                                                                                                      
+       82 +- KHÔNG có server backend, API thật, hay database thật ở mọi giai đoạn.                               
+       83 +- Dữ liệu (sản phẩm, giỏ hàng, đơn hàng...) PHẢI đến từ dữ liệu giả lập: file                         
+       84 +  JSON/fixture tĩnh, mock service trong code, hoặc localStorage/sessionStorage.                       
+       85 +- Lớp truy cập dữ liệu PHẢI được tách thành module riêng (service/repository                          
+       86 +  giả lập) để minh hoạ kiến trúc, nhưng phía sau chỉ là dữ liệu trong bộ nhớ                          
+       87 +  hoặc trình duyệt.                                                                                   
+       88 +- Ứng dụng PHẢI khởi chạy được bằng một lệnh duy nhất, không cần biến môi                             
+       89 +  trường bí mật hay đăng ký dịch vụ ngoài.                                                            
+       90 +                                                                                                      
+       91 +**Lý do**: Loại bỏ chi phí vận hành và rào cản cài đặt, để người học tập trung                        
+       92 +vào frontend và quy trình spec-driven.                                                                
+       93 +                                                                                                      
+       94 +### V. Trải Nghiệm Người Dùng Nhất Quán                                                               
+       95 +                                                                                                      
+       96 +Giao diện PHẢI nhất quán trên toàn bộ ứng dụng.                                                       
+       97 +                                                                                                      
+       98 +- Các giá trị thiết kế (màu, khoảng cách, cỡ chữ) PHẢI lấy từ một nguồn chung                         
+       99 +  (design tokens / theme / biến CSS), KHÔNG hard-code rải rác.                                        
+      100 +- Cùng một hành vi PHẢI có cùng một biểu hiện: trạng thái loading, thông báo                          
+      101 +  lỗi, trạng thái rỗng, định dạng giá tiền... dùng chung component/format.                            
+      102 +- Văn bản giao diện PHẢI thống nhất một ngôn ngữ và một giọng văn.                                    
+      103 +- Mọi luồng chính PHẢI dùng được bằng bàn phím và có nhãn truy cập                                    
+      104 +  (accessible label) cơ bản.                                                                          
+      105 +                                                                                                      
+      106 +**Lý do**: Sự nhất quán dạy thói quen làm UI tốt và đồng thời làm test tự động                        
+      107 +ổn định, dễ đoán hơn.                                                                                 
+      108 +                                                                                                      
+      109 +## Ràng Buộc Kỹ Thuật                                                                                 
+      110 +                                                                                                      
+      111 +- Stack PHẢI là web frontend thuần (SPA hoặc static site); lựa chọn framework                         
+      112 +  cụ thể do plan quyết định nhưng không được vi phạm Nguyên tắc IV.                                   
+      113 +- Trạng thái cần lưu giữa các phiên (ví dụ giỏ hàng) chỉ được dùng                                    
+      114 +  localStorage/sessionStorage của trình duyệt.                                                        
+      115 +- Thanh toán, đăng nhập, gửi email... nếu có chỉ được giả lập (mock) và PHẢI                          
+      116 +  ghi rõ là giả lập trong UI hoặc tài liệu.                                                           
+      117 +- Bộ test PHẢI chạy được offline bằng một lệnh duy nhất.                                              
+      118 +                                                                                                      
+      119 +## Quy Trình Phát Triển & Cổng Chất Lượng                                                             
+      120 +                                                                                                      
+      121 +- Mọi feature PHẢI đi theo trình tự Spec Kit: spec → plan → tasks → implement.                        
+      122 +- Mục "Constitution Check" trong plan.md là cổng bắt buộc: plan vi phạm nguyên                        
+      123 +  tắc mà không có biện minh trong Complexity Tracking thì KHÔNG được triển khai.                      
+      124 +- Mỗi user story PHẢI test được độc lập; khi hoàn thành story, các acceptance                         
+      125 +  scenario tương ứng PHẢI có test tự động đi kèm (theo Nguyên tắc III).                               
+      126 +- Review (tự review hoặc review chéo) PHẢI đối chiếu thay đổi với 5 nguyên tắc                        
+      127 +  trước khi đánh dấu task hoàn thành.                                                                 
+      128 +                                                                                                      
+      129  ## Governance
+       44 -<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval,
+          - migration plan -->                                                                                   
+      130  
+       46 -[GOVERNANCE_RULES]                                                                                    
+       47 -<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE
+          -] for runtime development guidance -->                                                                
+      131 +Constitution này chi phối các quyết định kỹ thuật như sau:                                            
+      132  
+       49 -**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMEN
+          -DED_DATE]                                                                                             
+       50 -<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->                    
+      133 +- **Thứ tự ưu tiên khi xung đột**: Constitution > plan.md > sở thích cá nhân.                         
+      134 +  Khi hai giải pháp đều hợp lệ, chọn giải pháp đơn giản hơn (Nguyên tắc II);                          
+      135 +  khi giải pháp đơn giản làm UI không test được, Nguyên tắc III thắng.                                
+      136 +- **Tại thời điểm planning**: mọi plan.md PHẢI vượt qua Constitution Check;                           
+      137 +  mỗi vi phạm PHẢI có dòng tương ứng trong Complexity Tracking, nêu lý do và                          
+      138 +  vì sao phương án đơn giản hơn bị loại.                                                              
+      139 +- **Tại thời điểm review**: PR/thay đổi vi phạm nguyên tắc mà không có biện                           
+      140 +  minh đã được duyệt trong plan PHẢI bị từ chối hoặc sửa lại.                                         
+      141 +- **Sửa đổi (amendment)**: thay đổi constitution PHẢI được thực hiện qua lệnh                         
+      142 +  `/speckit-constitution`, ghi rõ lý do trong Sync Impact Report, và đồng bộ                          
+      143 +  các template phụ thuộc trong cùng một thay đổi.                                                     
+      144 +- **Versioning**: theo semantic versioning — MAJOR khi xoá/định nghĩa lại                             
+      145 +  nguyên tắc không tương thích ngược; MINOR khi thêm nguyên tắc hoặc mở rộng                          
+      146 +  đáng kể; PATCH khi chỉnh câu chữ, làm rõ nghĩa.                                                     
+      147 +- **Kiểm tra tuân thủ**: mỗi lần chạy `/speckit-analyze` PHẢI đối chiếu                               
+      148 +  spec/plan/tasks với constitution; sai lệch được báo cáo là việc phải xử lý                          
+      149 +  trước khi implement.                                                                                
+      150 +                                                                                                      
+      151 +**Version**: 1.0.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-13                          
+
+⏺ Đã tạo xong constitution v1.0.0 tại .specify/memory/constitution.md. (extensions.yml không có hook after_constitution
+  nên không cần chạy hook nào.)
+
+  Tóm tắt
+
+  Version mới: 1.0.0 — lần ratify đầu tiên, thay toàn bộ placeholder của template (Ratified & Last Amended: 2026-06-13).
+  
+  5 nguyên tắc cốt lõi (đúng theo yêu cầu của bạn):
+
+  1. Code Sạch & Dễ Đọc — đặt tên rõ ràng, hàm làm một việc, bắt buộc lint/format.
+  2. Đơn Giản Hơn Đầy Đủ (YAGNI) — không thêm tính năng/dependency "để dành"; vi phạm phải biện minh trong Complexity
+  Tracking.
+  3. UI Phải Test Tự Động Được (BẮT BUỘC) — mọi phần tử tương tác phải có data-testid ổn định theo kebab-case (ví dụ
+  product-card-add-to-cart); đổi tên testid là breaking change phải cập nhật test cùng lúc; cấm selector theo class CSS.
+  4. Không Backend & Database Thật — chạy hoàn toàn client-side với JSON tĩnh/mock service/localStorage, khởi chạy bằng
+  một lệnh duy nhất.
+  5. Trải Nghiệm Người Dùng Nhất Quán — design tokens chung, component dùng chung cho loading/lỗi/trạng thái rỗng, một
+  ngôn ngữ giao diện thống nhất.
+
+  Ngoài ra có hai section bổ trợ: Ràng Buộc Kỹ Thuật (stack frontend thuần, thanh toán/đăng nhập chỉ mock, test chạy
+  offline) và Quy Trình Phát Triển & Cổng Chất Lượng (spec → plan → tasks → implement, Constitution Check là cổng bắt
+  buộc).
+
+  Governance mô tả cách nguyên tắc chi phối quyết định kỹ thuật: thứ tự ưu tiên khi xung đột (Constitution > plan > sở
+  thích; nguyên tắc III thắng nguyên tắc II khi đụng nhau), gate tại planning và review, quy trình amendment qua
+  /speckit-constitution, chính sách semantic versioning, và kiểm tra tuân thủ qua /speckit-analyze.
+
+  Templates phụ thuộc: plan/spec/tasks-template đều tham chiếu constitution động qua mục "Constitution Check" — không
+  cần chỉnh sửa, đã đánh dấu ✅ trong Sync Impact Report ở đầu file. Không có TODO nào bị hoãn.
+
+  Commit message gợi ý: docs: ratify constitution v1.0.0 (5 core principles + governance for demo shop)
+
+✻ Worked for 2m 18s
+
+❯ docs: ratify constitution v1.0.0 (5 core principles + governance for demo shop)                                       
+
+⏺ Bạn muốn commit với message đó — nhưng thư mục này chưa phải git repository. Để tôi kiểm tra và khởi tạo nếu cần:
+
+⏺ Bash(git rev-parse --is-inside-work-tree 2>&1; ls -a)
+  ⎿  fatal: not a git repository (or any of the parent directories): .git
+     .
+     ..
+     … +3 lines (ctrl+o to expand)
+
+⏺ Bash(git init -b main && git add -A && git commit -m "docs: ratify constitution v1.0.0 (5 core principles + governance
+      for demo shop)…)
+  ⎿  Initialized empty Git repository in /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/.git/
+     [main (root-commit) b43a7dc] docs: ratify constitution v1.0.0 (5 core principles + governance for demo shop)
+      36 files changed, 4904 insertions(+)
+     … +36 lines (ctrl+o to expand)
+  
+⏺ Đã commit xong. Vì thư mục chưa phải git repository nên tôi đã git init (branch main) rồi tạo root commit b43a7dc với
+  message bạn đưa — gồm 36 file: constitution mới cùng toàn bộ scaffolding của Spec Kit (.specify/, .claude/skills/,
+  CLAUDE.md).
+
+  Bước tiếp theo trong quy trình Spec Kit sẽ là /speckit-specify để mô tả feature đầu tiên cho web bán hàng demo.
+
+✻ Sautéed for 21s
+
+❯ /speckit.specify Xây một trang web bán hàng demo tên SimpleShop để học automation testing.                            
+  Có một trang đăng nhập với danh sách user định sẵn (không cần mật khẩu thật,                                          
+  chọn user là vào). Sau khi đăng nhập, hiển thị danh sách sản phẩm dạng lưới,                                          
+  mỗi sản phẩm có tên, giá, ảnh và nút "Thêm vào giỏ". Người dùng thấy số lượng                                         
+  mặt hàng trong giỏ ở góc trên. Có trang giỏ hàng liệt kê các mặt hàng đã thêm,                                        
+  cho phép tăng giảm số lượng và xóa. Có nút Checkout dẫn tới trang nhập họ tên                                         
+  và mã bưu chính, rồi hiển thị trang xác nhận đặt hàng thành công với tổng tiền.                                       
+  Dữ liệu sản phẩm cố định, khoảng 6 sản phẩm. Không có thanh toán thật.                                                
+
+⏺ Skill(speckit-specify)
+  ⎿  Successfully loaded skill
+
+  Read 1 file, listed 1 directory (ctrl+o to expand)
+
+⏺ Bash(mkdir -p /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/specs/001-simpleshop-demo/checklists)
+  ⎿  Done
+
+⏺ Write(.specify/feature.json)
+  ⎿  Wrote 3 lines to .specify/feature.json
+      1 {
+      2   "feature_directory": "specs/001-simpleshop-demo"
+      3 }
+     
+⏺ Write(specs/001-simpleshop-demo/spec.md)
+  ⎿  Wrote 162 lines to specs/001-simpleshop-demo/spec.md
+      2 # Feature Specification: SimpleShop — Web bán hàng demo phục vụ học automation testing
+      3 **Feature Branch**: `001-simpleshop-demo`
+      5 **Created**: 2026-06-13
+      6 
+      8 **Status**: Draft
+      9 **Input**: User description: "Xây một trang web bán hàng demo tên SimpleShop để học automation testing. C
+        ng nhập, hiển thị danh sách sản phẩm dạng lưới, mỗi sản phẩm có tên, giá, ảnh và nút \"Thêm vào giỏ\". Ng
+        ười dùng thấy số lượng mặt hàng trong giỏ ở góc trên. Có trang giỏ hàng liệt kê các mặt hàng đã thêm, cho
+        trang xác nhận đặt hàng thành công với tổng tiền. Dữ liệu sản phẩm cố định, khoảng 6 sản phẩm. Không có t
+        hanh toán thật."
+     … +208 lines (ctrl+o to expand)
+
+⏺ Write(specs/001-simpleshop-demo/checklists/requirements.md)
+  ⎿  Wrote 37 lines to specs/001-simpleshop-demo/checklists/requirements.md
+       1 # Specification Quality Checklist: SimpleShop — Web bán hàng demo phục vụ học automation testing
+       2 
+       3 **Purpose**: Validate specification completeness and quality before proceeding to planning
+       4 **Created**: 2026-06-13
+       5 **Feature**: [spec.md](../spec.md)
+       6 
+       7 ## Content Quality
+       8
+       9 - [x] No implementation details (languages, frameworks, APIs)
+      10 - [x] Focused on user value and business needs
+     … +27 lines (ctrl+o to expand)
+
+⏺ Skill(speckit-agent-context-update)
+  ⎿  Successfully loaded skill
+
+⏺ Bash(/Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/.specify/extensions/agent-context/scripts/bash/update-
+      agent-context.sh)
+  ⎿  agent-context: PyYAML is required to parse extension config but is not available in the current Python environ
+     ment.
+       To resolve: pip install pyyaml (or install it into the environment used by python3).
+     … +2 lines (ctrl+o to expand)
+  
+⏺ Script cần PyYAML nhưng môi trường Python hiện tại chưa có. Thử cài để hook chạy được:
+
+⏺ Bash(python3 -m pip install --user pyyaml 2>&1 | tail -3 &&
+      /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/.specify/extensions/agent-context/scripts/bash…)
+  ⎿  Successfully installed pyyaml-6.0.3
+     WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
+     You should consider upgrading via the '/Applications/Xcode.app/Contents/Developer/usr/bin/python3 -m pip insta
+     … +2 lines (ctrl+o to expand)
+  
+⏺ Hook đã chạy xong (CLAUDE.md được cập nhật section quản lý bởi Spec Kit). Hoàn tất.
+
+  Báo cáo hoàn thành
+
+  Feature directory: specs/001-simpleshop-demo/ (đã ghi vào .specify/feature.json cho các lệnh sau)
+  Spec file: specs/001-simpleshop-demo/spec.md
+  Checklist: specs/001-simpleshop-demo/checklists/requirements.md — 16/16 mục đạt ngay lần validation đầu, không còn
+  marker [NEEDS CLARIFICATION] nào.
+
+  Nội dung spec
+
+  4 user story theo độ ưu tiên, mỗi story test được độc lập:
+
+  1. P1 — Đăng nhập & xem sản phẩm: chọn user định sẵn (không mật khẩu), vào lưới 6 sản phẩm; chặn truy cập trực tiếp
+  khi chưa đăng nhập.
+  2. P2 — Thêm vào giỏ & bộ đếm: bộ đếm góc trên = tổng số đơn vị, cập nhật ngay, giữ nguyên khi reload.
+  3. P3 — Quản lý giỏ hàng: tăng/giảm/xóa từng dòng, thành tiền và tổng tiền cập nhật; nút giảm vô hiệu ở mức 1.
+  4. P4 — Checkout: form họ tên + mã bưu chính (validate bắt buộc), trang xác nhận thành công với tổng tiền, giỏ được
+  làm trống.
+
+  Kèm theo: 14 functional requirements (FR-014 yêu cầu định danh ổn định cho mọi phần tử tương tác — khớp Nguyên tắc III
+  của constitution), 4 entities (User, Product, CartItem, Order), 5 success criteria đo lường được, 6 edge case, và 8
+  assumption ghi rõ các mặc định tôi chọn (3 user định sẵn, có nút đăng xuất, bộ đếm theo tổng quantity, không lưu lịch
+  sử đơn hàng, ngoài phạm vi: tìm kiếm/lọc/mã giảm giá).
+
+  Một lưu ý nhỏ: script hook agent-context cần PyYAML, tôi đã cài (pip install --user pyyaml) để hook chạy được.
+
+  Bước tiếp theo
+
+  Spec đã sẵn sàng cho /speckit-plan (chọn stack, cấu trúc dự án, quy ước data-testid). Nếu muốn soát kỹ các điểm mơ hồ
+  trước, có thể chạy /speckit-clarify, nhưng với phạm vi demo rõ thế này thì có thể đi thẳng vào plan.
+
+✻ Worked for 3m 31s
+
+※ recap: Đang xây SimpleShop (web bán hàng demo học automation testing) theo quy trình Spec Kit: đã commit constitution 
+  v1.0.0 và hoàn thành spec tại specs/001-simpleshop-demo với checklist 16/16 đạt. Bước tiếp theo: chạy /speckit-plan để
+  chọn stack và thiết kế. (disable recaps in /config)
+  
+❯ /speckit.clarify                                                                                                      
+
+⏺ Skill(speckit-clarify)
+  ⎿  Successfully loaded skill
+
+⏺ Không có hook before_clarify. Chạy script kiểm tra prerequisites:
+
+⏺ Bash(.specify/scripts/bash/check-prerequisites.sh --json --paths-only)
+  ⎿  {
+       "REPO_ROOT": "/Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd",
+       "BRANCH": "",
+     … +6 lines (ctrl+o to expand)
+
+⏺ User answered Claude's questions:
+  ⎿  · Toàn bộ văn bản giao diện của SimpleShop dùng ngôn ngữ nào? → Tiếng Việt (Recommended)
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 6 lines
+       8  
+       9  **Input**: User description: "Xây một trang web bán hàng demo tên SimpleShop để học automation testing.
+           Có một trang đăng nhập với danh sách user định sẵn (không cần mật khẩu thật, chọn user là vào). Sau kh
+          i đăng nhập, hiển thị danh sách sản phẩm dạng lưới, mỗi sản phẩm có tên, giá, ảnh và nút \"Thêm vào giỏ
+          \". Người dùng thấy số lượng mặt hàng trong giỏ ở góc trên. Có trang giỏ hàng liệt kê các mặt hàng đã t
+          hêm, cho phép tăng giảm số lượng và xóa. Có nút Checkout dẫn tới trang nhập họ tên và mã bưu chính, rồi
+           hiển thị trang xác nhận đặt hàng thành công với tổng tiền. Dữ liệu sản phẩm cố định, khoảng 6 sản phẩm
+          . Không có thanh toán thật."
+      10  
+      11 +## Clarifications                                                                                      
+      12 +                                                                                                       
+      13 +### Session 2026-06-13                                                                                 
+      14 +                                                                                                       
+      15 +- Q: Toàn bộ văn bản giao diện của SimpleShop dùng ngôn ngữ nào? → A: Tiếng Việt                       
+      16 +                                                                                                       
+      17  ## User Scenarios & Testing *(mandatory)*
+      18  
+      19  ### User Story 1 - Đăng nhập và xem danh sách sản phẩm (Priority: P1)
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 2 lines, removed 1 line
+      137  - **FR-011**: Trang checkout PHẢI có hai trường bắt buộc là họ tên và mã bưu chính; bỏ trống (hoặc chỉ
+            khoảng trắng) trường nào thì hiển thị lỗi cho trường đó và không cho đặt hàng.
+      138  - **FR-012**: Sau khi xác nhận checkout hợp lệ, hệ thống PHẢI hiển thị trang xác nhận đặt hàng thành c
+           ông kèm tổng tiền của đơn hàng, và làm trống giỏ hàng. Không có giao dịch thanh toán thật.
+      139  - **FR-013**: Giá tiền PHẢI hiển thị theo một loại tiền tệ duy nhất với định dạng nhất quán trên mọi t
+           rang (danh sách, giỏ, checkout, xác nhận).
+      140 -- **FR-014**: Mọi phần tử tương tác và vùng dữ liệu quan trọng (nút đăng nhập từng user, nút thêm giỏ 
+          -từng sản phẩm, bộ đếm giỏ, nút tăng/giảm/xóa từng dòng, trường form, thông báo lỗi, tổng tiền, thông đ
+          -iệp thành công) PHẢI có định danh ổn định để test tự động nhắm tới một cách tin cậy.                  
+      140 +- **FR-014**: Toàn bộ văn bản giao diện (nhãn nút, tiêu đề, thông báo lỗi, thông điệp thành công) PHẢI
+          + là tiếng Việt, thống nhất trên mọi trang.                                                            
+      141 +- **FR-015**: Mọi phần tử tương tác và vùng dữ liệu quan trọng (nút đăng nhập từng user, nút thêm giỏ 
+          +từng sản phẩm, bộ đếm giỏ, nút tăng/giảm/xóa từng dòng, trường form, thông báo lỗi, tổng tiền, thông đ
+          +iệp thành công) PHẢI có định danh ổn định để test tự động nhắm tới một cách tin cậy.                  
+      142  
+      143  ### Key Entities
+      144  
+
+⏺ User answered Claude's questions:
+  ⎿  · Giá sản phẩm hiển thị theo loại tiền tệ và định dạng nào? → VND — 1.000.000 ₫ (Recommended)
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line
+      13  ### Session 2026-06-13
+      14  
+      15  - Q: Toàn bộ văn bản giao diện của SimpleShop dùng ngôn ngữ nào? → A: Tiếng Việt
+      16 +- Q: Giá sản phẩm hiển thị theo loại tiền tệ và định dạng nào? → A: VND, định dạng "1.000.000 ₫" (số ng
+         +uyên, phân tách hàng nghìn bằng dấu chấm)                                                              
+      17  
+      18  ## User Scenarios & Testing *(mandatory)*
+      19  
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line, removed 1 line
+      137  - **FR-010**: Từ trang giỏ hàng có mặt hàng, người dùng PHẢI đi được tới trang checkout; nút Checkout 
+           không khả dụng khi giỏ trống.
+      138  - **FR-011**: Trang checkout PHẢI có hai trường bắt buộc là họ tên và mã bưu chính; bỏ trống (hoặc chỉ
+            khoảng trắng) trường nào thì hiển thị lỗi cho trường đó và không cho đặt hàng.
+      139  - **FR-012**: Sau khi xác nhận checkout hợp lệ, hệ thống PHẢI hiển thị trang xác nhận đặt hàng thành c
+           ông kèm tổng tiền của đơn hàng, và làm trống giỏ hàng. Không có giao dịch thanh toán thật.
+      140 -- **FR-013**: Giá tiền PHẢI hiển thị theo một loại tiền tệ duy nhất với định dạng nhất quán trên mọi t
+          -rang (danh sách, giỏ, checkout, xác nhận).                                                            
+      140 +- **FR-013**: Giá tiền PHẢI hiển thị bằng VND theo định dạng "1.000.000 ₫" (số nguyên, phân tách hàng 
+          +nghìn bằng dấu chấm, hậu tố ₫) nhất quán trên mọi trang (danh sách, giỏ, checkout, xác nhận).         
+      141  - **FR-014**: Toàn bộ văn bản giao diện (nhãn nút, tiêu đề, thông báo lỗi, thông điệp thành công) PHẢI
+            là tiếng Việt, thống nhất trên mọi trang.
+      142  - **FR-015**: Mọi phần tử tương tác và vùng dữ liệu quan trọng (nút đăng nhập từng user, nút thêm giỏ
+           từng sản phẩm, bộ đếm giỏ, nút tăng/giảm/xóa từng dòng, trường form, thông báo lỗi, tổng tiền, thông đ
+           iệp thành công) PHẢI có định danh ổn định để test tự động nhắm tới một cách tin cậy.
+      143  
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Removed 1 line
+      164  - Bộ đếm giỏ hàng hiển thị tổng số đơn vị (tổng quantity), không phải số dòng mặt hàng — theo quy ước 
+           phổ biến của trang thương mại điện tử.
+      165  - Có chức năng đăng xuất để người học lặp lại luồng đăng nhập nhiều lần khi thực hành automation, dù m
+           ô tả gốc không nêu.
+      166  - Giảm số lượng dừng ở mức 1 (không tự xóa khi về 0) để hành vi dễ đoán; xóa là hành động tường minh q
+           ua nút Xóa.
+      167 -- Dùng một loại tiền tệ duy nhất, định dạng nhất quán; loại tiền cụ thể do giai đoạn thiết kế quyết đị
+          -nh, không ảnh hưởng phạm vi.                                                                          
+      167  - Đơn hàng không cần lưu lịch sử sau khi rời trang xác nhận; không có trang "đơn hàng của tôi".
+      168  - Trạng thái giỏ/đăng nhập chỉ cần giữ trong cùng trình duyệt (theo nguyên tắc không backend của const
+           itution); không đồng bộ giữa các thiết bị.
+      169  - Tìm kiếm, lọc, phân trang, mã giảm giá, tồn kho nằm ngoài phạm vi phiên bản này.
+
+⏺ User answered Claude's questions:
+  ⎿  · Thao tác đăng nhập cụ thể diễn ra thế nào? → Bấm thẻ user → vào ngay (Recommended)
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line
+      14  
+      15  - Q: Toàn bộ văn bản giao diện của SimpleShop dùng ngôn ngữ nào? → A: Tiếng Việt
+      16  - Q: Giá sản phẩm hiển thị theo loại tiền tệ và định dạng nào? → A: VND, định dạng "1.000.000 ₫" (số ng
+          uyên, phân tách hàng nghìn bằng dấu chấm)
+      17 +- Q: Thao tác đăng nhập cụ thể diễn ra thế nào? → A: Danh sách user hiển thị dạng thẻ; bấm vào thẻ user
+         + là đăng nhập ngay, không có bước xác nhận riêng                                                       
+      18  
+      19  ## User Scenarios & Testing *(mandatory)*
+      20  
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line, removed 1 line
+      35  
+      36  **Acceptance Scenarios**:
+      37  
+      38 -1. **Given** người dùng chưa đăng nhập đang ở trang đăng nhập, **When** chọn một user trong danh sách đ
+         -ịnh sẵn và xác nhận đăng nhập, **Then** được chuyển đến trang danh sách sản phẩm và thấy tên user đang 
+         -đăng nhập hiển thị trên giao diện.                                                                     
+      38 +1. **Given** người dùng chưa đăng nhập đang ở trang đăng nhập, **When** bấm vào thẻ của một user trong 
+         +danh sách định sẵn, **Then** được đăng nhập ngay và chuyển đến trang danh sách sản phẩm, thấy tên user 
+         +đang đăng nhập hiển thị trên giao diện.                                                                
+      39  2. **Given** người dùng đã đăng nhập, **When** xem trang danh sách sản phẩm, **Then** thấy đúng 6 sản p
+          hẩm dạng lưới, mỗi sản phẩm hiển thị tên, giá, ảnh và nút "Thêm vào giỏ".
+      40  3. **Given** người dùng chưa đăng nhập, **When** truy cập trực tiếp trang sản phẩm, giỏ hàng hoặc check
+          out bằng đường dẫn, **Then** bị chuyển về trang đăng nhập.
+      41  4. **Given** người dùng đã đăng nhập, **When** bấm đăng xuất, **Then** quay về trang đăng nhập và không
+           còn truy cập được các trang yêu cầu đăng nhập.
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line, removed 1 line
+      126  
+      127  ### Functional Requirements
+      128  
+      129 -- **FR-001**: Hệ thống PHẢI hiển thị trang đăng nhập với danh sách user định sẵn (3 user); người dùng 
+          -chọn một user và vào được ứng dụng mà không cần mật khẩu.                                             
+      129 +- **FR-001**: Hệ thống PHẢI hiển thị trang đăng nhập với danh sách user định sẵn (3 user) dạng thẻ; bấ
+          +m vào thẻ user là đăng nhập ngay, không cần mật khẩu hay bước xác nhận riêng.                         
+      130  - **FR-002**: Hệ thống PHẢI chặn truy cập các trang sản phẩm, giỏ hàng, checkout, xác nhận khi chưa đă
+           ng nhập và chuyển hướng về trang đăng nhập.
+      131  - **FR-003**: Hệ thống PHẢI hiển thị tên user đang đăng nhập và cho phép đăng xuất từ mọi trang sau đă
+           ng nhập.
+      132  - **FR-004**: Hệ thống PHẢI hiển thị đúng 6 sản phẩm cố định dạng lưới; mỗi sản phẩm có tên, giá, ảnh
+           (kèm văn bản thay thế) và nút "Thêm vào giỏ".
+
+⏺ User declined to answer questions
+  ⎿  · Số lượng mỗi mặt hàng trong giỏ có giới hạn tối đa không? (Tối đa 10 (Recommended) / Không giới hạn)
+
+⏺ Bạn muốn làm rõ thêm điều gì về câu hỏi này (hoặc về spec nói chung)? Ví dụ: bạn đang phân vân giữa các mức giới hạn,
+  muốn biết giới hạn ảnh hưởng thế nào đến test, hay muốn đề xuất một hành vi khác (chẳng hạn giới hạn theo tồn kho giả
+  lập)?
+
+✻ Cogitated for 2m 57s
+
+❯ Tối đa 5 thôi                                                                                                         
+
+⏺ Đã ghi nhận: tối đa 5 mỗi mặt hàng. Cập nhật spec:
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line
+      15  - Q: Toàn bộ văn bản giao diện của SimpleShop dùng ngôn ngữ nào? → A: Tiếng Việt
+      16  - Q: Giá sản phẩm hiển thị theo loại tiền tệ và định dạng nào? → A: VND, định dạng "1.000.000 ₫" (số ng
+          uyên, phân tách hàng nghìn bằng dấu chấm)
+      17  - Q: Thao tác đăng nhập cụ thể diễn ra thế nào? → A: Danh sách user hiển thị dạng thẻ; bấm vào thẻ user
+           là đăng nhập ngay, không có bước xác nhận riêng
+      18 +- Q: Số lượng mỗi mặt hàng trong giỏ có giới hạn tối đa không? → A: Tối đa 5; nút tăng (và nút "Thêm và
+         +o giỏ" với sản phẩm đã đạt mức 5) bị vô hiệu ở mức trần                                                
+      19  
+      20  ## User Scenarios & Testing *(mandatory)*
+      21  
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line, removed 1 line
+      134  - **FR-005**: Người dùng PHẢI thêm được sản phẩm vào giỏ từ trang danh sách; thêm lặp lại cùng sản phẩ
+           m làm tăng số lượng của dòng mặt hàng đó (không tạo dòng trùng).
+      135  - **FR-006**: Hệ thống PHẢI hiển thị bộ đếm giỏ hàng ở góc trên của mọi trang sau đăng nhập, bằng tổng
+            số đơn vị mặt hàng trong giỏ, và cập nhật ngay sau mỗi thao tác thêm/tăng/giảm/xóa.
+      136  - **FR-007**: Trang giỏ hàng PHẢI liệt kê từng mặt hàng với tên, giá đơn vị, số lượng, thành tiền, và 
+           hiển thị tổng tiền cả giỏ.
+      137 -- **FR-008**: Người dùng PHẢI tăng/giảm được số lượng từng mặt hàng trong giỏ; số lượng tối thiểu là 1
+          - (nút giảm vô hiệu ở mức 1) và việc xóa mặt hàng thực hiện qua nút Xóa riêng.                         
+      137 +- **FR-008**: Người dùng PHẢI tăng/giảm được số lượng từng mặt hàng trong giỏ; số lượng nằm trong khoả
+          +ng 1–5: nút giảm vô hiệu ở mức 1, nút tăng vô hiệu ở mức 5, và việc xóa mặt hàng thực hiện qua nút Xóa
+          + riêng. Nút "Thêm vào giỏ" ở trang danh sách cũng không vượt được mức 5 (vô hiệu khi sản phẩm đã đạt t
+          +rần).                                                                                                 
+      138  - **FR-009**: Giỏ hàng và trạng thái đăng nhập PHẢI được giữ nguyên khi tải lại trang trên cùng trình
+           duyệt.
+      139  - **FR-010**: Từ trang giỏ hàng có mặt hàng, người dùng PHẢI đi được tới trang checkout; nút Checkout
+           không khả dụng khi giỏ trống.
+      140  - **FR-011**: Trang checkout PHẢI có hai trường bắt buộc là họ tên và mã bưu chính; bỏ trống (hoặc chỉ
+            khoảng trắng) trường nào thì hiển thị lỗi cho trường đó và không cho đặt hàng.
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line
+      85  2. **Given** một mặt hàng có số lượng 1, **When** người dùng bấm tăng, **Then** số lượng thành 2, thành
+           tiền dòng đó và tổng tiền cập nhật ngay, bộ đếm góc trên cũng tăng tương ứng.
+      86  3. **Given** một mặt hàng có số lượng 2, **When** người dùng bấm giảm, **Then** số lượng thành 1 và các
+           giá trị tiền cập nhật ngay.
+      87  4. **Given** một mặt hàng có số lượng 1, **When** người dùng nhìn nút giảm, **Then** nút giảm bị vô hiệ
+          u hóa (xóa mặt hàng phải dùng nút Xóa).
+      88 +5. **Given** một mặt hàng có số lượng 5, **When** người dùng nhìn nút tăng, **Then** nút tăng bị vô hiệ
+         +u hóa (số lượng tối đa mỗi mặt hàng là 5).                                                             
+      89  5. **Given** giỏ có 2 mặt hàng, **When** người dùng bấm Xóa trên một mặt hàng, **Then** dòng đó biến mấ
+          t, tổng tiền và bộ đếm cập nhật ngay.
+      90  6. **Given** giỏ trống, **When** người dùng mở trang giỏ hàng, **Then** thấy thông báo giỏ trống và khô
+          ng thấy nút Checkout khả dụng.
+      91  
+
+⏺ Sửa lại số thứ tự các kịch bản sau khi chèn:
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 2 lines, removed 2 lines
+      86  3. **Given** một mặt hàng có số lượng 2, **When** người dùng bấm giảm, **Then** số lượng thành 1 và các
+           giá trị tiền cập nhật ngay.
+      87  4. **Given** một mặt hàng có số lượng 1, **When** người dùng nhìn nút giảm, **Then** nút giảm bị vô hiệ
+          u hóa (xóa mặt hàng phải dùng nút Xóa).
+      88  5. **Given** một mặt hàng có số lượng 5, **When** người dùng nhìn nút tăng, **Then** nút tăng bị vô hiệ
+          u hóa (số lượng tối đa mỗi mặt hàng là 5).
+      89 -5. **Given** giỏ có 2 mặt hàng, **When** người dùng bấm Xóa trên một mặt hàng, **Then** dòng đó biến mấ
+         -t, tổng tiền và bộ đếm cập nhật ngay.                                                                  
+      90 -6. **Given** giỏ trống, **When** người dùng mở trang giỏ hàng, **Then** thấy thông báo giỏ trống và khô
+         -ng thấy nút Checkout khả dụng.                                                                         
+      89 +6. **Given** giỏ có 2 mặt hàng, **When** người dùng bấm Xóa trên một mặt hàng, **Then** dòng đó biến mấ
+         +t, tổng tiền và bộ đếm cập nhật ngay.                                                                  
+      90 +7. **Given** giỏ trống, **When** người dùng mở trang giỏ hàng, **Then** thấy thông báo giỏ trống và khô
+         +ng thấy nút Checkout khả dụng.                                                                         
+      91  
+      92  ---
+      93  
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line
+      120  - Truy cập trực tiếp trang sản phẩm/giỏ/checkout khi chưa đăng nhập → chuyển về trang đăng nhập (US1, 
+           kịch bản 3).
+      121  - Truy cập trang checkout khi giỏ trống → chuyển về trang giỏ hàng (hoặc trang sản phẩm), không cho đặ
+           t đơn rỗng.
+      122  - Giảm số lượng khi đang ở mức 1 → nút giảm vô hiệu; xóa chỉ qua nút Xóa để hành vi dễ đoán cho test.
+      123 +- Tăng số lượng khi đang ở mức 5 (trần) → nút tăng vô hiệu; nút "Thêm vào giỏ" của sản phẩm đã đạt trầ
+          +n cũng vô hiệu.                                                                                       
+      124  - Tải lại trang giữa chừng → trạng thái đăng nhập và giỏ hàng được giữ nguyên trong cùng trình duyệt.
+      125  - Form checkout chỉ nhập khoảng trắng → coi như trống, hiển thị lỗi.
+      126  - Ảnh sản phẩm không tải được → vẫn hiển thị khung sản phẩm với tên/giá/nút đầy đủ (ảnh có văn bản tha
+           y thế).
+
+⏺ Update(specs/001-simpleshop-demo/checklists/requirements.md)
+  ⎿  Added 3 lines, removed 1 line
+      33  
+      34  - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`
+      35  - Validation pass 1 (2026-06-13): tất cả mục đạt. Spec dùng "định danh ổn định"
+      36 -  (FR-014, SC-002) thay vì nêu cơ chế cụ thể như data-testid — chi tiết kỹ thuật                       
+      36 +  (FR-015, SC-002) thay vì nêu cơ chế cụ thể như data-testid — chi tiết kỹ thuật                       
+      37    này thuộc về plan, theo Nguyên tắc III của constitution.
+      38 +- Re-validation sau /speckit-clarify (2026-06-13): 4 clarification đã tích hợp                         
+      39 +  (ngôn ngữ UI, tiền tệ VND, đăng nhập 1 chạm, trần số lượng 5); tất cả mục vẫn đạt.                   
+
+⏺ Hoàn tất clarification. Extensions.yml không có hook after_clarify nên không cần chạy gì thêm.
+
+  Báo cáo hoàn thành /speckit-clarify
+
+  Số câu hỏi: 4/5 (đã hỏi và tích hợp đủ; câu thứ 5 dự kiến — hành vi trang xác nhận khi reload — tác động thấp nên bỏ
+  qua)
+  Spec đã cập nhật: specs/001-simpleshop-demo/spec.md
+  Checklist: 16/16 → 16/16 mục đạt, không có regression.
+
+  4 quyết định đã chốt và ghi vào mục ## Clarifications (Session 2026-06-13)
+
+  1. Ngôn ngữ UI: tiếng Việt toàn bộ → thêm FR-014 mới (FR định danh ổn định đổi số thành FR-015).
+  2. Tiền tệ: VND, định dạng 1.000.000 ₫ → cập nhật FR-013, xóa assumption "loại tiền do thiết kế quyết định".
+  3. Đăng nhập: bấm thẻ user là vào ngay, không có bước xác nhận → cập nhật FR-001 và kịch bản 1 của US1.
+  4. Trần số lượng: tối đa 5 mỗi mặt hàng (bạn chọn 5 thay vì đề xuất 10), nút tăng và nút "Thêm vào giỏ" vô hiệu ở mức
+  trần → cập nhật FR-008, thêm kịch bản 5 vào US3 và một edge case mới.
+
+  Sections đã chạm vào
+
+  Clarifications (mới), User Story 1, User Story 3, Edge Cases, Functional Requirements (FR-001, FR-008, FR-013, FR-014
+  mới, đánh số lại FR-015), Assumptions.
+
+  Coverage summary
+
+  ┌────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+  │            Hạng mục            │                                   Trạng thái                                   │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Functional Scope & Behavior    │ Clear                                                                          │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Domain & Data Model            │ Clear (trần số lượng đã chốt)                                                  │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Interaction & UX Flow          │ Resolved (đăng nhập, ngôn ngữ)                                                 │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Non-Functional Quality         │ Resolved (định dạng tiền cho assertion)                                        │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Integration & External         │ Clear (không có — offline 100%)                                                │
+  │ Dependencies                   │                                                                                │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Edge Cases & Failure Handling  │ Resolved (boundary 1–5)                                                        │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Constraints & Tradeoffs        │ Clear (theo constitution)                                                      │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Terminology & Consistency      │ Clear                                                                          │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Completion Signals             │ Clear                                                                          │
+  ├────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+  │ Misc / Placeholders            │ Outstanding (thấp): danh tính 6 sản phẩm & 3 user cụ thể — để /speckit-plan    │
+  │                                │ quyết trong fixture                                                            │
+  └────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+
+  Không còn điểm mơ hồ nào đáng kể. Bước tiếp theo: /speckit-plan — chọn stack, cấu trúc dự án, quy ước data-testid và
+  dữ liệu fixture cụ thể.
+
+✻ Cooked for 1m 21s
+
+❯ "Giỏ hàng có lưu lại khi reload trang không?", "Có giới hạn số lượng mỗi sản phẩm không?",                            
+  "Trang checkout validate mã bưu chính thế nào?"                                                                       
+  
+⏺ Cả ba câu đều trả lời được từ spec hiện tại — riêng câu thứ ba có một phần spec chưa quy định, tôi nói rõ bên dưới.
+
+  1. Giỏ hàng có lưu lại khi reload trang không?
+  Có. FR-009 quy định giỏ hàng và trạng thái đăng nhập phải giữ nguyên khi tải lại trang trên cùng trình duyệt, và US2
+  có kịch bản chấp nhận riêng cho việc này (kịch bản 3). Theo constitution (không backend), việc lưu sẽ dùng
+  localStorage của trình duyệt — chỉ trong cùng trình duyệt, không đồng bộ giữa thiết bị (đã ghi ở Assumptions). Lưu ý:
+  sau khi đặt hàng thành công thì giỏ được làm trống có chủ đích (FR-012).
+  
+  2. Có giới hạn số lượng mỗi sản phẩm không?
+  Có — chính là điều bạn vừa chốt ở phiên clarify: mỗi mặt hàng từ 1 đến 5. Nút giảm vô hiệu ở mức 1 (xóa phải dùng nút
+  Xóa riêng), nút tăng vô hiệu ở mức 5, và nút "Thêm vào giỏ" ở trang danh sách cũng vô hiệu khi sản phẩm đó đã đạt trần
+  (FR-008, US3 kịch bản 4–5).
+
+  3. Trang checkout validate mã bưu chính thế nào?
+  Đây là chỗ spec hiện chỉ validate mức tối thiểu: FR-011 yêu cầu mã bưu chính là trường bắt buộc — để trống hoặc chỉ
+  nhập khoảng trắng thì hiện lỗi cho đúng trường đó và không cho đặt hàng. Spec không quy định kiểm tra định dạng (số ký
+  tự, chỉ cho phép chữ số...). Đó là lựa chọn có chủ đích theo nguyên tắc đơn giản: đơn hàng là giả lập nên mã bưu
+  chính không cần đúng thật.
+  
+  Nếu bạn muốn có thêm bài thực hành validation định dạng (ví dụ: mã bưu chính Việt Nam đúng 5 chữ số, nhập chữ thì báo
+  lỗi), nói tôi biết — tôi sẽ cập nhật FR-011 và thêm kịch bản chấp nhận tương ứng vào US4.
+
+✻ Crunched for 29s
+
+❯ /speckit.plan Đề xuất tech stack đơn giản nhất có thể cho SimpleShop, ưu tiên:                                        
+  không backend, không database (dữ liệu sản phẩm để trong file tĩnh, giỏ hàng                                          
+  lưu trong state phía client), dễ chạy local bằng một lệnh, dễ gắn data-testid                                         
+  cho automation. Cân nhắc giữa Vite + React + TypeScript và vanilla HTML/CSS/TS,                                       
+  giải thích lựa chọn. Tạo cấu trúc thư mục rõ ràng tách phần UI và dữ liệu.                                            
+
+⏺ Skill(speckit-plan)
+  ⎿  Successfully loaded skill
+
+⏺ Không có hook before_plan. Chạy setup script:
+
+⏺ Bash(.specify/scripts/bash/setup-plan.sh --json)
+  ⎿  Copied plan template to /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/specs/001-simpleshop-demo/p
+     lan.md
+     {
+     … +6 lines (ctrl+o to expand)
+
+⏺ Write(specs/001-simpleshop-demo/research.md)
+  ⎿  Wrote 148 lines to specs/001-simpleshop-demo/research.md
+      1 # Research: SimpleShop — lựa chọn kỹ thuật
+      2 
+      3 **Feature**: 001-simpleshop-demo | **Date**: 2026-06-13
+      4 
+      5 Mọi NEEDS CLARIFICATION trong Technical Context đã được giải quyết tại đây.
+      6 
+      7 ## R1. Stack nền tảng: Vite + React + TypeScript vs Vanilla HTML/CSS/TS
+      8
+      9 **Decision**: Vite + React 19 + TypeScript (template `react-ts` của `create-vite`).
+     … +143 lines (ctrl+o to expand)
+
+⏺ Write(specs/001-simpleshop-demo/data-model.md)
+  ⎿  Wrote 106 lines to specs/001-simpleshop-demo/data-model.md
+       1 # Data Model: SimpleShop
+       2 
+       3 **Feature**: 001-simpleshop-demo | **Date**: 2026-06-13
+       4 
+       5 Toàn bộ dữ liệu nằm phía client: fixture tĩnh (User, Product) + state trong
+       6 trình duyệt (Cart, Order). Không có backend/database (Nguyên tắc IV).
+       7 
+       8 ## Entities
+       9
+      10 ### User (fixture tĩnh — `src/data/users.ts`)
+     … +96 lines (ctrl+o to expand)
+
+⏺ Bash(mkdir -p /Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/specs/001-simpleshop-demo/contracts)
+  ⎿  Done
+
+⏺ Write(specs/001-simpleshop-demo/contracts/ui-contract.md)
+  ⎿  Wrote 108 lines to specs/001-simpleshop-demo/contracts/ui-contract.md
+       1 # UI Contract: SimpleShop — Routes & data-testid Registry
+       2 
+       3 **Feature**: 001-simpleshop-demo | **Date**: 2026-06-13
+       4 
+       5 Đây là hợp đồng công khai giữa UI và bộ test tự động (Nguyên tắc III của
+       6 constitution). **Đổi tên/xóa một testid hoặc route là breaking change** — phải
+       7 cập nhật file này và toàn bộ test liên quan trong cùng một thay đổi.
+       8
+       9 Quy ước (theo research.md R8):
+      10 - Phần tử tĩnh: `{khu-vực}-{phần-tử}`, kebab-case.
+     … +100 lines (ctrl+o to expand)
+
+⏺ Tiếp theo: quickstart.md và điền plan.md:
+
+⏺ Write(specs/001-simpleshop-demo/quickstart.md)
+  ⎿  Wrote 69 lines to specs/001-simpleshop-demo/quickstart.md
+       1 # Quickstart: SimpleShop — chạy & kiểm chứng
+       2 
+       3 **Feature**: 001-simpleshop-demo | **Date**: 2026-06-13
+       4 
+       5 ## Yêu cầu môi trường
+       6 
+       7 - Node.js 20+ và npm (kiểm tra: `node -v`)
+       8 - Không cần biến môi trường, không cần tài khoản dịch vụ ngoài (SC-005)
+       9
+      10 ## Chạy ứng dụng
+     … +59 lines (ctrl+o to expand)
+
+⏺ Write(specs/001-simpleshop-demo/plan.md)
+  ⎿  Error writing file
+
+⏺ Reading 1 file… (ctrl+o to expand)
+  ⎿  specs/001-simpleshop-demo/plan.md
+
+⏺ Write(specs/001-simpleshop-demo/plan.md)
+  ⎿  Added 86 lines, removed 69 lines
+        1 -# Implementation Plan: [FEATURE]                                                                      
+        1 +# Implementation Plan: SimpleShop — Web bán hàng demo phục vụ học automation testing                  
+        2  
+        3 -**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]                                
+        3 +**Branch**: `001-simpleshop-demo` | **Date**: 2026-06-13 | **Spec**: [spec.md](spec.md)               
+        4  
+        5 -**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`                             
+        5 +**Input**: Feature specification from `/specs/001-simpleshop-demo/spec.md`                            
+        6  
+        7  **Note**: This template is filled in by the `/speckit-plan` command. See `.specify/templates/plan-temp
+           late.md` for the execution workflow.
+        8  
+        9  ## Summary
+       10  
+       11 -[Extract from feature spec: primary requirement + technical approach from research]                   
+       11 +SimpleShop là SPA bán hàng demo (đăng nhập 1 chạm với 3 user định sẵn → lưới                          
+       12 +6 sản phẩm → giỏ hàng với số lượng 1–5 → checkout giả lập → trang xác nhận),                          
+       13 +phục vụ học automation testing. Stack: **Vite + React 19 + TypeScript**, không                        
+       14 +backend/database — fixture tĩnh + localStorage; mọi phần tử tương tác có                              
+       15 +`data-testid` theo hợp đồng [contracts/ui-contract.md](contracts/ui-contract.md);                     
+       16 +E2E bằng Playwright, một file test cho mỗi user story. Lý do chọn React thay                          
+       17 +vanilla TS: xem [research.md](research.md) R1 — app nhiều state phản ứng                              
+       18 +(badge, tổng tiền, nút vô hiệu theo ngưỡng), React loại bỏ toàn bộ tầng đồng                          
+       19 +bộ DOM thủ công vốn là phần code dài và khó đọc nhất nếu viết vanilla.                                
+       20  
+       21  ## Technical Context
+       22  
+       15 -<!--                                                                                                  
+       16 -  ACTION REQUIRED: Replace the content in this section with the technical details                     
+       17 -  for the project. The structure here is presented in advisory capacity to guide                      
+       18 -  the iteration process.                                                                              
+       19 --->                                                                                                   
+       23 +**Language/Version**: TypeScript 5.x (strict mode)                                                    
+       24  
+       21 -**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]                
+       25 +**Primary Dependencies**: React 19, react-router-dom (runtime — chỉ 3 gói);                           
+       26 +Vite (template `react-ts`), ESLint + Prettier, `@playwright/test` (dev)                               
+       27  
+       23 -**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]                         
+       28 +**Storage**: Không database. Fixture tĩnh `src/data/*.ts` (6 sản phẩm, 3 user);                       
+       29 +localStorage 2 khóa `simpleshop.session`, `simpleshop.cart` (xem                                      
+       30 +[data-model.md](data-model.md))                                                                       
+       31  
+       25 -**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]                                
+       32 +**Testing**: Playwright E2E (`tests/e2e/`, 1 spec/user story); selector chỉ qua                       
+       33 +`getByTestId` + accessible role; `npm test` chạy toàn bộ                                              
+       34  
+       27 -**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]                                
+       35 +**Target Platform**: Trình duyệt hiện đại (Chromium/Firefox/WebKit), chạy local                       
+       36 +qua `npm run dev` (Vite dev server, cổng 5173)                                                        
+       37  
+       29 -**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]                       
+       38 +**Project Type**: Web frontend SPA thuần client (single project)                                      
+       39  
+       31 -**Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATIO
+          -N]                                                                                                    
+       40 +**Performance Goals**: Mọi thao tác phản hồi tức thì (SC-003, cảm nhận < 1s) —                        
+       41 +mặc nhiên đạt vì không có network call                                                                
+       42  
+       33 -**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATIO
+          -N]                                                                                                    
+       43 +**Constraints**: Offline 100% sau khi cài (SC-005) — không CDN, không URL ảnh                         
+       44 +ngoài (ảnh SVG cục bộ trong `public/images/`); chạy bằng một lệnh; không biến                         
+       45 +môi trường bí mật                                                                                     
+       46  
+       35 -**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICA
+          -TION]                                                                                                 
+       47 +**Scale/Scope**: 5 route, 6 sản phẩm, 3 user, ~10 component — cố định, không                          
+       48 +phân trang/tìm kiếm (ngoài phạm vi theo spec)                                                         
+       49  
+       37 -**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]        
+       38 -                                                                                                      
+       50  ## Constitution Check
+       51  
+       52  *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+       53  
+       43 -[Gates determined based on constitution file]                                                         
+       54 +| Nguyên tắc | Đánh giá | Kết quả |                                                                   
+       55 +|------------|----------|---------|                                                                   
+       56 +| I. Code Sạch & Dễ Đọc | ESLint + Prettier trong template, mỗi component một file ngắn, reducer thuần
+          + chứa quy tắc nghiệp vụ; TS strict | ✅ PASS |                                                        
+       57 +| II. Đơn Giản Hơn Đầy Đủ | Chỉ 3 dependency runtime, mỗi cái có lý do ghi ở research.md (R1–R3); khôn
+          +g state library, không UI kit, không unit-test layer thừa (R7, R9) | ✅ PASS |                        
+       58 +| III. UI Test Tự Động Được | Toàn bộ testid là hợp đồng công khai trong contracts/ui-contract.md, quy
+          + ước kebab-case + container-động/con-tĩnh (R8); Playwright chỉ dùng getByTestId/role | ✅ PASS |      
+       59 +| IV. Không Backend & DB Thật | Fixture TS tĩnh + localStorage; `npm run dev` một lệnh; offline 100% (
+          +R4, R5) | ✅ PASS |                                                                                   
+       60 +| V. UX Nhất Quán | Design tokens trong `src/styles/tokens.css`; `formatPrice()` duy nhất cho mọi giá 
+          +(R6); UI tiếng Việt thống nhất (FR-014) | ✅ PASS |                                                   
+       61  
+       62 +**Re-check sau Phase 1**: Không phát sinh vi phạm — data-model và ui-contract                         
+       63 +không thêm dependency hay tầng trừu tượng mới. ✅ PASS                                                
+       64 +                                                                                                      
+       65  ## Project Structure
+       66  
+       67  ### Documentation (this feature)
+       68  
+       69  ```text
+       50 -specs/[###-feature]/                                                                                  
+       51 -├── plan.md              # This file (/speckit-plan command output)                                   
+       52 -├── research.md          # Phase 0 output (/speckit-plan command)                                     
+       53 -├── data-model.md        # Phase 1 output (/speckit-plan command)                                     
+       54 -├── quickstart.md        # Phase 1 output (/speckit-plan command)                                     
+       55 -├── contracts/           # Phase 1 output (/speckit-plan command)                                     
+       56 -└── tasks.md             # Phase 2 output (/speckit-tasks command - NOT created by /speckit-plan)     
+       70 +specs/001-simpleshop-demo/                                                                            
+       71 +├── plan.md              # File này (/speckit-plan)                                                   
+       72 +├── research.md          # Phase 0 — 9 quyết định kỹ thuật (R1–R9)                                    
+       73 +├── data-model.md        # Phase 1 — entities, fixture, localStorage, vòng đời                        
+       74 +├── quickstart.md        # Phase 1 — chạy app + kịch bản kiểm chứng US1–US4                           
+       75 +├── contracts/                                                                                        
+       76 +│   └── ui-contract.md   # Phase 1 — routes + danh mục data-testid (hợp đồng test)                    
+       77 +└── tasks.md             # Phase 2 (/speckit-tasks — chưa tạo)                                        
+       78  ```
+       79  
+       80  ### Source Code (repository root)
+       60 -<!--                                                                                                  
+       61 -  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout                        
+       62 -  for this feature. Delete unused options and expand the chosen structure with                        
+       63 -  real paths (e.g., apps/admin, packages/something). The delivered plan must                          
+       64 -  not include Option labels.                                                                          
+       65 --->                                                                                                   
+       81  
+       82  ```text
+       68 -# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)                                               
+       83  src/
+       70 -├── models/                                                                                           
+       71 -├── services/                                                                                         
+       72 -├── cli/                                                                                              
+       73 -└── lib/                                                                                              
+       84 +├── main.tsx                 # entry, mount React + Router                                            
+       85 +├── App.tsx                  # khai báo routes + RequireAuth guard                                    
+       86 +├── pages/                   # mỗi route một page component                                           
+       87 +│   ├── LoginPage.tsx                                                                                 
+       88 +│   ├── ProductsPage.tsx                                                                              
+       89 +│   ├── CartPage.tsx                                                                                  
+       90 +│   ├── CheckoutPage.tsx                                                                              
+       91 +│   └── ConfirmationPage.tsx                                                                          
+       92 +├── components/               # UI dùng chung                                                         
+       93 +│   ├── Header.tsx            # tên user, nút đăng xuất, badge giỏ (FR-003, FR-006)                   
+       94 +│   └── ProductCard.tsx                                                                               
+       95 +├── context/                  # state toàn cục (R3)                                                   
+       96 +│   ├── AuthContext.tsx       # user hiện tại + login/logout, sync localStorage                       
+       97 +│   └── CartContext.tsx       # reducer giỏ hàng (trần 5/sàn 1), sync localStorage                    
+       98 +├── data/                     # ── PHẦN DỮ LIỆU, tách khỏi UI ──                                      
+       99 +│   ├── products.ts           # fixture 6 sản phẩm (data-model.md)                                    
+      100 +│   └── users.ts              # fixture 3 user                                                        
+      101 +├── lib/                                                                                              
+      102 +│   ├── format.ts             # formatPrice() — nguồn duy nhất định dạng VND (R6)                     
+      103 +│   └── storage.ts            # đọc/ghi localStorage an toàn (parse hỏng → rỗng)                      
+      104 +└── styles/                                                                                           
+      105 +    ├── tokens.css            # design tokens (Nguyên tắc V)                                          
+      106 +    └── global.css                                                                                    
+      107  
+       75 -tests/                                                                                                
+       76 -├── contract/                                                                                         
+       77 -├── integration/                                                                                      
+       78 -└── unit/                                                                                             
+      108 +public/                                                                                               
+      109 +└── images/                   # 6 ảnh SVG cục bộ, đặt tên theo product id (R5)                        
+      110  
+       80 -# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)                 
+       81 -backend/                                                                                              
+       82 -├── src/                                                                                              
+       83 -│   ├── models/                                                                                       
+       84 -│   ├── services/                                                                                     
+       85 -│   └── api/                                                                                          
+       86 -└── tests/                                                                                            
+       87 -                                                                                                      
+       88 -frontend/                                                                                             
+       89 -├── src/                                                                                              
+       90 -│   ├── components/                                                                                   
+       91 -│   ├── pages/                                                                                        
+       92 -│   └── services/                                                                                     
+       93 -└── tests/                                                                                            
+       94 -                                                                                                      
+       95 -# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)                             
+       96 -api/                                                                                                  
+       97 -└── [same as backend above]                                                                           
+       98 -                                                                                                      
+       99 -ios/ or android/                                                                                      
+      100 -└── [platform-specific structure: feature modules, UI flows, platform tests]                          
+      111 +tests/                                                                                                
+      112 +└── e2e/                      # Playwright, 1 file / user story                                       
+      113 +    ├── us1-login.spec.ts                                                                             
+      114 +    ├── us2-add-to-cart.spec.ts                                                                       
+      115 +    ├── us3-cart-management.spec.ts                                                                   
+      116 +    └── us4-checkout.spec.ts                                                                          
+      117  ```
+      118  
+      103 -**Structure Decision**: [Document the selected structure and reference the real                       
+      104 -directories captured above]                                                                           
+      119 +**Structure Decision**: Single project (SPA thuần client, không backend nên                           
+      120 +không tách frontend/backend). Ranh giới UI ↔ dữ liệu theo yêu cầu người dùng:                         
+      121 +`src/data/` chứa toàn bộ fixture (chỉ export hằng số typed, không import gì từ                        
+      122 +UI); `src/pages/` + `src/components/` chỉ đọc dữ liệu qua context/import, không                       
+      123 +hard-code sản phẩm/user trong JSX. `src/lib/` là tiện ích thuần không phụ thuộc                       
+      124 +React để dễ đọc và tái dùng trong test.                                                               
+      125  
+      126  ## Complexity Tracking
+      127  
+      128  > **Fill ONLY if Constitution Check has violations that must be justified**
+      129  
+      110 -| Violation | Why Needed | Simpler Alternative Rejected Because |                                     
+      111 -|-----------|------------|-------------------------------------|                                      
+      112 -| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |                              
+      113 -| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |             
+      130 +Không có vi phạm — bảng để trống.                                                                     
+
+⏺ Bash(.specify/extensions/agent-context/scripts/bash/update-agent-context.sh && cat CLAUDE.md)
+  ⎿  agent-context: updated CLAUDE.md
+     <!-- SPECKIT START -->
+     For additional context about technologies to be used, project structure,
+     … +3 lines (ctrl+o to expand)
+
+⏺ Hoàn tất /speckit-plan.
+
+  Báo cáo hoàn thành
+
+  Branch: chưa dùng branch riêng (repo đang ở main) | Plan: specs/001-simpleshop-demo/plan.md
+
+  Artifacts đã tạo:
+
+  ┌──────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────┐
+  │           File           │                                       Nội dung                                        │
+  ├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤
+  │ plan.md                  │ Technical context, Constitution Check 5/5 PASS (cả re-check sau thiết kế), cấu trúc   │
+  │                          │ thư mục                                                                               │
+  ├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤
+  │ research.md              │ 9 quyết định R1–R9 kèm lý do và phương án bị loại                                     │
+  ├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤
+  │ data-model.md            │ 4 entities + fixture cụ thể (6 sản phẩm, 3 user, giá VND), schema localStorage, sơ đồ │
+  │                          │  vòng đời                                                                             │
+  ├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤
+  │ contracts/ui-contract.md │ 5 routes + danh mục data-testid đầy đủ từng trang — hợp đồng công khai cho test       │
+  ├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤
+  │ quickstart.md            │ Lệnh chạy/test + kịch bản kiểm chứng US1–US4                                          │
+  ├──────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────┤
+  │ CLAUDE.md                │ Đã trỏ vào plan mới (hook agent-context)                                              │
+  └──────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────┘
+
+  Quyết định chính — Vite + React 19 + TypeScript (thay vì vanilla HTML/CSS/TS): SimpleShop có state lan tỏa nhiều trang
+  — badge giỏ hàng, tổng tiền tính lại liên tục, nút vô hiệu theo ngưỡng 1–5. Viết vanilla thì phần code dài nhất và
+  khó đọc nhất chính là code đồng bộ DOM thủ công (tự chế mini-framework), đi ngược nguyên tắc "code sạch dễ đọc". React
+  loại bỏ tầng đó, gắn data-testid ngay trong JSX, và vẫn đạt mọi tiêu chí bạn nêu: không backend (SPA tĩnh), một lệnh
+  npm run dev, dữ liệu trong src/data/*.ts tách hẳn khỏi UI. Lưu ý: vanilla cũng vẫn cần dev server (thường lại là Vite)
+  nên không thực sự "nhẹ hơn".
+
+  Các quyết định phụ: chỉ 3 dependency runtime (react, react-dom, react-router-dom); Context + useReducer cho giỏ hàng
+  (không Redux/Zustand); ảnh SVG cục bộ để chạy offline 100%; Intl.NumberFormat("vi-VN") cho định dạng 1.000.000 ₫;
+  Playwright E2E với pattern testid container-động/con-tĩnh (product-card-{id} → add-to-cart).
+
+  Bước tiếp theo: /speckit-tasks để sinh danh sách task theo từng user story.
+
+✻ Sautéed for 5m 40s
+
+※ recap: Đang dựng SimpleShop, web bán hàng demo để học automation testing, theo quy trình Spec Kit: constitution, spec,
+  clarify và plan (Vite + React + TypeScript) đã xong. Bước tiếp theo: chạy /speckit-tasks để sinh danh sách task theo 
+  từng user story. (disable recaps in /config)
+  
+❯ Claude có thể đang thêm thành phần tôi không yêu cầu. Giải thích lý do và                                             
+  nguồn của từng lựa chọn, bỏ những gì không cần cho một app demo tối giản.                                             
+  
+⏺ Nhận xét đúng — tôi đã rà lại từng thành phần trong plan, truy nguồn gốc của nó. Kết luận trước: có đúng một thành 
+  phần tôi tự thêm vượt yêu cầu: bộ test Playwright viết sẵn (4 file E2E). Đây là app để bạn học automation testing —
+  viết sẵn test tức là làm hộ bài tập. Tôi sẽ bỏ nó khỏi phạm vi app. Mọi thứ còn lại đều truy được về yêu cầu của bạn,
+  spec hoặc constitution. Bảng truy nguồn đầy đủ:
+
+  ┌───────────────────────┬───────────────────────────────────────────────────────────────────────────────┬────────┐
+  │      Thành phần       │                                     Nguồn                                     │  Kết   │
+  │                       │                                                                               │  luận  │
+  ├───────────────────────┼───────────────────────────────────────────────────────────────────────────────┼────────┤
+  │ Vite + React +        │ Bạn yêu cầu cân nhắc và chọn (prompt /plan)                                   │ Giữ    │
+  │ TypeScript            │                                                                               │        │
+  │ react-router-dom     │ Spec US1-kịch bản 3: "truy cập trực tiếp bằng đường dẫn → đẩy về login" —  │ Giữ        │
+  │                      │ bắt buộc có URL thật mới test được redirect                                │            │
+  ├──────────────────────┼────────────────────────────────────────────────────────────────────────────┼────────────┤
+  │ Fixture              │ Bạn: "dữ liệu sản phẩm để trong file tĩnh", "tách UI và dữ liệu"           │ Giữ        │
+  │ src/data/*.ts        │                                                                            │            │
+  │ localStorage (giỏ + phiên)           │ Bạn xác nhận FR-009 ở phiên hỏi đáp ("giỏ có lưu khi reload  │ Giữ      │
+  │                                      │ không?")                                                     │          │
+  ├──────────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────────┤
+  │ Context + useReducer                 │ Hệ quả của FR-006 (badge xuyên trang); thay thế              │ Giữ      │
+  │                                      │ Redux/Zustand chứ không thêm                                 │          │
+  ├──────────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────────┤
+  │ formatPrice() / Intl vi-VN           │ Clarify đã chốt định dạng "1.000.000 ₫"                      │ Giữ      │
+  ├──────────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────────┤
+  │ Ảnh SVG cục bộ                       │ SC-005 (offline) + constitution IV — ảnh URL ngoài sẽ vi     │ Giữ      │
+  │                                      │ phạm                                                         │          │
+  ├──────────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────────┤
+  │                                      │ Constitution I ("PHẢI qua linter và formatter") ← từ yêu cầu │          │
+  │ ESLint + Prettier                    │  "code sạch dễ đọc" của bạn; ESLint có sẵn trong template    │ Giữ      │
+  │                                      │ Vite                                                         │          │
+  ├──────────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────────┤
+  │ tokens.css                           │ Constitution V ← yêu cầu "UX nhất quán" của bạn; chỉ là biến │ Giữ      │
+  │                                      │  CSS, không phải thư viện                                    │          │
+  ├──────────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────────┤
+  │ storage.ts (~15 dòng)                │ Edge case trong spec: dữ liệu hỏng không được crash          │ Giữ      │
+  ├──────────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────────┤
+  │                                      │ Giả định của tôi, đã khai báo trong Assumptions của spec từ  │ Giữ (đã  │
+  │ Nút đăng xuất                        │ đầu — tiện lặp lại luồng login khi thực hành; bạn muốn bỏ    │ khai     │
+  │                                      │ thì nói, tôi cắt FR-003                                      │ báo)     │
+  ├──────────────────────────────────────┼──────────────────────────────────────────────────────────────┼──────────┤
+  │ Bộ test E2E viết sẵn (tests/e2e/, 4  │ Tôi tự suy diễn từ constitution — nhưng yêu cầu gốc của bạn  │ Bỏ       │
+  │ file, @playwright/test, npm test)    │ chỉ là app dễ test (có data-testid), không phải app kèm test │          │
+  └──────────────────────────────────────┴──────────────────────────────────────────────────────────────┴──────────┘
+
+  Áp dụng: sửa research.md (R7), plan.md và quickstart.md:
+
+⏺ Update(specs/001-simpleshop-demo/research.md)
+  ⎿  Added 17 lines, removed 12 lines
+      103  **Alternatives considered**: tự nối chuỗi (dễ lệch định dạng giữa các trang);
+      104  thư viện format (dư thừa).
+      105  
+      106 -## R7. Công cụ test tự động                                                                           
+      106 +## R7. Test tự động: KHÔNG nằm trong phạm vi app                                                      
+      107  
+      108 -**Decision**: Playwright (`@playwright/test`) cho E2E, tổ chức 1 file spec cho                        
+      109 -mỗi user story (US1–US4). Selector chỉ dùng `getByTestId` / accessible role                           
+      110 -theo Nguyên tắc III. Không thêm Vitest ở giai đoạn này.                                               
+      108 +**Decision**: App KHÔNG kèm bộ test viết sẵn. Khả năng test được bảo đảm bằng                         
+      109 +hợp đồng `contracts/ui-contract.md` (data-testid + routes). Việc viết test                            
+      110 +E2E là **bài tập của người học**; công cụ khuyến nghị: Playwright (có                                 
+      111 +`getByTestId` first-class, auto-wait, chạy offline) — người học tự khởi tạo                           
+      112 +khi sẵn sàng (`npm init playwright@latest`).                                                          
+      113  
+      112 -**Rationale**: Mục đích của SimpleShop là học automation testing → E2E là tầng                        
+      113 -test chính, chạy đúng các acceptance scenario trong spec. Playwright có                               
+      114 -`getByTestId` first-class, auto-wait, chạy offline, một lệnh `npm test`.                              
+      115 -Logic nghiệp vụ duy nhất (reducer giỏ hàng) đã được phủ gián tiếp qua E2E;                            
+      116 -thêm tầng unit test lúc này là dư (Nguyên tắc II) — có thể bổ sung sau nếu                            
+      117 -dùng làm bài học riêng.                                                                               
+      114 +**Rationale**: Mục đích của SimpleShop là *học* automation testing — repo kèm                         
+      115 +sẵn lời giải sẽ triệt tiêu bài tập (giống các trang thực hành như SauceDemo:                          
+      116 +chỉ cung cấp app + selector ổn định, không cung cấp test). Yêu cầu gốc của                            
+      117 +constitution là UI *dễ test tự động* (định danh ổn định), không phải app                              
+      118 +*kèm test*. Bỏ bộ test cũng bỏ được dependency `@playwright/test` khỏi dự án                          
+      119 +(Nguyên tắc II). Dòng "acceptance scenario phải có test tự động đi kèm" trong                         
+      120 +quy trình của constitution được thỏa mãn bởi chính bài thực hành của người học                        
+      121 +theo từng user story.                                                                                 
+      122  
+      119 -**Alternatives considered**: Cypress (tốt nhưng chậm hơn, API cũ hơn);                                
+      120 -Selenium (nhiều boilerplate, không hợp người mới bắt đầu).                                            
+      123 +**Alternatives considered**: kèm bộ test đầy đủ (loại — làm hộ bài tập, thêm                          
+      124 +dependency); kèm 1 test mẫu làm ví dụ (loại — vẫn thêm toolchain vào repo;                            
+      125 +ví dụ selector đã có đủ trong ui-contract.md).                                                        
+      126  
+      127  ## R8. Quy ước data-testid
+      128  
+
+⏺ Update(specs/001-simpleshop-demo/plan.md)
+  ⎿  Added 2 lines, removed 1 line
+      13  phục vụ học automation testing. Stack: **Vite + React 19 + TypeScript**, không
+      14  backend/database — fixture tĩnh + localStorage; mọi phần tử tương tác có
+      15  `data-testid` theo hợp đồng [contracts/ui-contract.md](contracts/ui-contract.md);
+      16 -E2E bằng Playwright, một file test cho mỗi user story. Lý do chọn React thay                           
+      16 +app không kèm bộ test — viết test E2E là bài tập của người học (khuyến nghị                            
+      17 +Playwright, xem research.md R7). Lý do chọn React thay                                                 
+      18  vanilla TS: xem [research.md](research.md) R1 — app nhiều state phản ứng
+      19  (badge, tổng tiền, nút vô hiệu theo ngưỡng), React loại bỏ toàn bộ tầng đồng
+      20  bộ DOM thủ công vốn là phần code dài và khó đọc nhất nếu viết vanilla.
+
+⏺ Update(specs/001-simpleshop-demo/plan.md)
+  ⎿  Added 1 line, removed 1 line
+      24  **Language/Version**: TypeScript 5.x (strict mode)
+      25  
+      26  **Primary Dependencies**: React 19, react-router-dom (runtime — chỉ 3 gói);
+      27 -Vite (template `react-ts`), ESLint + Prettier, `@playwright/test` (dev)                                
+      27 +Vite (template `react-ts`), ESLint + Prettier (dev)                                                    
+      28  
+      29  **Storage**: Không database. Fixture tĩnh `src/data/*.ts` (6 sản phẩm, 3 user);
+      30  localStorage 2 khóa `simpleshop.session`, `simpleshop.cart` (xem
+
+⏺ Update(specs/001-simpleshop-demo/plan.md)
+  ⎿  Added 3 lines, removed 2 lines
+      30  localStorage 2 khóa `simpleshop.session`, `simpleshop.cart` (xem
+      31  [data-model.md](data-model.md))
+      32  
+      33 -**Testing**: Playwright E2E (`tests/e2e/`, 1 spec/user story); selector chỉ qua                        
+      34 -`getByTestId` + accessible role; `npm test` chạy toàn bộ                                               
+      33 +**Testing**: Không kèm bộ test trong repo (R7) — khả năng test bảo đảm bằng                            
+      34 +hợp đồng data-testid (contracts/ui-contract.md); người học tự viết E2E bằng                            
+      35 +Playwright như bài tập, selector chỉ qua `getByTestId` + accessible role                               
+      36  
+      37  **Target Platform**: Trình duyệt hiện đại (Chromium/Firefox/WebKit), chạy local
+      38  qua `npm run dev` (Vite dev server, cổng 5173)
+
+⏺ Update(specs/001-simpleshop-demo/plan.md)
+  ⎿  Added 2 lines, removed 2 lines
+      56  | Nguyên tắc | Đánh giá | Kết quả |
+      57  |------------|----------|---------|
+      58  | I. Code Sạch & Dễ Đọc | ESLint + Prettier trong template, mỗi component một file ngắn, reducer thuần 
+          chứa quy tắc nghiệp vụ; TS strict | ✅ PASS |
+      59 -| II. Đơn Giản Hơn Đầy Đủ | Chỉ 3 dependency runtime, mỗi cái có lý do ghi ở research.md (R1–R3); không
+         - state library, không UI kit, không unit-test layer thừa (R7, R9) | ✅ PASS |                          
+      60 -| III. UI Test Tự Động Được | Toàn bộ testid là hợp đồng công khai trong contracts/ui-contract.md, quy 
+         -ước kebab-case + container-động/con-tĩnh (R8); Playwright chỉ dùng getByTestId/role | ✅ PASS |        
+      59 +| II. Đơn Giản Hơn Đầy Đủ | Chỉ 3 dependency runtime, mỗi cái có lý do ghi ở research.md (R1–R3); không
+         + state library, không UI kit, không kèm bộ test/toolchain test trong repo (R7, R9) | ✅ PASS |         
+      60 +| III. UI Test Tự Động Được | Toàn bộ testid là hợp đồng công khai trong contracts/ui-contract.md, quy 
+         +ước kebab-case + container-động/con-tĩnh (R8); người học viết test chỉ dùng getByTestId/role | ✅ PASS 
+         +|                                                                                                      
+      61  | IV. Không Backend & DB Thật | Fixture TS tĩnh + localStorage; `npm run dev` một lệnh; offline 100% (R
+          4, R5) | ✅ PASS |
+      62  | V. UX Nhất Quán | Design tokens trong `src/styles/tokens.css`; `formatPrice()` duy nhất cho mọi giá (
+          R6); UI tiếng Việt thống nhất (FR-014) | ✅ PASS |
+      63  
+
+⏺ Update(specs/001-simpleshop-demo/plan.md)
+  ⎿  Added 3 lines, removed 7 lines
+      109  
+      110  public/
+      111  └── images/                   # 6 ảnh SVG cục bộ, đặt tên theo product id (R5)
+      112 -                                                                                                      
+      113 -tests/                                                                                                
+      114 -└── e2e/                      # Playwright, 1 file / user story                                       
+      115 -    ├── us1-login.spec.ts                                                                             
+      116 -    ├── us2-add-to-cart.spec.ts                                                                       
+      117 -    ├── us3-cart-management.spec.ts                                                                   
+      118 -    └── us4-checkout.spec.ts                                                                          
+      112  ```
+      113  
+      114 +> Không có thư mục `tests/` trong repo — viết test E2E là bài tập của người                           
+      115 +> học (R7), dựa trên kịch bản ở quickstart.md và selector ở ui-contract.md.                           
+      116 +                                                                                                      
+      117  **Structure Decision**: Single project (SPA thuần client, không backend nên
+      118  không tách frontend/backend). Ranh giới UI ↔ dữ liệu theo yêu cầu người dùng:
+      119  `src/data/` chứa toàn bộ fixture (chỉ export hằng số typed, không import gì từ
+
+⏺ Update(specs/001-simpleshop-demo/quickstart.md)
+  ⎿  Added 7 lines, removed 10 lines
+      16  
+      17  Build tĩnh (tùy chọn): `npm run build && npm run preview`.
+      18  
+      19 -## Chạy test tự động                                                                                   
+      19 +## Test tự động (bài tập của người học)                                                                
+      20  
+      21 -```bash                                                                                                
+      22 -npx playwright install chromium   # lần đầu, tải browser                                               
+      23 -npm test                          # chạy toàn bộ Playwright E2E                                        
+      24 -npm run test:ui                   # (tùy chọn) chế độ UI của Playwright                                
+      25 -```                                                                                                    
+      21 +Repo KHÔNG kèm bộ test (xem research.md R7) — viết test E2E cho các kịch bản                           
+      22 +dưới đây chính là bài thực hành automation. Công cụ khuyến nghị: Playwright                            
+      23 +(`npm init playwright@latest`, tự cài riêng khi sẵn sàng). Selector tuân theo                          
+      24 +[contracts/ui-contract.md](contracts/ui-contract.md) — chỉ dùng                                        
+      25 +`getByTestId` hoặc accessible role/label.                                                              
+      26  
+      27 -Test nằm tại `tests/e2e/`, một file cho mỗi user story. Selector tuân theo                             
+      28 -[contracts/ui-contract.md](contracts/ui-contract.md).                                                  
+      27 +## Kịch bản kiểm chứng end-to-end (kiểm thủ công, sau đó tự động hóa làm bài tập)                      
+      28  
+      30 -## Kịch bản kiểm chứng end-to-end (theo user story trong spec.md)                                      
+      31 -                                                                                                       
+      29  ### US1 — Đăng nhập & xem sản phẩm
+      30  
+      31  1. Mở app → thấy `/login` với 3 thẻ user (Minh Nguyễn, Lan Trần, Hùng Phạm).
+
+⏺ Update(specs/001-simpleshop-demo/quickstart.md)
+  ⎿  Added 3 lines, removed 1 line
+      61  ## Định nghĩa "chạy được" (Definition of Done cho plan này)
+      62  
+      63  - `npm run dev` khởi động không lỗi, đủ 5 route theo ui-contract.md.
+      64 -- `npm test` xanh toàn bộ (các scenario US1–US4 ở trên được tự động hóa).                              
+      64 +- Toàn bộ kịch bản US1–US4 ở trên đạt khi kiểm thủ công.                                               
+      65 +- Mọi phần tử trong ui-contract.md hiện diện đúng `data-testid` đã khai báo                            
+      66 +  (điều kiện để người học tự động hóa được — SC-002).                                                  
+      67  - `npm run lint` không lỗi.
+      68  - Rút cáp mạng vẫn dùng được toàn bộ luồng (SC-005).
+
+⏺ Xong. Tóm tắt những gì đã thay đổi và lý do:
+
+  Đã bỏ — bộ test E2E viết sẵn. Đây là thành phần duy nhất không truy được về yêu cầu của bạn: yêu cầu gốc (cả ở
+  constitution lẫn prompt /plan) là app dễ test tự động — tức có data-testid ổn định — chứ không phải app kèm sẵn test.
+  Với một dự án để học automation, kèm sẵn 4 file Playwright là kèm luôn lời giải (các trang thực hành như SauceDemo
+  cũng chỉ cung cấp app + selector ổn định). Bỏ nó đồng thời bỏ được dependency @playwright/test và thư mục tests/ khỏi
+  repo. Các file đã sửa:
+
+  - research.md R7: đổi quyết định thành "không kèm test; viết test là bài tập của người học, khuyến nghị Playwright tự
+  cài khi sẵn sàng".
+  - plan.md: bỏ tests/e2e/ khỏi cấu trúc, bỏ @playwright/test khỏi dependencies, cập nhật mục Testing và 2 dòng
+  Constitution Check liên quan.
+  - quickstart.md: phần "chạy test" thành "bài tập của người học"; các kịch bản US1–US4 giữ nguyên nhưng đóng vai trò
+  danh sách kiểm thủ công kiêm đề bài automation; Definition of Done đổi từ "npm test xanh" thành "kiểm thủ công đạt +
+  mọi testid trong ui-contract hiện diện đúng".
+
+  Giữ nguyên — mọi thứ còn lại, vì đều có nguồn rõ (bảng truy nguồn ở trên): React/Vite/TS là lựa chọn bạn yêu cầu cân
+  nhắc; react-router-dom bắt buộc bởi kịch bản "vào thẳng URL bị đẩy về login" trong spec; ESLint/Prettier và tokens.css
+  đến từ constitution mà bạn đặt ra ("code sạch", "UX nhất quán"); localStorage là điều bạn xác nhận khi hỏi về reload.
+
+  Một điểm ở mức ranh giới để bạn quyết: nút Đăng xuất là giả định tôi thêm từ đầu (đã khai báo trong Assumptions của
+  spec) — hữu ích để lặp lại luồng login khi thực hành, nhưng không có trong mô tả gốc. Hiện tôi giữ; nếu muốn tối giản
+  tuyệt đối, nói một câu là tôi cắt FR-003 và kịch bản liên quan khỏi spec.
+
+  Plan giờ chỉ còn: 3 dependency runtime, dev toolchain của template Vite, 5 trang, fixture tĩnh, localStorage — sẵn
+  sàng cho /speckit-tasks.
+
+✻ Brewed for 3m 21s
+
+❯ Audit lại implementation plan và các file chi tiết. Đọc kỹ xem có chuỗi công việc                                     
+  nào hiển nhiên cần làm mà chưa được nêu không. Kiểm tra xem có phần nào                                               
+  bị over-engineer (phức tạp quá mức cần thiết) cho một app demo không.                                                 
+  Đảm bảo mọi thứ tuân theo constitution.                                                                               
+
+⏺ Tôi đã rà toàn bộ 6 file (spec, plan, research, data-model, ui-contract, quickstart) đối chiếu chéo với constitution.
+  Kết quả: 3 vấn đề thật cần sửa (1 lỗ hổng tuân thủ constitution, 1 tham chiếu treo, 1 thiếu sót accessibility), không 
+  phát hiện over-engineering mới sau khi đã bỏ bộ test ở vòng trước. Sửa ngay từng cái:
+
+  Vấn đề 1 — Vi phạm constitution chưa được biện minh đúng cơ chế. Quy trình trong constitution ghi: "khi hoàn thành
+  story, các acceptance scenario tương ứng PHẢI có test tự động đi kèm". Quyết định R7 (không kèm test trong repo) lệch
+  khỏi dòng này, nhưng governance quy định lệch chuẩn phải ghi vào Complexity Tracking của plan — bảng đó đang để trống.
+  Sửa:
+
+⏺ Update(specs/001-simpleshop-demo/plan.md)
+  ⎿  Added 3 lines, removed 1 line
+      125  
+      126  > **Fill ONLY if Constitution Check has violations that must be justified**
+      127  
+      128 -Không có vi phạm — bảng để trống.                                                                     
+      128 +| Violation | Why Needed | Simpler Alternative Rejected Because |                                     
+      129 +|-----------|------------|-------------------------------------|                                      
+      130 +| Story hoàn thành không kèm test tự động trong repo (lệch dòng "acceptance scenario PHẢI có test tự đ
+          +ộng đi kèm" ở mục Quy Trình của constitution) | SimpleShop tồn tại ĐỂ người học tự viết test; kèm lời 
+          +giải sẽ triệt tiêu bài tập (research.md R7). Nghĩa vụ test chuyển cho người học theo từng user story; 
+          +app chỉ bảo đảm điều kiện test được qua ui-contract.md | Kèm bộ test đầy đủ: làm hộ bài tập + thêm dep
+          +endency @playwright/test. Kèm 1 test mẫu: vẫn kéo toolchain vào repo trong khi ví dụ selector đã đủ tr
+          +ong ui-contract.md |                                                                                  
+
+⏺ Update(specs/001-simpleshop-demo/spec.md)
+  ⎿  Added 1 line
+      170  - Giảm số lượng dừng ở mức 1 (không tự xóa khi về 0) để hành vi dễ đoán; xóa là hành động tường minh q
+           ua nút Xóa.
+      171  - Đơn hàng không cần lưu lịch sử sau khi rời trang xác nhận; không có trang "đơn hàng của tôi".
+      172  - Trạng thái giỏ/đăng nhập chỉ cần giữ trong cùng trình duyệt (theo nguyên tắc không backend của const
+           itution); không đồng bộ giữa các thiết bị.
+      173 +- Giỏ hàng gắn với trình duyệt, không gắn với user: đăng xuất (hoặc đổi user) KHÔNG xóa giỏ — đơn giản
+          + hóa có chủ đích; giỏ chỉ bị xóa khi đặt hàng thành công hoặc người dùng tự xóa từng mặt hàng.        
+      174  - Tìm kiếm, lọc, phân trang, mã giảm giá, tồn kho nằm ngoài phạm vi phiên bản này.
+
+⏺ Update(specs/001-simpleshop-demo/contracts/ui-contract.md)
+  ⎿  Added 9 lines
+      12    (`product-card-{productId}`), phần tử con mang testid tĩnh, test scope theo
+      13    container.
+      14  
+      15 +## Toàn cục                                                                                            
+      16 +                                                                                                       
+      17 +- `<html lang="vi">`, `<title>SimpleShop</title>` (FR-014, accessibility).                             
+      18 +- Mọi phần tử bấm được là `<button>`/`<a>` thật (dùng được bằng bàn phím —                             
+      19 +  constitution V); trạng thái vô hiệu dùng thuộc tính `disabled`.                                      
+      20 +- Hai input ở checkout PHẢI có `<label>` hiển thị gắn với input ("Họ tên",                             
+      21 +  "Mã bưu chính"); ảnh sản phẩm PHẢI có `alt` = tên sản phẩm.                                          
+      22 +- Không tải font/icon/ảnh từ ngoài — toàn bộ tài nguyên cục bộ (SC-005).                               
+      23 +                                                                                                       
+      24  ## Routes
+      25  
+      26  | Route | Trang | Bảo vệ |
+
+⏺ Update(specs/001-simpleshop-demo/plan.md)
+  ⎿  Added 2 lines, removed 2 lines
+       98  │   ├── AuthContext.tsx       # user hiện tại + login/logout, sync localStorage
+       99  │   └── CartContext.tsx       # reducer giỏ hàng (trần 5/sàn 1), sync localStorage
+      100  ├── data/                     # ── PHẦN DỮ LIỆU, tách khỏi UI ──
+      101 -│   ├── products.ts           # fixture 6 sản phẩm (data-model.md)                                    
+      102 -│   └── users.ts              # fixture 3 user                                                        
+      101 +│   ├── products.ts           # fixture 6 sản phẩm + export type Product                              
+      102 +│   └── users.ts              # fixture 3 user + export type User                                     
+      103  ├── lib/
+      104  │   ├── format.ts             # formatPrice() — nguồn duy nhất định dạng VND (R6)
+      105  │   └── storage.ts            # đọc/ghi localStorage an toàn (parse hỏng → rỗng)
+
+⏺ Audit hoàn tất — đã sửa 3 vấn đề, dưới đây là báo cáo đầy đủ theo 3 câu hỏi của bạn.
+
+  1. Chuỗi công việc hiển nhiên còn thiếu
+
+  Đã sửa (3 vấn đề thật):
+
+  1. Biện minh lệch chuẩn chưa đúng cơ chế governance — plan lệch khỏi dòng "story hoàn thành phải kèm test tự động" của
+  constitution (do quyết định R7 bỏ test khỏi repo) nhưng bảng Complexity Tracking để trống, trong khi chính governance
+  yêu cầu mọi lệch chuẩn phải ghi ở đó. Đã thêm dòng biện minh đầy đủ vào plan.md.
+  2. Tham chiếu treo giữa data-model và spec — data-model khẳng định "đăng xuất giữ giỏ hàng, đã ghi trong Assumptions
+  của spec" nhưng spec không hề có assumption đó. Đã thêm vào spec: giỏ gắn với trình duyệt, đăng xuất/đổi user không
+  xóa giỏ.
+  3. Khoảng trống accessibility (constitution V) — chưa quy định label cho input checkout, lang="vi", title trang, và
+  yêu cầu phần tử bấm được là button/link thật. Đã thêm mục "Toàn cục" vào ui-contract.md (kèm luôn quy tắc "không tài
+  nguyên ngoài" để chốt SC-005).
+
+  Ghi nhận, không cần sửa plan (sẽ thành task ở bước /speckit-tasks): dọn code demo của template Vite (counter, logo
+  React); tạo 6 file SVG; thêm script npm run format; README gốc trỏ về quickstart. Đây là việc thực thi, không phải lỗ
+  hổng thiết kế.
+
+  2. Kiểm tra over-engineering
+
+  Không tìm thấy phần nào quá mức sau khi đã cắt bộ test viết sẵn ở vòng trước. Tôi soi từng ứng viên: hai Context riêng
+  (Auth/Cart) — gọn hơn một Context gộp, không phải thư viện; storage.ts — chỉ là try/catch quanh JSON.parse (~15
+  dòng), đáng giữ vì tester chắc chắn sẽ bơm dữ liệu rác vào localStorage; tokens.css — nghĩa vụ constitution V, chỉ là
+  biến CSS; checkout-total — tưởng là thêm thắt nhưng thực ra FR-013 liệt kê checkout trong các trang phải hiển thị giá;
+  route guard + 5 route — bắt buộc bởi kịch bản "vào thẳng URL". Chiều ngược lại (thiếu): không có gì bị cắt quá tay —
+  mọi FR đều có chỗ đứng trong cấu trúc.
+
+  3. Tuân thủ constitution
+
+  ┌───────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │  Nguyên   │                                          Kết quả sau audit                                          │
+  │    tắc    │                                                                                                     │
+  ├───────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ I. Code   │ ✅ ESLint + Prettier, TS strict, component nhỏ                                                      │
+  │ sạch      │                                                                                                     │
+  ├───────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ II. Đơn   │ ✅ 3 dependency runtime, mỗi cái có lý do trong research; Complexity Tracking giờ ghi đúng 1 lệch   │
+  │ giản      │ chuẩn có biện minh                                                                                  │
+  ├───────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │           │ ✅ ui-contract đầy đủ. Một diễn giải cần minh bạch: constitution ví dụ testid dạng ghép tĩnh        │
+  │ III. UI   │ (product-card-add-to-cart), plan dùng pattern container-động + con-tĩnh (product-card-{id} →        │
+  │ test được │ add-to-cart) — "có ngữ cảnh" đạt được qua scoping, đúng tinh thần (ổn định, không bùng nổ chuỗi     │
+  │           │ ghép) và đã được định nghĩa là quy ước chính thức trong ui-contract                                 │
+  ├───────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ IV. Không │ ✅ Fixture + localStorage, offline 100%, một lệnh chạy                                              │
+  │  backend  │                                                                                                     │
+  ├───────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ V. UX     │ ✅ Sau khi vá: tokens, formatPrice duy nhất, tiếng Việt, label/keyboard/alt đã thành điều khoản hợp │
+  │ nhất quán │  đồng                                                                                               │
+  └───────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Trạng thái: spec–plan–research–data-model–ui-contract–quickstart giờ nhất quán chéo, sẵn sàng cho /speckit-tasks. Nếu
+  bạn muốn xử lý triệt để điểm lệch chuẩn về test (thay vì chỉ biện minh trong Complexity Tracking), phương án dài hạn
+  là amend constitution một bản PATCH làm rõ "test do người học viết" — nhưng không bắt buộc trước khi triển khai.
+  
+✻ Sautéed for 2m 48s
+
+❯ /speckit.tasks                                                                                                        
+
+⏺ Skill(speckit-tasks)
+  ⎿  Successfully loaded skill
+     
+⏺ Không có hook before_tasks. Chạy setup:
+
+⏺ Bash(.specify/scripts/bash/setup-tasks.sh --json)
+  ⎿  {
+       "FEATURE_DIR": "/Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/specs/001-simpleshop-demo",
+       "AVAILABLE_DOCS": [
+     … +8 lines (ctrl+o to expand)
+     
+⏺ Write(specs/001-simpleshop-demo/tasks.md)
+  ⎿  Wrote 143 lines to specs/001-simpleshop-demo/tasks.md
+      1 # Tasks: SimpleShop — Web bán hàng demo phục vụ học automation testing
+      2 
+      3 **Input**: Design documents from `/specs/001-simpleshop-demo/`
+      4 
+      5 **Prerequisites**: plan.md, spec.md, data-model.md, contracts/ui-contract.md, research.md, quickstart.md
+      6 
+      7 **Tests**: KHÔNG có task viết test — theo research.md R7 và Complexity Tracking
+      8 trong plan.md, viết test E2E là bài tập của người học. App chỉ phải bảo đảm
+      9 mọi `data-testid`/route khớp contracts/ui-contract.md (kiểm ở T024).
+     … +181 lines (ctrl+o to expand)
+
+⏺ Sửa một lỗi nhỏ: dấu ``` thừa ở cuối file:
+
+⏺ Update(specs/001-simpleshop-demo/tasks.md)
+  ⎿  Removed 1 line
+      140  đầu tiên (luồng login). Sau đó giao từng story một: mỗi checkpoint là một
+      141  increment hoàn chỉnh, kiểm chứng độc lập theo kịch bản tương ứng trong
+      142  quickstart.md, và là một bài tập automation mới cho người học.
+      143 -```                                                                                                   
+
+⏺ Hoàn tất /speckit-tasks. Extensions.yml không có hook after_tasks.
+
+  Báo cáo hoàn thành
+
+  File: specs/001-simpleshop-demo/tasks.md — 25 task, 7 phase.
+
+  Phân bổ theo story:
+
+  ┌────────────────────┬───────────────────────────────────────────────────────────────────────┬───────────────┐
+  │       Phase        │                               Nội dung                                │    Số task    │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 1. Setup           │ Scaffold Vite react-ts, dọn template, Prettier, tokens.css            │ 4 (T001–T004) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 2. Foundational    │ Fixtures, formatPrice, storage, 2 Context, page stubs, router + guard │ 8 (T005–T012) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 3. US1 (P1) 🎯 MVP │ Login 1 chạm, Header, lưới 6 sản phẩm, ảnh SVG                        │ 4 (T013–T016) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 4. US2 (P2)        │ Nối add-to-cart + trần 5, badge + persistence                         │ 2 (T017–T018) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 5. US3 (P3)        │ CartPage: hiển thị, tăng/giảm/xóa, tổng tiền, trạng thái rỗng         │ 2 (T019–T020) │
+                        │
+  ├────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ───────────────────────┤
+  │ V. UX nhất │ ✅ Sau khi vá: tokens, formatPrice duy nhất, tiếng Việt, label/keyboard/alt đã thành điều khoản hợp đồng
+                        │
+  │  quán      │
+                        │
+  └────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ───────────────────────┘
+
+  Trạng thái: spec–plan–research–data-model–ui-contract–quickstart giờ nhất quán chéo, sẵn sàng cho /speckit-tasks. Nếu
+  bạn muốn xử lý triệt để điểm lệch chuẩn về test (thay vì chỉ biện minh trong Complexity Tracking), phương án dài hạn là
+  amend constitution một bản PATCH làm rõ "test do người học viết" — nhưng không bắt buộc trước khi triển khai.
+
+✻ Sautéed for 2m 48s
+
+❯ /speckit.tasks                                                                                                          
+
+⏺ Skill(speckit-tasks)
+  ⎿  Successfully loaded skill
+
+⏺ Không có hook before_tasks. Chạy setup:
+
+⏺ Bash(.specify/scripts/bash/setup-tasks.sh --json)
+  ⎿  {
+       "FEATURE_DIR": "/Users/nguyenkhoi89/Documents/AILearn/SpeckitDemo/shop-sdd/specs/001-simpleshop-demo",
+       "AVAILABLE_DOCS": [
+     … +7 lines (ctrl+o to expand)
+
+⏺ Write(specs/001-simpleshop-demo/tasks.md)
+  ⎿  Wrote 143 lines to specs/001-simpleshop-demo/tasks.md
+  ⏵⏵  1c#pTasks:sSimpleShop+—aWebobánchàng·demoophụcevụshọc automation testing
+      2
+      3 **Input**: Design documents from `/specs/001-simpleshop-demo/`
+      4
+      5 **Prerequisites**: plan.md, spec.md, data-model.md, contracts/ui-contract.md, research.md, quickstart.md
+      6
+      7 **Tests**: KHÔNG có task viết test — theo research.md R7 và Complexity Tracking
+      8 trong plan.md, viết test E2E là bài tập của người học. App chỉ phải bảo đảm
+      9 mọi `data-testid`/route khớp contracts/ui-contract.md (kiểm ở T024).
+     … +167 lines (ctrl+o to expand)
+
+⏺ Sửa một lỗi nhỏ: dấu ``` thừa ở cuối file:
+
+⏺ Update(specs/001-simpleshop-demo/tasks.md)
+  ⎿  Removed 1 line
+      140  đầu tiên (luồng login). Sau đó giao từng story một: mỗi checkpoint là một
+      141  increment hoàn chỉnh, kiểm chứng độc lập theo kịch bản tương ứng trong
+      142  quickstart.md, và là một bài tập automation mới cho người học.
+      143 -```                                                                                                                                
+
+⏺ Hoàn tất /speckit-tasks. Extensions.yml không có hook after_tasks.
+
+  Báo cáo hoàn thành
+
+  File: specs/001-simpleshop-demo/tasks.md — 25 task, 7 phase.
+
+  Phân bổ theo story:
+
+  ┌────────────────────┬───────────────────────────────────────────────────────────────────────┬───────────────┐
+  │       Phase        │                               Nội dung                                │    Số task    │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 1. Setup           │ Scaffold Vite react-ts, dọn template, Prettier, tokens.css            │ 4 (T001–T004) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 2. Foundational    │ Fixtures, formatPrice, storage, 2 Context, page stubs, router + guard │ 8 (T005–T012) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 3. US1 (P1) 🎯 MVP │ Login 1 chạm, Header, lưới 6 sản phẩm, ảnh SVG                        │ 4 (T013–T016) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 3. US1 (P1) 🎯 MVP │ Login 1 chạm, Header, lưới 6 sản phẩm, ảnh SVG                        │ 4 (T013–T016) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 4. US2 (P2)        │ Nối add-to-cart + trần 5, badge + persistence                         │ 2 (T017–T018) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 5. US3 (P3)        │ CartPage: hiển thị, tăng/giảm/xóa, tổng tiền, trạng thái rỗng         │ 2 (T019–T020) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 6. US4 (P4)        │ Checkout validate + Order + Confirmation                              │ 2 (T021–T022) │
+  ├────────────────────┼───────────────────────────────────────────────────────────────────────┼───────────────┤
+  │ 7. Polish          │ README, rà testid theo ui-contract, chạy DoD quickstart               │ 3 (T023–T025) │
+  └────────────────────┴───────────────────────────────────────────────────────────────────────┴───────────────┘
+
+  Cơ hội song song: 4 nhóm — lớn nhất là Phase 2 với 4 file độc lập chạy đồng thời (T005–T008); US1 có T013 (ảnh SVG) ∥ T014 (LoginPage).
+
+  Independent test mỗi story: ghi ngay đầu mỗi phase, trỏ về kịch bản tương ứng trong quickstart.md — mỗi checkpoint là một increment kiểm chứng được độc lập.
+
+  MVP đề xuất: Phase 1 + 2 + US1 (16 task đầu) — app đăng nhập và xem 6 sản phẩm chạy được, đủ cho người học viết bài test automation đầu tiên.
+
+  Không có test task — đúng quyết định R7 và Complexity Tracking: test là bài tập của người học; T024 thay vào đó rà 100% testid/route khớp ui-contract.md (SC-002).
+
+  Format validation: ✅ 25/25 task đúng định dạng checklist — checkbox, ID tuần tự T001–T025, [P] chỉ ở task song song được, [US1]–[US4] chỉ ở task thuộc story, mọi task
+  có đường dẫn file cụ thể.
+
+  Bước tiếp theo: /speckit-analyze để soát chéo spec/plan/tasks lần cuối, hoặc đi thẳng /speckit-implement.
+
+✻ Cooked for 2m 45s
+
+※ recap: Bạn đang xây SimpleShop, web bán hàng demo để học automation testing theo quy trình Spec Kit. Constitution, spec, plan và 25 task đã xong và đã audit. Bước tiếp
+  theo: chạy /speckit-analyze hoặc /speckit-implement để bắt đầu code. (disable recaps in /config)
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ⏵⏵ accept edits on (shift+tab to cycle) · ← for agents
+

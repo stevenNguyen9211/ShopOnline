@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+  <rect width="200" height="150" fill="#5a9a6e" rx="8"/>
+  <ellipse cx="100" cy="75" rx="35" ry="50" fill="#fff" opacity="0.15"/>
+  <ellipse cx="100" cy="65" rx="30" ry="40" fill="#fff" opacity="0.85"/>
+  <line x1="100" y1="35" x2="100" y2="75" stroke="#5a9a6e" stroke-width="2"/>
+  <ellipse cx="100" cy="50" rx="6" ry="4" fill="#5a9a6e" opacity="0.5"/>
+  <text x="100" y="135" font-family="system-ui,sans-serif" font-size="12" fill="#fff" text-anchor="middle" opacity="0.9">Chuột không dây</text>
+</svg>

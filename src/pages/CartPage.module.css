@@ -1,0 +1,105 @@
+.heading {
+  font-size: var(--font-2xl);
+  margin-bottom: var(--space-6);
+}
+
+.empty {
+  color: var(--color-text-muted);
+  font-size: var(--font-lg);
+  text-align: center;
+  padding: var(--space-12) 0;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.itemImage {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.itemInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemName {
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-1);
+}
+
+.itemPrice {
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+}
+
+.itemControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.qtyBtn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: var(--font-lg);
+}
+
+.qty {
+  min-width: 28px;
+  text-align: center;
+  font-weight: var(--font-bold);
+}
+
+.itemSubtotal {
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+  min-width: 110px;
+  text-align: right;
+}
+
+.removeBtn {
+  font-size: var(--font-sm);
+  padding: var(--space-1) var(--space-3);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.total {
+  font-size: var(--font-lg);
+}
+
+.totalAmount {
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+}
+
+.checkoutBtn {
+  padding: var(--space-3) var(--space-8);
+  font-size: var(--font-lg);
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+  <rect width="200" height="150" fill="#e67e22" rx="8"/>
+  <rect x="55" y="35" width="90" height="80" fill="#fff" rx="8" opacity="0.85"/>
+  <rect x="75" y="28" width="50" height="14" fill="#fff" rx="7" opacity="0.7"/>
+  <rect x="72" y="65" width="56" height="32" fill="#e67e22" rx="4" opacity="0.3"/>
+  <rect x="88" y="75" width="24" height="12" fill="#fff" rx="2" opacity="0.8"/>
+  <text x="100" y="135" font-family="system-ui,sans-serif" font-size="12" fill="#fff" text-anchor="middle" opacity="0.9">Balo laptop</text>
+</svg>
