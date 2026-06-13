@@ -11,7 +11,7 @@ test.describe('US5 — Happy path', () => {
     await new LoginPage(page).loginAsUser('minh')
     await productsPage.addToCart('ban-phim-co')
     await productsPage.addToCart('ban-phim-co')
-    await page.goto('/cart')
+    await page.goto('cart')
   })
 
   test('@ci nút Thanh toán → chuyển đến trang checkout', async ({ page }) => {
@@ -57,7 +57,7 @@ test.describe('US5 — Form validation error paths', () => {
     await new LoginPage(page).loginAsUser('minh')
     await productsPage.addToCart('ban-phim-co')
     await productsPage.addToCart('ban-phim-co')
-    await page.goto('/checkout')
+    await page.goto('checkout')
   })
 
   test('submit cả 2 trường trống → hiện đủ 2 lỗi, ở lại /checkout', async ({ page }) => {
@@ -96,7 +96,7 @@ test.describe('US5 — Empty cart guard', () => {
 
   test('truy cập /checkout khi giỏ trống → redirect /cart', async ({ page }) => {
     // FR-010
-    await page.goto('/checkout')
+    await page.goto('checkout')
     await expect(page).toHaveURL(/\/cart/)
   })
 })

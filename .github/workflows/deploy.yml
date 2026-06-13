@@ -71,7 +71,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install chromium --with-deps
       - name: Wait for GitHub Pages CDN propagation
-        run: sleep 30
+        run: sleep 15
       - run: npx playwright test --config playwright.smoke.config.ts
         env:
           CI: true

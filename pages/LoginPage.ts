@@ -14,7 +14,7 @@ export class LoginPage {
   }
 
   async loginAsUser(userId: string): Promise<void> {
-    await this.page.goto('/login')
+    await this.page.goto('login')
     await this.userButton(userId).click()
     await this.page.waitForURL('**/products')
   }
