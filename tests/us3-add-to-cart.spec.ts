@@ -5,7 +5,7 @@ import { CartPage } from '../pages/CartPage'
 
 test.describe('US3 — Kiểm chứng thêm vào giỏ và badge', () => {
   test.beforeEach(async ({ page }) => {
-    await new LoginPage(page).loginAsUser('minh')
+    await new LoginPage(page).loginAsUser('oliver_hayes')
   })
 
   test('@ci thêm sản phẩm lần đầu → badge từ 0 lên 1', async ({ page }) => {

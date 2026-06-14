@@ -8,7 +8,7 @@ import { ConfirmationPage } from '../pages/ConfirmationPage'
 test.describe('US5 — Happy path', () => {
   test.beforeEach(async ({ page }) => {
     const productsPage = new ProductsPage(page)
-    await new LoginPage(page).loginAsUser('minh')
+    await new LoginPage(page).loginAsUser('oliver_hayes')
     await productsPage.addToCart('ban-phim-co')
     await productsPage.addToCart('ban-phim-co')
     await page.goto('cart')
@@ -54,7 +54,7 @@ test.describe('US5 — Happy path', () => {
 test.describe('US5 — Form validation error paths', () => {
   test.beforeEach(async ({ page }) => {
     const productsPage = new ProductsPage(page)
-    await new LoginPage(page).loginAsUser('minh')
+    await new LoginPage(page).loginAsUser('oliver_hayes')
     await productsPage.addToCart('ban-phim-co')
     await productsPage.addToCart('ban-phim-co')
     await page.goto('checkout')
@@ -91,7 +91,7 @@ test.describe('US5 — Form validation error paths', () => {
 
 test.describe('US5 — Empty cart guard', () => {
   test.beforeEach(async ({ page }) => {
-    await new LoginPage(page).loginAsUser('minh')
+    await new LoginPage(page).loginAsUser('oliver_hayes')
   })
 
   test('truy cập /checkout khi giỏ trống → redirect /cart', async ({ page }) => {

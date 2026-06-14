@@ -4,7 +4,7 @@ import { ProductsPage } from '../pages/ProductsPage'
 
 test.describe('US2 — Kiểm chứng hiển thị danh sách sản phẩm', () => {
   test.beforeEach(async ({ page }) => {
-    await new LoginPage(page).loginAsUser('minh')
+    await new LoginPage(page).loginAsUser('oliver_hayes')
   })
 
   test('@ci danh sách sản phẩm: đúng 6 card, mỗi card có đủ name/price/image/nút', async ({ page }) => {

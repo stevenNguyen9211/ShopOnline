@@ -6,7 +6,7 @@ import { CartPage } from '../pages/CartPage'
 test.describe('US4 — Giỏ có hàng', () => {
   test.beforeEach(async ({ page }) => {
     const productsPage = new ProductsPage(page)
-    await new LoginPage(page).loginAsUser('minh')
+    await new LoginPage(page).loginAsUser('oliver_hayes')
     await productsPage.addToCart('ban-phim-co')
     await productsPage.addToCart('ban-phim-co')
     await page.goto('cart')
@@ -72,7 +72,7 @@ test.describe('US4 — Giỏ có hàng', () => {
 
 test.describe('US4 — Giỏ trống', () => {
   test.beforeEach(async ({ page }) => {
-    await new LoginPage(page).loginAsUser('minh')
+    await new LoginPage(page).loginAsUser('oliver_hayes')
     await page.goto('cart')
   })
 
