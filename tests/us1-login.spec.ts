@@ -11,34 +11,34 @@ test.describe('US1 — Kiểm chứng đăng nhập và bảo vệ trang', () =>
     await expect(page.getByTestId('login-submit')).toBeVisible()
   })
 
-  test('@ci đăng nhập bằng minh/123 → /products, header hiển thị tên', async ({ page }) => {
+  test('@ci đăng nhập bằng oliver_hayes/123 → /products, header hiển thị tên', async ({ page }) => {
     // FR-001, FR-003, FR-004
     const loginPage = new LoginPage(page)
     const productsPage = new ProductsPage(page)
-    await loginPage.loginAsUser('minh')
+    await loginPage.loginAsUser('oliver_hayes')
     await expect(page).toHaveURL(/\/products/)
     const username = await productsPage.getHeaderUsername()
-    expect(username).toContain('Minh')
+    expect(username).toContain('oliver_hayes')
   })
 
-  test('@ci đăng nhập bằng lan/123 → /products, header hiển thị tên', async ({ page }) => {
+  test('@ci đăng nhập bằng charlotte_reed/123 → /products, header hiển thị tên', async ({ page }) => {
     // FR-003, FR-004, SC-002
     const loginPage = new LoginPage(page)
     const productsPage = new ProductsPage(page)
-    await loginPage.loginAsUser('lan')
+    await loginPage.loginAsUser('charlotte_reed')
     await expect(page).toHaveURL(/\/products/)
     const username = await productsPage.getHeaderUsername()
-    expect(username).toContain('Lan')
+    expect(username).toContain('charlotte_reed')
   })
 
-  test('@ci đăng nhập bằng hung/123 → /products, header hiển thị tên', async ({ page }) => {
+  test('@ci đăng nhập bằng james_thornton/123 → /products, header hiển thị tên', async ({ page }) => {
     // FR-003, FR-004, SC-002
     const loginPage = new LoginPage(page)
     const productsPage = new ProductsPage(page)
-    await loginPage.loginAsUser('hung')
+    await loginPage.loginAsUser('james_thornton')
     await expect(page).toHaveURL(/\/products/)
     const username = await productsPage.getHeaderUsername()
-    expect(username).toContain('Hùng')
+    expect(username).toContain('james_thornton')
   })
 
   test('truy cập /products khi chưa đăng nhập → redirect /login', async ({ page }) => {
@@ -63,7 +63,7 @@ test.describe('US1 — Kiểm chứng đăng nhập và bảo vệ trang', () =>
     // FR-003
     const loginPage = new LoginPage(page)
     const productsPage = new ProductsPage(page)
-    await loginPage.loginAsUser('minh')
+    await loginPage.loginAsUser('oliver_hayes')
     await productsPage.logout()
     await expect(page).toHaveURL(/\/login/)
     await page.goto('products')
@@ -76,7 +76,7 @@ test.describe('US1 — Form error paths', () => {
     // FR-005
     const loginPage = new LoginPage(page)
     await page.goto('login')
-    await loginPage.fillUsername('minh')
+    await loginPage.fillUsername('oliver_hayes')
     await loginPage.fillPassword('sai-mat-khau')
     await loginPage.submit()
     await expect(page.getByTestId('login-error')).toBeVisible()

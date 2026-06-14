@@ -1,13 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, type ReactNode } from 'react'
-import { users, type User } from '../data/users'
+import { type User } from '../data/users'
 import { KEYS, storageGet, storageRemove, storageSet } from '../lib/storage'
 
-type SessionData = { userId: string }
+type SessionData = { userId: number; username: string }
 
 type AuthContextValue = {
   user: User | null
-  login: (userId: string) => void
+  login: (user: User) => void
   logout: () => void
 }
 
@@ -15,18 +15,16 @@ const AuthContext = createContext<AuthContextValue | null>(null)
 
 function loadUser(): User | null {
   const session = storageGet<SessionData | null>(KEYS.session, null)
-  if (!session) return null
-  return users.find((u) => u.id === session.userId) ?? null
+  if (!session || !session.userId || !session.username) return null
+  return { id: session.userId, username: session.username }
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(loadUser)
 
-  function login(userId: string) {
-    const found = users.find((u) => u.id === userId)
-    if (!found) return
-    storageSet(KEYS.session, { userId })
-    setUser(found)
+  function login(user: User) {
+    storageSet(KEYS.session, { userId: user.id, username: user.username })
+    setUser(user)
   }
 
   function logout() {

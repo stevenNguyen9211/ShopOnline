@@ -1,24 +1,24 @@
 <!--
 Sync Impact Report
 ==================
-- Version change: 1.1.0 → 1.2.0
-- Modified principles: n/a
+- Version change: 1.2.1 → 1.3.0
+- Modified principles:
+  - IV. Không Backend & Database Thật: thêm mệnh đề ngoại lệ cho phép đọc
+    read-only từ Supabase (bảng public.users) theo Nguyên tắc IX.
 - Added sections:
-  - VII. CI/CD & Deployment Có Kiểm Soát (6 quy tắc: fail fast, build tự động,
-    deployment tự động, test artifacts, phạm vi CI regression, môi trường độc lập)
+  - VIII. Plain Text Password là Quyết Định Có Chủ Đích
+  - IX. Schema Database Cố Định — Chỉ Đọc
 - Removed sections: n/a
 - Modified sections:
-  - Ràng Buộc Kỹ Thuật: thêm ràng buộc dist/ vào .gitignore, CI là nguồn duy nhất
-    tạo và deploy artifact
-  - Quy Trình Phát Triển & Cổng Chất Lượng: cập nhật tham chiếu từ 6 → 7 nguyên tắc
+  - Ràng Buộc Kỹ Thuật: thêm ngoại lệ cho luồng đăng nhập Supabase read-only
+    để tránh mâu thuẫn với Nguyên tắc IV sau khi thêm Nguyên tắc VIII & IX.
 - Templates requiring updates:
-  - ✅ .specify/templates/plan-template.md — Constitution Check đã derived dynamically
-    từ constitution; không cần thay đổi cấu trúc
-  - ✅ .specify/templates/spec-template.md — CI/CD là implementation concern, không
-    phải spec concern; không cần thay đổi
-  - ✅ .specify/templates/tasks-template.md — Polish phase đã có chỗ cho CI/CD tasks;
-    không cần thay đổi cấu trúc
-  - n/a .specify/templates/commands/ — thư mục không tồn tại trong dự án này
+  - ✅ plan-template.md — Constitution Check tự động đọc từ file này; không
+    cần chỉnh cứng, cổng sẽ phản ánh nguyên tắc mới khi chạy /speckit-plan.
+  - ✅ spec-template.md — không có tham chiếu cứng đến nguyên tắc cụ thể;
+    không cần thay đổi.
+  - ✅ tasks-template.md — không có tham chiếu cứng đến nguyên tắc cụ thể;
+    không cần thay đổi.
 - Follow-up TODOs: không có
 -->
 
@@ -90,6 +90,9 @@ Dự án PHẢI chạy hoàn toàn phía client, không phụ thuộc hạ tần
   hoặc trình duyệt.
 - Ứng dụng PHẢI khởi chạy được bằng một lệnh duy nhất, không cần biến môi
   trường bí mật hay đăng ký dịch vụ ngoài.
+- **Ngoại lệ duy nhất (Nguyên tắc VIII & IX)**: dữ liệu user có thể được đọc
+  từ Supabase (bảng `public.users`) phục vụ luồng đăng nhập học tập — CHỈ
+  SELECT, không có backend logic, không ghi dữ liệu, không dùng Supabase Auth.
 
 **Lý do**: Loại bỏ chi phí vận hành và rào cản cài đặt, để người học tập trung
 vào frontend và quy trình spec-driven.
@@ -162,14 +165,48 @@ nhóm deploy theo cùng một quy trình. Fail fast tiết kiệm thời gian CI
 lưu lại bằng chứng khi test fail là thiết yếu cho debug trong môi trường không
 có GUI — đây là kỹ năng CI/CD thực tế cần học.
 
+### VIII. Plain Text Password là Quyết Định Có Chủ Đích
+
+Password được lưu và so sánh plain text là lựa chọn có chủ đích phục vụ mục
+đích học tập — KHÔNG phải lỗi cần sửa.
+
+- KHÔNG được tự ý thêm hashing (bcrypt, argon2...), encryption, hoặc Supabase
+  Auth vào bất kỳ bước nào, trừ khi người dùng yêu cầu rõ ràng.
+- Lớp so sánh password PHẢI thực hiện trực tiếp bằng string equality, không
+  qua bất kỳ thư viện mã hóa nào.
+- Nếu có task "security hardening" hay "best practices" trong bất kỳ phase nào,
+  nguyên tắc này được ưu tiên — KHÔNG xem plain text là vi phạm cần khắc phục.
+
+**Lý do**: Mục tiêu học tập ở giai đoạn này là hiểu luồng xác thực
+username/password từ đầu đến cuối. Thêm hashing làm phức tạp code, che khuất
+luồng chính cần học, và vi phạm Nguyên tắc II (Đơn Giản Hơn Đầy Đủ).
+
+### IX. Schema Database Cố Định — Chỉ Đọc
+
+Schema của bảng `public.users` trong Supabase là cố định và KHÔNG được thay đổi
+dưới bất kỳ hình thức nào.
+
+- KHÔNG tạo migration, KHÔNG ALTER TABLE, KHÔNG thêm/xóa/đổi tên cột.
+- Tương tác với database CHỈ được phép qua câu lệnh SELECT — chỉ đọc dữ liệu.
+- KHÔNG INSERT, UPDATE, hay DELETE bất kỳ row nào trong bảng `public.users`.
+- Nếu một task yêu cầu thay đổi schema hoặc ghi dữ liệu, PHẢI báo cáo vi phạm
+  nguyên tắc này và dừng lại trước khi thực thi.
+
+**Lý do**: Bảng `public.users` là tập dữ liệu học tập cố định. Mục tiêu là đọc
+dữ liệu để minh hoạ luồng đăng nhập — không quản lý vòng đời user. Giới hạn
+SELECT ngăn các thay đổi ngoài ý muốn làm hỏng dữ liệu demo dùng chung.
+
 ## Ràng Buộc Kỹ Thuật
 
 - Stack PHẢI là web frontend thuần (SPA hoặc static site); lựa chọn framework
   cụ thể do plan quyết định nhưng không được vi phạm Nguyên tắc IV.
 - Trạng thái cần lưu giữa các phiên (ví dụ giỏ hàng) chỉ được dùng
   localStorage/sessionStorage của trình duyệt.
-- Thanh toán, đăng nhập, gửi email... nếu có chỉ được giả lập (mock) và PHẢI
-  ghi rõ là giả lập trong UI hoặc tài liệu.
+- Thanh toán, gửi email... nếu có chỉ được giả lập (mock) và PHẢI ghi rõ là
+  giả lập trong UI hoặc tài liệu.
+- **Ngoại lệ đăng nhập**: luồng login được kết nối Supabase read-only theo
+  Nguyên tắc VIII & IX — xác thực qua SELECT username/password plain text, không
+  dùng Supabase Auth, không backend logic, không ghi dữ liệu.
 - Bộ test PHẢI chạy được offline bằng một lệnh duy nhất (local); trên CI PHẢI
   chạy headless không phụ thuộc môi trường local (Nguyên tắc VII).
 - Thư mục `dist/` (build artifact) PHẢI nằm trong `.gitignore`; CI là nguồn
@@ -182,8 +219,12 @@ có GUI — đây là kỹ năng CI/CD thực tế cần học.
   tắc mà không có biện minh trong Complexity Tracking thì KHÔNG được triển khai.
 - Mỗi user story PHẢI test được độc lập; khi hoàn thành story, các acceptance
   scenario tương ứng PHẢI có test tự động đi kèm (theo Nguyên tắc III & VI).
-- Review (tự review hoặc review chéo) PHẢI đối chiếu thay đổi với 7 nguyên tắc
+- Review (tự review hoặc review chéo) PHẢI đối chiếu thay đổi với 9 nguyên tắc
   trước khi đánh dấu task hoàn thành.
+- **Đóng GitHub Issues**: Sau khi `/speckit-implement` hoàn thành và commit được
+  push lên remote, mọi GitHub issue của feature đó PHẢI được đóng với comment
+  reference đến commit SHA. Dùng script:
+  `.specify/scripts/bash/close-feature-issues.sh <commit-sha>`
 
 ## Governance
 
@@ -207,4 +248,4 @@ Constitution này chi phối các quyết định kỹ thuật như sau:
   spec/plan/tasks với constitution; sai lệch được báo cáo là việc phải xử lý
   trước khi implement.
 
-**Version**: 1.2.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-13
+**Version**: 1.3.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-14

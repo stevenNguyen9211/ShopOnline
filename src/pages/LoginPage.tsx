@@ -10,20 +10,28 @@ export default function LoginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!username.trim() || !password.trim()) {
       setError('Vui lòng điền đầy đủ thông tin')
       return
     }
-    const user = findByCredentials(username, password)
-    if (!user) {
-      setError('Tên đăng nhập hoặc mật khẩu không đúng')
-      return
+    setLoading(true)
+    try {
+      const user = await findByCredentials(username, password)
+      if (!user) {
+        setError('Tên đăng nhập hoặc mật khẩu không đúng')
+        return
+      }
+      login(user)
+      navigate('/products')
+    } catch {
+      setError('Không thể kết nối hệ thống, vui lòng thử lại')
+    } finally {
+      setLoading(false)
     }
-    login(user.id)
-    navigate('/products')
   }
 
   return (
@@ -42,7 +50,10 @@ export default function LoginPage() {
               type="text"
               className={`${styles.input}${error ? ` ${styles.inputError}` : ''}`}
               value={username}
-              onChange={(e) => { setUsername(e.target.value); setError(null) }}
+              onChange={(e) => {
+                setUsername(e.target.value)
+                setError(null)
+              }}
               autoComplete="username"
             />
           </div>
@@ -56,7 +67,10 @@ export default function LoginPage() {
               type="password"
               className={`${styles.input}${error ? ` ${styles.inputError}` : ''}`}
               value={password}
-              onChange={(e) => { setPassword(e.target.value); setError(null) }}
+              onChange={(e) => {
+                setPassword(e.target.value)
+                setError(null)
+              }}
               autoComplete="current-password"
             />
           </div>
@@ -65,8 +79,13 @@ export default function LoginPage() {
               {error}
             </p>
           )}
-          <button data-testid="login-submit" type="submit" className={styles.submitBtn}>
-            Đăng nhập
+          <button
+            data-testid="login-submit"
+            type="submit"
+            className={styles.submitBtn}
+            disabled={loading}
+          >
+            {loading ? 'Đang xác thực...' : 'Đăng nhập'}
           </button>
         </form>
       </div>

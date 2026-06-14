@@ -21,7 +21,7 @@ export default function Header() {
         </Link>
         <nav className={styles.nav}>
           <span data-testid="header-user-name" className={styles.userName}>
-            {user?.displayName}
+            {user?.username}
           </span>
           <Link to="/cart" data-testid="header-cart-link" className={styles.cartLink}>
             Giỏ hàng

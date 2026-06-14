@@ -1,15 +1,19 @@
+import { supabase } from '../lib/supabase'
+
 export type User = {
-  id: string
-  displayName: string
-  password: string
+  id: number
+  username: string
 }
 
-export const users: User[] = [
-  { id: 'minh', displayName: 'Minh Nguyễn', password: '123' },
-  { id: 'lan', displayName: 'Lan Trần', password: '123' },
-  { id: 'hung', displayName: 'Hùng Phạm', password: '123' },
-]
+export async function findByCredentials(username: string, password: string): Promise<User | null> {
+  const { data, error } = await supabase
+    .from('users')
+    .select('id, username, password')
+    .eq('username', username.trim())
+    .maybeSingle()
 
-export function findByCredentials(username: string, password: string): User | undefined {
-  return users.find((u) => u.id === username && u.password === password)
+  if (error) throw error
+  if (!data) return null
+  if (data.password !== password) return null
+  return { id: data.id, username: data.username }
 }
