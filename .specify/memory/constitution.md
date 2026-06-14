@@ -1,24 +1,20 @@
 <!--
 Sync Impact Report
 ==================
-- Version change: 1.2.1 → 1.3.0
-- Modified principles:
-  - IV. Không Backend & Database Thật: thêm mệnh đề ngoại lệ cho phép đọc
-    read-only từ Supabase (bảng public.users) theo Nguyên tắc IX.
+- Version change: 1.5.0 → 1.6.0
+- Modified principles: none
 - Added sections:
-  - VIII. Plain Text Password là Quyết Định Có Chủ Đích
-  - IX. Schema Database Cố Định — Chỉ Đọc
+  - "Push & Pull Request sau Implement" — quy trình bắt buộc mới (v1.4.0)
+  - Ràng Buộc Kỹ Thuật: 2 bullet mới — GitHub Secrets trước push và
+    cấm module-level SDK init phụ thuộc env vars (v1.5.0)
 - Removed sections: n/a
 - Modified sections:
-  - Ràng Buộc Kỹ Thuật: thêm ngoại lệ cho luồng đăng nhập Supabase read-only
-    để tránh mâu thuẫn với Nguyên tắc IV sau khi thêm Nguyên tắc VIII & IX.
+  - Ràng Buộc Kỹ Thuật: thêm quy tắc secrets và lazy initialization (v1.5.0)
+  - Quy Trình Phát Triển: thêm quy tắc cross-cutting test setup (v1.6.0)
 - Templates requiring updates:
-  - ✅ plan-template.md — Constitution Check tự động đọc từ file này; không
-    cần chỉnh cứng, cổng sẽ phản ánh nguyên tắc mới khi chạy /speckit-plan.
-  - ✅ spec-template.md — không có tham chiếu cứng đến nguyên tắc cụ thể;
-    không cần thay đổi.
-  - ✅ tasks-template.md — không có tham chiếu cứng đến nguyên tắc cụ thể;
-    không cần thay đổi.
+  - ✅ plan-template.md — không có tham chiếu cứng cần thay đổi
+  - ✅ spec-template.md — không có tham chiếu cứng cần thay đổi
+  - ✅ tasks-template.md — không có tham chiếu cứng cần thay đổi
 - Follow-up TODOs: không có
 -->
 
@@ -211,6 +207,15 @@ SELECT ngăn các thay đổi ngoài ý muốn làm hỏng dữ liệu demo dùn
   chạy headless không phụ thuộc môi trường local (Nguyên tắc VII).
 - Thư mục `dist/` (build artifact) PHẢI nằm trong `.gitignore`; CI là nguồn
   duy nhất được phép tạo và deploy artifact (Nguyên tắc VII).
+- **GitHub Secrets trước khi push**: Mọi biến môi trường `VITE_*` được thêm
+  bởi một feature PHẢI được khai báo trong GitHub Secrets trước khi push lên
+  remote. Push khi secrets chưa set là vi phạm — CI build với env vars rỗng
+  khiến app crash và deploy bị block (bài học từ incident 006-real-auth).
+- **Cấm module-level SDK initialization**: SDK/client bên ngoài (Supabase,
+  API clients...) KHÔNG được khởi tạo ở top-level của module khi phụ thuộc
+  env vars. Nếu env var thiếu, lỗi sẽ crash toàn bộ app thay vì chỉ feature
+  bị ảnh hưởng. PHẢI dùng guard (`if (!url) throw new Error(...)`) hoặc lazy
+  initialization để lỗi xuất hiện rõ ràng và cô lập.
 
 ## Quy Trình Phát Triển & Cổng Chất Lượng
 
@@ -225,6 +230,26 @@ SELECT ngăn các thay đổi ngoài ý muốn làm hỏng dữ liệu demo dùn
   push lên remote, mọi GitHub issue của feature đó PHẢI được đóng với comment
   reference đến commit SHA. Dùng script:
   `.specify/scripts/bash/close-feature-issues.sh <commit-sha>`
+- **Cross-cutting Test Setup**: Khi một feature thay đổi cơ chế xác thực,
+  session, hoặc bất kỳ shared state nào được dùng trong `beforeEach` của các
+  test file khác, tasks PHẢI liệt kê **tất cả** file test bị ảnh hưởng —
+  không chỉ file test của feature đó. `/speckit-tasks` không tự scan codebase
+  nên người viết task PHẢI chủ động tìm: `grep -r "loginAsUser\|beforeEach"
+  tests/` để xác định phạm vi. Vi phạm dẫn đến CI fail trên các test không
+  liên quan feature (bài học từ incident 006-real-auth: đổi auth nhưng quên
+  update `beforeEach` trong us2/us3/us4/us5).
+- **Push & Pull Request sau Implement (BẮT BUỘC)**: Sau khi `/speckit-implement`
+  hoàn thành tất cả tasks và đánh dấu `[x]` trong tasks.md, PHẢI thực hiện
+  theo thứ tự:
+  1. Chạy `git push origin <branch hiện tại>` để đẩy code lên remote.
+  2. Tạo pull request vào nhánh `main` bằng `gh pr create` với:
+     - **Title**: tên feature lấy từ tiêu đề `spec.md`
+       (ví dụ: `feat: Xác Thực Người Dùng Thật`)
+     - **Body**: danh sách tất cả task đã đánh dấu `[x]` trong `tasks.md`,
+       kèm commit SHA vừa push
+  3. Báo URL pull request cho người dùng ngay sau khi tạo xong.
+  4. **Ngoại lệ**: Nếu branch hiện tại là `main`, PHẢI cảnh báo người dùng
+     và bỏ qua bước tạo PR (KHÔNG tạo PR từ `main` vào `main`).
 
 ## Governance
 
@@ -248,4 +273,4 @@ Constitution này chi phối các quyết định kỹ thuật như sau:
   spec/plan/tasks với constitution; sai lệch được báo cáo là việc phải xử lý
   trước khi implement.
 
-**Version**: 1.3.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-14
+**Version**: 1.6.0 | **Ratified**: 2026-06-13 | **Last Amended**: 2026-06-14

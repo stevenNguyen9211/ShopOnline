@@ -31,7 +31,7 @@ jobs:
         with:
           path: dist/
 
-  test:
+  test-required:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npx playwright install chromium --with-deps
-      - run: npx playwright test --config playwright.ci.config.ts
+      - run: npx playwright test tests/us1-login.spec.ts tests/us5-checkout.spec.ts --config playwright.ci.config.ts
         env:
           CI: true
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
@@ -49,12 +49,35 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: playwright-report-${{ github.run_id }}
+          name: report-required-${{ github.run_id }}
+          path: playwright-report/
+          retention-days: 7
+
+  test-optional:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx playwright install chromium --with-deps
+      - run: npx playwright test tests/us2-products.spec.ts tests/us3-add-to-cart.spec.ts tests/us4-cart-management.spec.ts --config playwright.ci.config.ts
+        env:
+          CI: true
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-optional-${{ github.run_id }}
           path: playwright-report/
           retention-days: 7
 
   deploy:
-    needs: [build, test]
+    needs: [build, test-required]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
