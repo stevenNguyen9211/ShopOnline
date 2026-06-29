@@ -42,6 +42,12 @@
   font-size: var(--font-lg);
 }
 
+.orderId {
+  font-weight: var(--font-bold);
+  font-family: monospace;
+  color: var(--color-primary);
+}
+
 .totalAmount {
   font-weight: var(--font-bold);
   color: var(--color-primary);

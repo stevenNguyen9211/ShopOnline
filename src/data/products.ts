@@ -8,7 +8,12 @@ export type Product = {
 const base = import.meta.env.BASE_URL
 
 export const products: Product[] = [
-  { id: 'ban-phim-co', name: 'Bàn phím cơ', price: 1200000, image: `${base}images/ban-phim-co.svg` },
+  {
+    id: 'ban-phim-co',
+    name: 'Bàn phím cơ',
+    price: 1200000,
+    image: `${base}images/ban-phim-co.svg`,
+  },
   {
     id: 'chuot-khong-day',
     name: 'Chuột không dây',

@@ -2,23 +2,23 @@ import { Page, Locator } from '@playwright/test'
 
 export class ConfirmationPage {
   readonly page: Page
-  readonly confirmationMessage: Locator
+  readonly orderIdText: Locator
   readonly totalText: Locator
   readonly backToProductsLink: Locator
 
   constructor(page: Page) {
     this.page = page
-    this.confirmationMessage = page.getByTestId('confirmation-message')
-    this.totalText = page.getByTestId('confirmation-total')
+    this.orderIdText = page.getByTestId('checkout-success-order-id')
+    this.totalText = page.getByTestId('checkout-success-total')
     this.backToProductsLink = page.getByTestId('confirmation-back-to-products')
+  }
+
+  async getOrderId(): Promise<string> {
+    return (await this.orderIdText.textContent()) ?? ''
   }
 
   async getTotal(): Promise<string> {
     return (await this.totalText.textContent()) ?? ''
-  }
-
-  async getMessage(): Promise<string> {
-    return (await this.confirmationMessage.textContent()) ?? ''
   }
 
   async goBackToProducts(): Promise<void> {

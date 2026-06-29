@@ -22,21 +22,25 @@ export default function ConfirmationPage() {
   if (!order) return null
 
   return (
-    <div data-testid="confirmation-page">
+    <div data-testid="checkout-success">
       <Header />
       <main className="container" style={{ padding: 'var(--space-8) var(--space-4)' }}>
         <div className={styles.card}>
           <div className={styles.icon}>✓</div>
-          <p data-testid="confirmation-message" className={styles.message}>
+          <p className={styles.message}>
             Đặt hàng thành công! Cảm ơn bạn đã mua sắm tại SimpleShop.
           </p>
           <div className={styles.detail}>
-            <span>Họ tên: {order.fullName}</span>
-            <span>Mã bưu chính: {order.postalCode}</span>
+            <span>
+              Mã đơn hàng:{' '}
+              <span data-testid="checkout-success-order-id" className={styles.orderId}>
+                {order.orderId}
+              </span>
+            </span>
           </div>
           <p className={styles.totalLabel}>
             Tổng tiền đã thanh toán:{' '}
-            <span data-testid="confirmation-total" className={styles.totalAmount}>
+            <span data-testid="checkout-success-total" className={styles.totalAmount}>
               {formatPrice(order.total)}
             </span>
           </p>
