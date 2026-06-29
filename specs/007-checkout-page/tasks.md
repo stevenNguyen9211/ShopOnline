@@ -212,3 +212,72 @@ After each phase checkpoint, the feature delivers a verifiable increment:
 - `tests/us5-checkout.spec.ts` is updated across multiple phases — commit each phase's test updates alongside its implementation tasks
 - The `data-testid` rename (T007 + T008) is a breaking change handled atomically in Phase 4
 - Total test count: existing 6 tests updated + ~10 new tests added across 4 user stories
+
+---
+
+## UI Redesign (2026-06-29) — Retroactive
+
+**Context**: Post-ship UI iteration theo mockup. Không có FR mới. Tất cả tasks
+đã được thực hiện và đánh dấu `[x]`. Document này ghi lại retrospectively theo
+quy trình SDD.
+
+**Input**: Design decisions từ `specs/007-checkout-page/plan.md#ui-redesign`
+và clarification session 2026-06-29.
+
+---
+
+### Phase R1: Layout & Visual Redesign
+
+**Goal**: Chuyển từ single-column layout sang 2-column layout theo mockup;
+thêm product avatars và visual enhancements trong order summary.
+
+- [x] T021 [P] [US1] Rewrite `src/pages/CheckoutPage.module.css` — 2-column CSS Grid layout (`420px 1fr`), summary card styles, product avatar/row/badge classes, delivery address display classes, responsive mobile stack
+- [x] T022 [US1] Rewrite `src/pages/CheckoutPage.tsx` — 2-column layout JSX, `AVATAR_COLORS` constant, product avatar rendering (colored square + first letter), "Số lượng: X" format, badge pill "X sản phẩm", submit button in left column using `form="checkout-form"`, "Miễn phí" with green class, "1" badge before form heading, disclaimer text, page title "Thông tin đặt hàng" + subtitle
+
+**Checkpoint**: Trang checkout hiển thị 2 cột; sản phẩm có avatar màu; submit button ở cột trái.
+
+---
+
+### Phase R2: Combined Address Display
+
+**Goal**: Thêm hiển thị địa chỉ giao hàng gộp real-time trong order summary card.
+
+- [x] T023 [US2] Update `src/pages/CheckoutPage.tsx` — thêm `combinedAddress` computed variable `[streetAddress, ward, district, city].filter(Boolean).join(', ')`; render conditional `<div className={styles.deliveryAddress}>` với label "Địa chỉ giao hàng" và text gộp trong summary card, giữa product list và divider; không có `data-testid`
+
+**Checkpoint**: Khi người dùng nhập địa chỉ, cột trái cập nhật real-time.
+
+---
+
+### Phase R3: Form Layout Refinements
+
+**Goal**: Cải thiện layout form — ward/district side-by-side, phone/postal side-by-side.
+
+- [x] T024 [US2] Update `src/pages/CheckoutPage.tsx` — dùng `.fieldRow` (grid 1fr 1fr) cho cặp ward+district và phone+postalCode; giữ fullName, email, streetAddress, city là full-width fields dọc
+
+**Checkpoint**: Form có 2 hàng 2 cột: (ward, district) và (phone, postalCode).
+
+---
+
+### Phase R4: Polish & Validation
+
+- [x] T025 [P] Run `npm run lint` — confirm no errors sau rewrite
+- [x] T026 [P] Run `npm run format` — auto-fix formatting trong `src/pages/CheckoutPage.tsx` và `src/pages/CheckoutPage.module.css`
+- [x] T027 Run `npx playwright test tests/us5-checkout.spec.ts` — confirm 19/19 pass (POM và tests không đổi vì testid contract giữ nguyên)
+
+**Checkpoint**: Lint sạch, format sạch, 19/19 E2E tests pass.
+
+---
+
+### Dependencies (UI Redesign)
+
+- T021 [P] T022 có thể chạy song song (CSS vs TSX, khác file)
+- T023 phụ thuộc T022 (cần form state `streetAddress`, `ward`, `district`, `city` đã có)
+- T024 phụ thuộc T022 (cần `.fieldRow` class từ T021 và JSX structure từ T022)
+- T025–T027 phụ thuộc T021–T024 hoàn thành
+
+### Notes (UI Redesign)
+
+- Tổng 7 tasks mới (T021–T027), tất cả `[x]`
+- POM (`pages/CheckoutPage.ts`) và tests (`tests/us5-checkout.spec.ts`) **không thay đổi** — testid contract FR-012 giữ nguyên
+- Combined address display không có testid theo quyết định Q3 clarification session
+- `src/pages/CheckoutPage.module.css` được rewrite hoàn toàn (không chỉ update)

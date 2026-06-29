@@ -22,6 +22,15 @@ export type Order = {
   total: number
 }
 
+const AVATAR_COLORS: Record<string, string> = {
+  'ban-phim-co': '#3B82F6',
+  'chuot-khong-day': '#22C55E',
+  'tai-nghe-bluetooth': '#A855F7',
+  'balo-laptop': '#F97316',
+  'binh-giu-nhiet': '#EF4444',
+  'den-ban-led': '#EAB308',
+}
+
 export default function CheckoutPage() {
   const { total: cartTotal, items, dispatch } = useCart()
   const navigate = useNavigate()
@@ -50,6 +59,8 @@ export default function CheckoutPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  const combinedAddress = [streetAddress, ward, district, city].filter(Boolean).join(', ')
+
   useEffect(() => {
     if (items.length === 0 && !isSubmitting) {
       navigate('/cart', { replace: true })
@@ -57,6 +68,8 @@ export default function CheckoutPage() {
   }, [items.length, isSubmitting, navigate])
 
   if (items.length === 0) return null
+
+  const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0)
 
   function validate(): boolean {
     let valid = true
@@ -155,236 +168,292 @@ export default function CheckoutPage() {
     <div data-testid="checkout-page">
       <Header />
       <main className="container" style={{ padding: 'var(--space-8) var(--space-4)' }}>
-        <h1 className={styles.heading}>Đặt hàng</h1>
+        <h1 className={styles.heading}>Thông tin đặt hàng</h1>
+        <p className={styles.subtitle}>
+          Kiểm tra lại đơn hàng và điền thông tin nhận hàng của bạn.
+        </p>
 
-        {/* Order Summary */}
-        <section data-testid="checkout-order-summary" className={styles.summary}>
-          <h2 className={styles.summaryHeading}>Tóm tắt đơn hàng</h2>
-          <ul className={styles.productList}>
-            {items.map((item) => {
-              const product = products.find((p) => p.id === item.productId)
-              if (!product) return null
-              return (
-                <li key={item.productId} className={styles.productRow}>
-                  <span>
-                    {product.name} × {item.quantity}
-                  </span>
-                  <span>{formatPrice(product.price * item.quantity)}</span>
-                </li>
-              )
-            })}
-          </ul>
-          <div className={styles.feeRow}>
-            <span>Tạm tính</span>
-            <span data-testid="checkout-subtotal">{formatPrice(subtotal)}</span>
-          </div>
-          <div className={styles.feeRow}>
-            <span>Phí vận chuyển</span>
-            <span data-testid="checkout-shipping-fee">
-              {shippingFee === 0 ? 'Miễn phí' : formatPrice(shippingFee)}
-            </span>
-          </div>
-          <div className={styles.totalRowSummary}>
-            <span>Tổng tiền</span>
-            <span data-testid="checkout-total">{formatPrice(orderTotal)}</span>
-          </div>
-        </section>
+        <div className={styles.layout}>
+          {/* LEFT: Order Summary + Submit */}
+          <section data-testid="checkout-order-summary" className={styles.summaryCard}>
+            <div className={styles.summaryHeader}>
+              <h2 className={styles.summaryHeading}>Đơn hàng của bạn</h2>
+              <span className={styles.productBadge}>{totalQuantity} sản phẩm</span>
+            </div>
 
-        {/* Delivery Info Form */}
-        <form onSubmit={handleSubmit} className={styles.form} noValidate>
-          <h2 className={styles.formHeading}>Thông tin nhận hàng</h2>
+            <ul className={styles.productList}>
+              {items.map((item) => {
+                const product = products.find((p) => p.id === item.productId)
+                if (!product) return null
+                const letter = product.name.charAt(0).toUpperCase()
+                const avatarBg = AVATAR_COLORS[item.productId] ?? '#6B7280'
+                return (
+                  <li key={item.productId} className={styles.productRow}>
+                    <div className={styles.productAvatar} style={{ backgroundColor: avatarBg }}>
+                      {letter}
+                    </div>
+                    <div className={styles.productInfo}>
+                      <span className={styles.productName}>{product.name}</span>
+                      <span className={styles.productQty}>Số lượng: {item.quantity}</span>
+                    </div>
+                    <span className={styles.productPrice}>
+                      {formatPrice(product.price * item.quantity)}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
 
-          <div className={styles.field}>
-            <label htmlFor="checkout-full-name-input" className={styles.label}>
-              Họ tên
-            </label>
-            <input
-              id="checkout-full-name-input"
-              data-testid="checkout-full-name"
-              type="text"
-              value={fullName}
-              onChange={(e) => {
-                setFullName(e.target.value)
-                setFullNameError('')
-              }}
-              className={styles.input}
-              autoComplete="name"
-            />
-            {fullNameError && (
-              <p data-testid="checkout-full-name-error" className={styles.error} role="alert">
-                {fullNameError}
-              </p>
+            {combinedAddress && (
+              <div className={styles.deliveryAddress}>
+                <span className={styles.deliveryAddressLabel}>Địa chỉ giao hàng</span>
+                <span className={styles.deliveryAddressText}>{combinedAddress}</span>
+              </div>
             )}
-          </div>
 
-          <div className={styles.field}>
-            <label htmlFor="checkout-email-input" className={styles.label}>
-              Email
-            </label>
-            <input
-              id="checkout-email-input"
-              data-testid="checkout-email"
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value)
-                setEmailError('')
-              }}
-              className={styles.input}
-              autoComplete="email"
-            />
-            {emailError && (
-              <p data-testid="checkout-email-error" className={styles.error} role="alert">
-                {emailError}
-              </p>
-            )}
-          </div>
+            <hr className={styles.divider} />
 
-          <div className={styles.field}>
-            <label htmlFor="checkout-street-address-input" className={styles.label}>
-              Số nhà và đường
-            </label>
-            <input
-              id="checkout-street-address-input"
-              data-testid="checkout-street-address"
-              type="text"
-              value={streetAddress}
-              onChange={(e) => {
-                setStreetAddress(e.target.value)
-                setStreetAddressError('')
-              }}
-              className={styles.input}
-              autoComplete="address-line1"
-            />
-            {streetAddressError && (
-              <p data-testid="checkout-street-address-error" className={styles.error} role="alert">
-                {streetAddressError}
-              </p>
-            )}
-          </div>
+            <div className={styles.feeRow}>
+              <span>Tạm tính</span>
+              <span data-testid="checkout-subtotal">{formatPrice(subtotal)}</span>
+            </div>
+            <div className={styles.feeRow}>
+              <span>Phí vận chuyển</span>
+              <span
+                data-testid="checkout-shipping-fee"
+                className={shippingFee === 0 ? styles.freeShipping : undefined}
+              >
+                {shippingFee === 0 ? 'Miễn phí' : formatPrice(shippingFee)}
+              </span>
+            </div>
 
-          <div className={styles.field}>
-            <label htmlFor="checkout-ward-input" className={styles.label}>
-              Phường/Xã
-            </label>
-            <input
-              id="checkout-ward-input"
-              data-testid="checkout-ward"
-              type="text"
-              value={ward}
-              onChange={(e) => {
-                setWard(e.target.value)
-                setWardError('')
-              }}
-              className={styles.input}
-            />
-            {wardError && (
-              <p data-testid="checkout-ward-error" className={styles.error} role="alert">
-                {wardError}
-              </p>
-            )}
-          </div>
+            <div className={styles.totalRow}>
+              <span>Tổng tiền</span>
+              <span data-testid="checkout-total" className={styles.totalAmount}>
+                {formatPrice(orderTotal)}
+              </span>
+            </div>
 
-          <div className={styles.field}>
-            <label htmlFor="checkout-district-input" className={styles.label}>
-              Quận/Huyện
-            </label>
-            <input
-              id="checkout-district-input"
-              data-testid="checkout-district"
-              type="text"
-              value={district}
-              onChange={(e) => {
-                setDistrict(e.target.value)
-                setDistrictError('')
-              }}
-              className={styles.input}
-            />
-            {districtError && (
-              <p data-testid="checkout-district-error" className={styles.error} role="alert">
-                {districtError}
-              </p>
-            )}
-          </div>
+            <button
+              type="submit"
+              form="checkout-form"
+              data-testid="checkout-submit"
+              disabled={isSubmitting}
+              className={`btn btn-primary ${styles.submitBtn}`}
+            >
+              {isSubmitting ? 'Đang xử lý...' : 'Đặt hàng'}
+            </button>
+            <p className={styles.disclaimer}>
+              Bằng việc đặt hàng, bạn đồng ý với điều khoản &amp; chính sách của chúng tôi.
+            </p>
+          </section>
 
-          <div className={styles.field}>
-            <label htmlFor="checkout-city-input" className={styles.label}>
-              Tỉnh/Thành phố
-            </label>
-            <input
-              id="checkout-city-input"
-              data-testid="checkout-city"
-              type="text"
-              value={city}
-              onChange={(e) => {
-                setCity(e.target.value)
-                setCityError('')
-              }}
-              className={styles.input}
-              autoComplete="address-level1"
-            />
-            {cityError && (
-              <p data-testid="checkout-city-error" className={styles.error} role="alert">
-                {cityError}
-              </p>
-            )}
-          </div>
+          {/* RIGHT: Delivery Form */}
+          <form id="checkout-form" onSubmit={handleSubmit} className={styles.form} noValidate>
+            <div className={styles.formHeader}>
+              <span className={styles.formBadge}>1</span>
+              <h2 className={styles.formHeading}>Thông tin nhận hàng</h2>
+            </div>
 
-          <div className={styles.field}>
-            <label htmlFor="checkout-phone-input" className={styles.label}>
-              Số điện thoại
-            </label>
-            <input
-              id="checkout-phone-input"
-              data-testid="checkout-phone"
-              type="tel"
-              value={phone}
-              onChange={(e) => {
-                setPhone(e.target.value)
-                setPhoneError('')
-              }}
-              className={styles.input}
-              autoComplete="tel"
-            />
-            {phoneError && (
-              <p data-testid="checkout-phone-error" className={styles.error} role="alert">
-                {phoneError}
-              </p>
-            )}
-          </div>
+            <div className={styles.field}>
+              <label htmlFor="checkout-full-name-input" className={styles.label}>
+                Họ tên
+              </label>
+              <input
+                id="checkout-full-name-input"
+                data-testid="checkout-full-name"
+                type="text"
+                value={fullName}
+                onChange={(e) => {
+                  setFullName(e.target.value)
+                  setFullNameError('')
+                }}
+                className={styles.input}
+                autoComplete="name"
+                placeholder="Nguyễn Văn A"
+              />
+              {fullNameError && (
+                <p data-testid="checkout-full-name-error" className={styles.error} role="alert">
+                  {fullNameError}
+                </p>
+              )}
+            </div>
 
-          <div className={styles.field}>
-            <label htmlFor="checkout-postal-code-input" className={styles.label}>
-              Mã bưu chính
-            </label>
-            <input
-              id="checkout-postal-code-input"
-              data-testid="checkout-postal-code"
-              type="text"
-              value={postalCode}
-              onChange={(e) => {
-                setPostalCode(e.target.value)
-                setPostalCodeError('')
-              }}
-              className={styles.input}
-              autoComplete="postal-code"
-            />
-            {postalCodeError && (
-              <p data-testid="checkout-postal-code-error" className={styles.error} role="alert">
-                {postalCodeError}
-              </p>
-            )}
-          </div>
+            <div className={styles.field}>
+              <label htmlFor="checkout-email-input" className={styles.label}>
+                Email
+              </label>
+              <input
+                id="checkout-email-input"
+                data-testid="checkout-email"
+                type="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setEmailError('')
+                }}
+                className={styles.input}
+                autoComplete="email"
+                placeholder="ban@email.com"
+              />
+              {emailError && (
+                <p data-testid="checkout-email-error" className={styles.error} role="alert">
+                  {emailError}
+                </p>
+              )}
+            </div>
 
-          <button
-            type="submit"
-            data-testid="checkout-submit"
-            disabled={isSubmitting}
-            className={`btn btn-primary ${styles.submitBtn}`}
-          >
-            {isSubmitting ? 'Đang xử lý...' : 'Đặt hàng'}
-          </button>
-        </form>
+            <div className={styles.field}>
+              <label htmlFor="checkout-street-address-input" className={styles.label}>
+                Số nhà và đường
+              </label>
+              <input
+                id="checkout-street-address-input"
+                data-testid="checkout-street-address"
+                type="text"
+                value={streetAddress}
+                onChange={(e) => {
+                  setStreetAddress(e.target.value)
+                  setStreetAddressError('')
+                }}
+                className={styles.input}
+                autoComplete="address-line1"
+                placeholder="123 Đường Láng"
+              />
+              {streetAddressError && (
+                <p
+                  data-testid="checkout-street-address-error"
+                  className={styles.error}
+                  role="alert"
+                >
+                  {streetAddressError}
+                </p>
+              )}
+            </div>
+
+            <div className={styles.fieldRow}>
+              <div className={styles.field}>
+                <label htmlFor="checkout-ward-input" className={styles.label}>
+                  Phường/Xã
+                </label>
+                <input
+                  id="checkout-ward-input"
+                  data-testid="checkout-ward"
+                  type="text"
+                  value={ward}
+                  onChange={(e) => {
+                    setWard(e.target.value)
+                    setWardError('')
+                  }}
+                  className={styles.input}
+                  placeholder="Láng Thượng"
+                />
+                {wardError && (
+                  <p data-testid="checkout-ward-error" className={styles.error} role="alert">
+                    {wardError}
+                  </p>
+                )}
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor="checkout-district-input" className={styles.label}>
+                  Quận/Huyện
+                </label>
+                <input
+                  id="checkout-district-input"
+                  data-testid="checkout-district"
+                  type="text"
+                  value={district}
+                  onChange={(e) => {
+                    setDistrict(e.target.value)
+                    setDistrictError('')
+                  }}
+                  className={styles.input}
+                  placeholder="Đống Đa"
+                />
+                {districtError && (
+                  <p data-testid="checkout-district-error" className={styles.error} role="alert">
+                    {districtError}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.field}>
+              <label htmlFor="checkout-city-input" className={styles.label}>
+                Tỉnh/Thành phố
+              </label>
+              <input
+                id="checkout-city-input"
+                data-testid="checkout-city"
+                type="text"
+                value={city}
+                onChange={(e) => {
+                  setCity(e.target.value)
+                  setCityError('')
+                }}
+                className={styles.input}
+                autoComplete="address-level1"
+                placeholder="Hà Nội"
+              />
+              {cityError && (
+                <p data-testid="checkout-city-error" className={styles.error} role="alert">
+                  {cityError}
+                </p>
+              )}
+            </div>
+
+            <div className={styles.fieldRow}>
+              <div className={styles.field}>
+                <label htmlFor="checkout-phone-input" className={styles.label}>
+                  Số điện thoại
+                </label>
+                <input
+                  id="checkout-phone-input"
+                  data-testid="checkout-phone"
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value)
+                    setPhoneError('')
+                  }}
+                  className={styles.input}
+                  autoComplete="tel"
+                  placeholder="09xx xxx xxx"
+                />
+                {phoneError && (
+                  <p data-testid="checkout-phone-error" className={styles.error} role="alert">
+                    {phoneError}
+                  </p>
+                )}
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor="checkout-postal-code-input" className={styles.label}>
+                  Mã bưu chính
+                </label>
+                <input
+                  id="checkout-postal-code-input"
+                  data-testid="checkout-postal-code"
+                  type="text"
+                  value={postalCode}
+                  onChange={(e) => {
+                    setPostalCode(e.target.value)
+                    setPostalCodeError('')
+                  }}
+                  className={styles.input}
+                  autoComplete="postal-code"
+                  placeholder="700000"
+                />
+                {postalCodeError && (
+                  <p data-testid="checkout-postal-code-error" className={styles.error} role="alert">
+                    {postalCodeError}
+                  </p>
+                )}
+              </div>
+            </div>
+          </form>
+        </div>
       </main>
     </div>
   )

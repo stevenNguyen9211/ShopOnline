@@ -13,6 +13,10 @@
 
 **Goal**: Verify the complete checkout flow from cart to confirmation.
 
+**UI layout (post-redesign 2026-06-29)**: Trang checkout hiển thị 2 cột —
+cột trái là order summary card (sản phẩm với avatar màu, địa chỉ giao hàng
+gộp real-time, phí, tổng, nút "Đặt hàng"); cột phải là form 8 trường.
+
 **Steps**:
 1. Log in as a test user (e.g., `oliver_hayes`)
 2. Add at least one product to cart (e.g., "Bàn phím cơ" — price 1.200.000 đ)

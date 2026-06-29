@@ -101,3 +101,76 @@ pattern established by existing features. Logic mới cho shipping/orderId đủ
 ## Complexity Tracking
 
 > Không có vi phạm — không cần ghi nhận.
+
+---
+
+## UI Redesign (2026-06-29)
+
+**Context**: Post-ship UI iteration để cải thiện visual presentation theo mockup.
+Không có FR mới; tất cả FR-001–FR-014 và data model giữ nguyên. Thay đổi thuần
+UI/layout — được document retroactively theo quy trình SDD.
+
+### Design Decisions
+
+#### Layout: 2-Column Grid
+
+- **Decision**: CSS Grid `grid-template-columns: 420px 1fr`
+- **Left column**: Order summary card + combined address preview + submit + disclaimer
+- **Right column**: Delivery form (8 fields giữ nguyên)
+- **Rationale**: Tách "review đơn hàng" (trái) khỏi "nhập thông tin" (phải) —
+  pattern checkout phổ biến giúp người dùng xem lại đơn trước khi submit.
+- **Submit button**: Đặt ở cột trái, dùng HTML5 `form="checkout-form"` để
+  submit form ở cột phải mà không cần nesting — tránh invalid HTML.
+- **Mobile**: Stack thành 1 cột; form (phải) hiện trước summary (trái) qua
+  CSS `order` property.
+
+#### Product Avatars
+
+- **Decision**: Ô vuông màu với chữ cái đầu của tên sản phẩm; màu xác định
+  theo `productId` qua constant `AVATAR_COLORS`.
+- **Colors**: `ban-phim-co` → #3B82F6, `chuot-khong-day` → #22C55E,
+  `tai-nghe-bluetooth` → #A855F7, `balo-laptop` → #F97316,
+  `binh-giu-nhiet` → #EF4444, `den-ban-led` → #EAB308
+- **Rationale**: Không cần ảnh sản phẩm trong summary; phân biệt trực quan
+  giúp người dùng scan đơn hàng nhanh. Màu hard-coded theo productId — đủ
+  đơn giản cho demo scope (YAGNI).
+
+#### Combined Address Display trong Summary
+
+- **Decision**: Derived string `[streetAddress, ward, district, city].filter(Boolean).join(', ')`
+  hiển thị trong order summary card, cập nhật real-time khi người dùng nhập.
+- **Position**: Giữa danh sách sản phẩm và phần phí.
+- **Rationale**: Cho người dùng xem địa chỉ giao hàng đầy đủ trước khi nhấn
+  "Đặt hàng" mà không phải cuộn xuống form. Chỉ render khi ít nhất 1 trường
+  địa chỉ có giá trị.
+- **Không có testid**: Display phụ, không cần hợp đồng automation
+  (quyết định Q3 — clarification session 2026-06-29).
+
+#### Form Layout Changes
+
+- Ward + district side-by-side (`grid-template-columns: 1fr 1fr`)
+- Phone + postal code side-by-side (cùng pattern)
+- "1" badge vuông xanh trước heading form (visual step indicator)
+- fullName, email, streetAddress, city: full-width, xếp dọc
+
+### Constitution Check (UI Redesign)
+
+| Nguyên tắc | Trạng thái | Ghi chú |
+|------------|-----------|---------|
+| I. Code Sạch | ✅ Pass | Avatar colors là named constant; combinedAddress là computed variable |
+| II. YAGNI | ✅ Pass | Không thư viện mới; CSS Modules; màu hard-coded (không cần color utility) |
+| III. UI Test-able | ✅ Pass | Tất cả testids từ FR-012 giữ nguyên; combined address display không có testid theo Q3 |
+| IV. Không Backend | ✅ Pass | Thuần UI change |
+| V. UX Nhất Quán | ✅ Pass | Design tokens dùng xuyên suốt; formatPrice tái sử dụng |
+| VI. Test Có Kỷ Luật | ✅ Pass | Không đổi test/POM; 19/19 tests pass sau redesign |
+| VII. CI/CD | ✅ Pass | Không env vars mới; không đổi workflow |
+
+**Kết quả**: Tất cả gates pass — không cần Complexity Tracking.
+
+### Files Changed
+
+| File | Loại thay đổi |
+|------|---------------|
+| `src/pages/CheckoutPage.tsx` | Rewrite: 2-column layout, avatars, combined address display, submit ở cột trái |
+| `src/pages/CheckoutPage.module.css` | Rewrite: layout classes mới + 3 classes `.deliveryAddress*` |
+| `specs/007-checkout-page/spec.md` | Clarifications section: 3 quyết định UI redesign |
