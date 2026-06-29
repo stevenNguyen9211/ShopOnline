@@ -174,3 +174,47 @@ UI/layout — được document retroactively theo quy trình SDD.
 | `src/pages/CheckoutPage.tsx` | Rewrite: 2-column layout, avatars, combined address display, submit ở cột trái |
 | `src/pages/CheckoutPage.module.css` | Rewrite: layout classes mới + 3 classes `.deliveryAddress*` |
 | `specs/007-checkout-page/spec.md` | Clarifications section: 3 quyết định UI redesign |
+
+---
+
+## Form Polish (2026-06-29)
+
+**Context**: Micro-refinements sau khi review mockup — spacing, placeholder color, và
+placeholder text. Thuần CSS + JSX attribute changes, không ảnh hưởng logic hay testid.
+
+### Design Decisions
+
+#### Label-to-Input Spacing
+
+- **Vấn đề**: Gap giữa label và input trong `.field` quá lớn, label trông "nổi cao" so với input.
+- **Decision**: Giảm `gap` trong `.field` từ `var(--space-2)` xuống `var(--space-1)`.
+- **Rationale**: `--space-1` (~4px) phù hợp hơn cho label-input pair; `--space-2` (~8px) dùng cho các element độc lập.
+
+#### Placeholder Color
+
+- **Vấn đề**: Placeholder text quá đậm, khó phân biệt với text đã nhập.
+- **Decision**: Thêm CSS rule `.input::placeholder { color: var(--color-text-muted); opacity: 0.5; }`.
+- **Rationale**: Dùng design token `--color-text-muted` + `opacity: 0.5` đảm bảo nhất quán với hệ thống màu hiện có mà không hard-code giá trị mới.
+
+#### Placeholder Text — Ward / District / City
+
+- **Vấn đề**: "Láng Thượng", "Đống Đa", "Hà Nội" quá cụ thể, áp đặt địa danh của một khu vực.
+- **Decision**: Để trống — không có placeholder cho `checkout-ward`, `checkout-district`, `checkout-city`.
+- **Rationale**: Label đã đủ hướng dẫn; placeholder rỗng tránh gây nhầm lẫn cho user ở tỉnh thành khác. `checkout-street-address` giữ placeholder "123 Đường Láng" vì minh hoạ format số nhà/đường rõ hơn.
+- **Alternatives rejected**: "VD: Phường 1" — vẫn có thể gây nhầm ở nông thôn (xã, thôn).
+
+### Constitution Check (Form Polish)
+
+| Nguyên tắc | Trạng thái | Ghi chú |
+|------------|-----------|---------|
+| I. Code Sạch | ✅ Pass | Dùng design token, không hard-code giá trị |
+| II. YAGNI | ✅ Pass | Chỉ sửa đúng 3 điểm, không thêm abstraction |
+| III. UI Test-able | ✅ Pass | Không thay đổi testid nào |
+| V. UX Nhất Quán | ✅ Pass | Design token `--color-text-muted` dùng nhất quán |
+
+### Files to Change
+
+| File | Thay đổi |
+|------|----------|
+| `src/pages/CheckoutPage.module.css` | Giảm `gap` trong `.field`; thêm `::placeholder` rule |
+| `src/pages/CheckoutPage.tsx` | Xóa `placeholder` prop trên ward, district, city inputs |

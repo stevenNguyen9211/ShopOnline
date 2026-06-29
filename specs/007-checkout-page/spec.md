@@ -263,3 +263,9 @@ tiền đúng.
 - Q: 4 trường địa chỉ riêng (số nhà/đường, phường/xã, quận/huyện, tỉnh/thành phố) có được gộp thành 1 textarea không? → A: Không — giữ nguyên 4 trường input riêng trong form; KHÔNG dùng textarea "Địa chỉ nhà" như trong mockup.
 - Q: Text gộp địa chỉ từ 4 trường được hiển thị ở đâu? → A: Hiển thị trong order summary card (cột trái), cập nhật real-time theo 4 input fields — giúp người dùng xem lại địa chỉ giao hàng trước khi đặt.
 - Q: Text gộp địa chỉ trong summary có cần `data-testid` không? → A: Không — đây là display phụ, không phải phần tử tương tác hay dữ liệu cần test tự động; FR-012 giữ nguyên không đổi.
+
+### Session 2026-06-29 (Form Polish)
+
+- Q: Label-to-input spacing quá lớn — cần giảm gap giữa label và input field. → A: Giảm `gap` trong CSS class `.field` xuống nhỏ hơn `var(--space-2)`.
+- Q: Placeholder màu quá đậm — cần mờ hơn. → A: Thêm CSS `::placeholder` với màu muted hơn màu text thông thường.
+- Q: Placeholder cho Phường/Xã, Quận/Huyện, Tỉnh/Thành phố nên là gì? → A: Để trống — không có placeholder cho 3 trường địa chỉ phụ này.

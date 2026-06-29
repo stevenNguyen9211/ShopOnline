@@ -346,7 +346,6 @@ export default function CheckoutPage() {
                     setWardError('')
                   }}
                   className={styles.input}
-                  placeholder="Láng Thượng"
                 />
                 {wardError && (
                   <p data-testid="checkout-ward-error" className={styles.error} role="alert">
@@ -369,7 +368,6 @@ export default function CheckoutPage() {
                     setDistrictError('')
                   }}
                   className={styles.input}
-                  placeholder="Đống Đa"
                 />
                 {districtError && (
                   <p data-testid="checkout-district-error" className={styles.error} role="alert">
@@ -394,7 +392,6 @@ export default function CheckoutPage() {
                 }}
                 className={styles.input}
                 autoComplete="address-level1"
-                placeholder="Hà Nội"
               />
               {cityError && (
                 <p data-testid="checkout-city-error" className={styles.error} role="alert">

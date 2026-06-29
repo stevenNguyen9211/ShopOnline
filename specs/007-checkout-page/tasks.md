@@ -281,3 +281,55 @@ thêm product avatars và visual enhancements trong order summary.
 - POM (`pages/CheckoutPage.ts`) và tests (`tests/us5-checkout.spec.ts`) **không thay đổi** — testid contract FR-012 giữ nguyên
 - Combined address display không có testid theo quyết định Q3 clarification session
 - `src/pages/CheckoutPage.module.css` được rewrite hoàn toàn (không chỉ update)
+
+---
+
+## Form Polish (2026-06-29)
+
+**Input**: Design decisions từ `specs/007-checkout-page/plan.md#form-polish`
+và clarification session 2026-06-29 (Form Polish).
+
+**Scope**: Thuần CSS + JSX attribute — không thay đổi logic, testid, POM, hay tests.
+
+---
+
+### Phase P1: CSS Fixes
+
+- [x] T028 [P] Update `src/pages/CheckoutPage.module.css` — giảm `gap` trong `.field` từ `var(--space-2)` xuống `var(--space-1)` để label gần input hơn
+- [x] T029 [P] Update `src/pages/CheckoutPage.module.css` — thêm rule `.input::placeholder { color: var(--color-text-muted); opacity: 0.5; }` ngay sau `.input:focus` để placeholder mờ hơn
+
+**Checkpoint**: Label nằm sát input hơn; placeholder text mờ, phân biệt rõ với text đã nhập.
+
+---
+
+### Phase P2: Placeholder Text
+
+- [x] T030 [US2] Update `src/pages/CheckoutPage.tsx` — xóa `placeholder` prop khỏi 3 input: `checkout-ward` (xóa `placeholder="Láng Thượng"`), `checkout-district` (xóa `placeholder="Đống Đa"`), `checkout-city` (xóa `placeholder="Hà Nội"`); giữ nguyên placeholder của các trường còn lại
+
+**Checkpoint**: Ward, district, city không hiển thị gợi ý địa danh cụ thể.
+
+---
+
+### Phase P3: Polish
+
+- [x] T031 [P] Run `npm run lint` từ repo root — confirm no errors
+- [x] T032 [P] Run `npm run format:check` từ repo root — confirm no formatting issues
+- [x] T033 Run `npx playwright test tests/us5-checkout.spec.ts` — confirm 19/19 pass
+
+**Checkpoint**: Lint sạch, format sạch, tests xanh.
+
+---
+
+### Dependencies (Form Polish)
+
+- T028 và T029 có thể chạy song song (cùng file nhưng khác rule, không conflict)
+- T030 độc lập với T028/T029 (khác file)
+- T031, T032 song song sau khi T028–T030 xong
+- T033 chạy sau T031–T032
+
+### Notes (Form Polish)
+
+- Tổng 6 tasks mới (T028–T033), chưa implement
+- POM và tests **không đổi** — spacing và placeholder không có testid
+- `checkout-street-address` GIỮ NGUYÊN placeholder "123 Đường Láng" (format số nhà/đường cần ví dụ cụ thể)
+- Chỉ sửa 2 files: `CheckoutPage.module.css` và `CheckoutPage.tsx`
